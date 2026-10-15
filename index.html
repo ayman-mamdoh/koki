@@ -339,27 +339,42 @@
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center gap-1.5">
-            <i class="fa-solid fa-signal text-emerald-400"></i> التحديث المباشر
+            <i class="fa-solid fa-signal text-emerald-400 animate-pulse"></i> التحديث المباشر
           </span>
           <h3 class="text-2xl md:text-3xl font-black text-white mt-1">تغريدات وصور حساب المدرسة على X</h3>
+          <p class="text-xs text-slate-400 mt-1">متابعة يومية مستمرة من حساب تعليمية ظفار ومدرسة ظفار للبنين</p>
         </div>
-        <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-white font-bold text-xs transition border border-slate-700 flex items-center gap-2">
-          <i class="fa-brands fa-x-twitter text-gold-400"></i> زيارة الحساب على X
+        <a href="https://twitter.com/EduGovDhf8101" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-white font-bold text-xs transition border border-slate-700 flex items-center gap-2">
+          <i class="fa-brands fa-x-twitter text-gold-400"></i> زيارة الحساب على X (@EduGovDhf8101)
         </a>
       </div>
 
-      <div class="bg-royal-950 rounded-2xl p-4 md:p-6 border border-gold-500/30 max-w-4xl mx-auto overflow-hidden shadow-2xl">
+      <!-- إطار العرض -->
+      <div class="bg-royal-950 rounded-2xl p-4 md:p-6 border border-gold-500/30 max-w-4xl mx-auto overflow-hidden shadow-2xl relative min-h-[400px]">
+        
+        <!-- ويدجت X المعتمد -->
         <a class="twitter-timeline" 
            data-height="650" 
            data-theme="dark" 
            data-chrome="nofooter noborders transparent"
-           href="https://x.com/EduGovDhf8101?s=20">
-           تغريدات وصور مدرسة ظفار للبنين
+           data-dnt="true"
+           href="https://twitter.com/EduGovDhf8101?ref_src=twsrc%5Etfw">
+           جاري تحميل أحدث تغريدات وصور مدرسة ظفار للبنين (@EduGovDhf8101)...
         </a>
-        <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+
+        <!-- في حال حظر المتصفح أو مانع الإعلانات للسكربت -->
+        <div id="x-fallback" class="p-6 text-center text-xs text-slate-400 space-y-3 pt-8">
+          <p>إذا لم تظهر التغريدات تلقائياً بسبب إعدادات الخصوصية أو مانع الإعلانات في متصفحك:</p>
+          <a href="https://twitter.com/EduGovDhf8101" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs hover:bg-gold-400 transition">
+            <i class="fa-brands fa-x-twitter"></i> فتح تغريدات الحساب مباشرة على X
+          </a>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- سكربت تويتر مع التحميل الإجباري -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" onload="if(window.twttr) { twttr.widgets.load(); }"></script>
 
   <!-- الفوتر -->
   <footer class="bg-royal-950 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
