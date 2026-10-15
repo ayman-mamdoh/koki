@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مدرسة ظفار للبنين (11-12) | Dhofar Secondary School</title>
+  <title>مدرسة ظفار للبنين (11-12) | Dhofar Secondary School for Boys</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -36,37 +40,47 @@
       }
     }
   </script>
+  
   <style>
     body { font-family: 'Cairo', sans-serif; }
     html[dir="ltr"] body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .glass-card {
-      background: rgba(13, 35, 66, 0.75);
+      background: rgba(13, 35, 66, 0.82);
       backdrop-filter: blur(14px);
-      border: 1px solid rgba(197, 155, 63, 0.25);
+      border: 1px solid rgba(197, 155, 63, 0.28);
     }
-    .img-hover {
-      transition: transform 0.4s ease, filter 0.4s ease;
+    .img-zoom {
+      transition: transform 0.4s ease-in-out;
     }
-    .img-hover:hover {
+    .img-zoom:hover {
       transform: scale(1.03);
+    }
+    video {
+      outline: none;
     }
   </style>
 </head>
 <body class="bg-royal-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-royal-950">
 
-  <!-- شريط الإعلان العلوي -->
-  <div class="bg-royal-900 border-b border-gold-500/20 px-4 py-2 text-xs">
+  <!-- إشعار Toast تفاعلي -->
+  <div id="toast" class="fixed bottom-6 left-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-royal-900 border border-gold-500/50 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+    <i class="fa-solid fa-circle-check text-gold-400 text-lg"></i>
+    <span id="toastMsg" class="text-xs md:text-sm font-bold"></span>
+  </div>
+
+  <!-- الشريط الإداري العلوي -->
+  <aside class="bg-royal-900 border-b border-gold-500/20 px-4 py-2 text-xs">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-2 text-slate-300">
         <span class="px-2.5 py-0.5 rounded-full bg-gold-500/10 text-gold-400 font-bold border border-gold-500/30">
-          <i class="fa-solid fa-graduation-cap"></i> سلطنة عُمان • وزارة التعليم
+          <i class="fa-solid fa-graduation-cap"></i> سلطنة عُمان • وزارة التربية والتعليم
         </span>
         <span class="hidden sm:inline text-slate-400">|</span>
-        <span class="hidden sm:inline">محافظة ظفار • صلالة (الصفان 11 و 12)</span>
+        <span class="hidden sm:inline">المديرية العامة للتربية والتعليم بمحافظة ظفار • ولاية صلالة</span>
       </div>
 
       <div class="flex items-center gap-4">
-        <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-white transition flex items-center gap-1.5 font-bold">
+        <a href="https://x.com/EduGovDhf8101" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-white transition flex items-center gap-1.5 font-bold">
           <i class="fa-brands fa-x-twitter"></i> <span>@EduGovDhf8101</span>
         </a>
         <span class="text-slate-600">|</span>
@@ -75,473 +89,577 @@
         </button>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- الهيدر الرئيسي -->
+  <!-- الترويسة الرئيسية -->
   <header class="sticky top-0 z-40 bg-royal-950/90 backdrop-blur-md border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-royal-950 text-2xl font-black shadow-lg">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-royal-950 text-2xl font-black shadow-lg shadow-gold-500/20">
           <i class="fa-solid fa-landmark"></i>
         </div>
         <div>
           <h1 class="text-lg md:text-xl font-black text-white" data-key="brand_title">مدرسة ظفار للبنين (11-12)</h1>
-          <p class="text-[11px] text-gold-400 font-bold tracking-wider uppercase" data-key="brand_sub">Dhofar Post-Basic School for Boys</p>
+          <p class="text-[11px] text-gold-400 font-bold tracking-wider uppercase" data-key="brand_sub">Dhofar Post-Basic School for Boys (11-12)</p>
         </div>
       </div>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-300">
-        <a href="#mission-box" class="hover:text-gold-400 transition" data-key="nav_mission">رسالة المدرسة</a>
-        <a href="#gallery-section" class="text-gold-400 hover:text-white transition flex items-center gap-1.5" data-key="nav_gallery">
-          <i class="fa-solid fa-images"></i> صور الميدان المدرسي
+        <a href="#mission" class="hover:text-gold-400 transition" data-key="nav_mission">رسالة المدرسة</a>
+        <a href="#video-hub" class="text-gold-400 hover:text-white transition flex items-center gap-1.5" data-key="nav_videos">
+          <i class="fa-solid fa-play-circle"></i> مرئيات المدرسة
+        </a>
+        <a href="#feed-posts" class="hover:text-gold-400 transition flex items-center gap-1.5" data-key="nav_feed">
+          <i class="fa-brands fa-x-twitter"></i> تدوينات X
         </a>
         <a href="#tracks" class="hover:text-gold-400 transition" data-key="nav_tracks">المسارات الأكاديمية (2)</a>
-        <a href="#live-feed" class="hover:text-gold-400 transition" data-key="nav_feed">تغطية منصة X</a>
+        <a href="#calculator" class="hover:text-gold-400 transition" data-key="nav_calc">حاسبة الدبلوم</a>
       </nav>
 
-      <a href="#gallery-section" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md">
-        معرض الصور
-      </a>
+      <div class="flex items-center gap-3">
+        <button onclick="openPortalModal()" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
+          <i class="fa-solid fa-user-lock"></i>
+          <span data-key="btn_portal">البوابة التعليمية</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- الواجهة الرئيسية ورسالة المدرسة البارزة -->
-  <section class="py-12 md:py-16 px-4 bg-gradient-to-b from-royal-900 via-royal-950 to-royal-950">
-    <div class="max-w-7xl mx-auto space-y-10">
+  <main class="flex-grow">
+    <!-- الواجهة ورسالة المدرسة -->
+    <section class="py-10 md:py-14 px-4 bg-gradient-to-b from-royal-900 via-royal-950 to-royal-950">
+      <div class="max-w-7xl mx-auto space-y-10">
 
-      <!-- رسالة المدرسة المميزة في إطار ملكي ذهبي -->
-      <div id="mission-box" class="glass-card p-6 md:p-8 rounded-2xl border-2 border-gold-500/40 text-center relative overflow-hidden shadow-2xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-black uppercase mb-3 border border-gold-500/30">
-          <i class="fa-solid fa-quote-right"></i> <span data-key="mission_label">الرسالة التربوية الرسمية للمدرسة</span>
-        </div>
-        <h2 class="text-lg md:text-2xl lg:text-3xl font-black text-white leading-relaxed max-w-5xl mx-auto" data-key="school_mission">
-          "تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-6 border-t border-gold-500/20 text-xs text-slate-300">
-          <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-award text-gold-400"></i> تحصيل علمي متميز</div>
-          <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-users-gear text-gold-400"></i> شراكة طلابية فاعلة</div>
-          <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-chalkboard-user text-gold-400"></i> كوادر قيادية مبدعة</div>
-          <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-handshake-angle text-gold-400"></i> شراكة مجتمعية رائدة</div>
-        </div>
-      </div>
-
-      <!-- قسم البطولة مع الصورة الميدانية للطلاب بالزي العماني -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-6 space-y-5">
-          <div class="inline-flex items-center gap-2 text-xs font-bold text-gold-400">
-            <i class="fa-solid fa-location-dot"></i> صلالة - محافظة ظفار
+        <!-- رسالة المدرسة الرسمية مبرزة في إطار ذهبي -->
+        <div id="mission" class="glass-card p-6 md:p-8 rounded-2xl border-2 border-gold-500/40 text-center relative overflow-hidden shadow-2xl">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-black uppercase mb-3 border border-gold-500/30">
+            <i class="fa-solid fa-quote-right"></i> <span data-key="mission_badge">الرسالة التربوية الرسمية للمدرسة</span>
           </div>
-          <h3 class="text-3xl md:text-4xl font-black text-white leading-tight" data-key="hero_heading">
-            أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)
-          </h3>
-          <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-key="hero_desc">
-            تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية.
-          </p>
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="#tracks" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2">
-              <i class="fa-solid fa-book-open"></i> المسار العلمي والأدبي
-            </a>
-            <a href="#gallery-section" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
-              <i class="fa-solid fa-camera"></i> مشاهدة صور الفصول والأنشطة
-            </a>
+          <h2 class="text-lg md:text-2xl lg:text-3xl font-black text-white leading-relaxed max-w-5xl mx-auto" data-key="school_mission">
+            "تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-6 border-t border-gold-500/20 text-xs text-slate-300">
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-award text-gold-400"></i> تحصيل علمي متميز</div>
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-users-gear text-gold-400"></i> شراكة طلابية فاعلة</div>
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-chalkboard-user text-gold-400"></i> كوادر قيادية مبدعة</div>
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-handshake-angle text-gold-400"></i> شراكة مجتمعية رائدة</div>
           </div>
         </div>
 
-        <!-- الصورة الرئيسية: طلاب الصف في قاعة التعلم بالدشداشة والكمة -->
-        <div class="lg:col-span-6">
-          <div class="rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-royal-900 relative group">
-            <img src="HUGGNlbbMAAoy_e.jfif" 
-                 alt="طلاب مدرسة ظفار للبنين بالدشداشة والكمة العمانية في قاعة مصادر التعلم" 
-                 class="w-full h-80 md:h-[420px] object-cover img-hover">
-            <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-transparent to-transparent"></div>
-            <div class="absolute bottom-3 left-3 right-3 p-3 bg-royal-950/90 backdrop-blur rounded-xl border border-gold-500/30 text-xs">
-              <p class="font-bold text-gold-400 flex items-center gap-1.5">
-                <i class="fa-solid fa-chalkboard-user"></i> قاعة مصادر التعلم والحاسوب
-              </p>
-              <p class="text-slate-300 text-[11px] mt-0.5">طلبة مدرسة ظفار للبنين بالزي العُماني الأصيل أثناء المحاضرات والورش التفاعلية.</p>
+        <!-- صورة الطلاب والمعلمين بالزي العماني في الواجهة -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-5 text-right">
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-gold-400">
+              <i class="fa-solid fa-location-dot"></i> صلالة - محافظة ظفار
+            </div>
+            <h3 class="text-3xl md:text-4xl font-black text-white leading-tight" data-key="hero_title">
+              أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)
+            </h3>
+            <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-key="hero_desc">
+              تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية لتأهيل الطلبة لمقاعد التعليم العالي[span_4](start_span)[span_4](end_span).
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#video-hub" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
+                <i class="fa-solid fa-play"></i> مشاهدة المرئيات والمبادرات
+              </a>
+              <a href="#feed-posts" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
+                <i class="fa-brands fa-x-twitter text-gold-400"></i> تدوينات منصة X المباشرة
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-royal-900 relative group">
+              <img src="HUGGNlbbMAAoy_e.jfif" 
+                   alt="طلاب مدرسة ظفار للبنين بالدشداشة والكمة العمانية في قاعة مصادر التعلم" 
+                   class="w-full h-80 md:h-[420px] object-cover img-zoom">
+              <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-transparent to-transparent"></div>
+              <div class="absolute bottom-3 left-3 right-3 p-3 bg-royal-950/90 backdrop-blur rounded-xl border border-gold-500/30 text-xs">
+                <p class="font-bold text-gold-400 flex items-center gap-1.5">
+                  <i class="fa-solid fa-chalkboard-user"></i> قاعة مصادر التعلم والحاسوب
+                </p>
+                <p class="text-slate-300 text-[11px] mt-0.5">طلبة مدرسة ظفار للبنين بالزي العُماني الأصيل أثناء المحاضرات والورش التفاعلية[span_5](start_span)[span_5](end_span).</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- معرض الصور الواقعية من الميدان المدرسي -->
-  <section id="gallery-section" class="py-16 px-4 bg-royal-900/40 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto space-y-10">
-      
-      <div class="text-center space-y-2">
-        <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">توثيق الأنشطة واليوم المدرسي</span>
-        <h3 class="text-2xl md:text-4xl font-black text-white">صور حية من قلب مدرسة ظفار للبنين</h3>
-        <p class="text-xs md:text-sm text-slate-400">لقطات واقعية تجسد الحصص الدراسية، المحاضرات التوعوية، ولقاءات الإدارة المدرسية</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- صورة 1: الحصة التفاعلية ومجموعات العمل -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition">
-          <div class="h-60 overflow-hidden relative">
-            <img src="HUIO5eqbwAAadva.jfif" alt="المعلم والطلاب في مجموعات تعليمية" class="w-full h-full object-cover img-hover">
-            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-royal-950/80 backdrop-blur text-gold-400 font-bold text-[11px] border border-gold-500/30">
-              التعلم النشط
-            </div>
-          </div>
-          <div class="p-4 space-y-1.5">
-            <h4 class="text-sm font-bold text-white">مجموعات التعلم والمتابعة الفردية</h4>
-            <p class="text-xs text-slate-300">متابعة دقيقة من المعلم لدفاتر الطلاب وتطبيقات المنهج داخل الصفوف الدراسية.</p>
-          </div>
-        </div>
-
-        <!-- صورة 2: الشرح على السبورة الذكية وقوانين الكيمياء/الفيزياء -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition">
-          <div class="h-60 overflow-hidden relative">
-            <img src="HUIPM4fa8AATLx2.jfif" alt="شرح المنهج العلمي على السبورة" class="w-full h-full object-cover img-hover">
-            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-royal-950/80 backdrop-blur text-blue-400 font-bold text-[11px] border border-blue-500/30">
-              المسار العلمي
-            </div>
-          </div>
-          <div class="p-4 space-y-1.5">
-            <h4 class="text-sm font-bold text-white">شرح المفاهيم العلمية والتطبيقية</h4>
-            <p class="text-xs text-slate-300">حصة علمية تفاعلية تتضمن حل المسائل وتطبيقات مناهج كامبريدج لطلبة الدبلوم العام.</p>
-          </div>
-        </div>
-
-        <!-- صورة 3: محاضرة حقوق الطالب ومسؤولياته -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition">
-          <div class="h-60 overflow-hidden relative">
-            <img src="HUGGfihbIAAB1Em.jfif" alt="محاضرة برنامج حقوق الطالب ومسؤولياته" class="w-full h-full object-cover img-hover">
-            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-royal-950/80 backdrop-blur text-emerald-400 font-bold text-[11px] border border-emerald-500/30">
-              التوجيه والإرشاد
-            </div>
-          </div>
-          <div class="p-4 space-y-1.5">
-            <h4 class="text-sm font-bold text-white">برنامج حقوق الطالب ومسؤولياته</h4>
-            <p class="text-xs text-slate-300">ورشة توعوية تثقيفية لطلبة الصفين (11 - 12) لتعزيز الانضباط والشراكة الإيجابية.</p>
-          </div>
-        </div>
-
-        <!-- صورة 4: الطلاب يشاركون في الأنشطة الثقافية -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition">
-          <div class="h-60 overflow-hidden relative">
-            <img src="HT74ILnboAEfPR1.jfif" alt="مشاركة الطلاب في الأنشطة الطلابية والمعارض" class="w-full h-full object-cover img-hover">
-            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-royal-950/80 backdrop-blur text-purple-400 font-bold text-[11px] border border-purple-500/30">
-              الأنشطة التربوية
-            </div>
-          </div>
-          <div class="p-4 space-y-1.5">
-            <h4 class="text-sm font-bold text-white">مشاركة الطلاب في الملتقيات والمعارض</h4>
-            <p class="text-xs text-slate-300">تفعيل مواهب وقدرات الطلبة في الأنشطة اللاصفية والفعاليات التربوية بمحافظة ظفار.</p>
-          </div>
-        </div>
-
-        <!-- صورة 5: لقاء الإدارة والقيادة المدرسية -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition">
-          <div class="h-60 overflow-hidden relative">
-            <img src="HT20jMjbcAA2tT3.jfif" alt="إدارة المدرسة والكوادر القيادية المبدعة" class="w-full h-full object-cover img-hover">
-            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-royal-950/80 backdrop-blur text-gold-400 font-bold text-[11px] border border-gold-500/30">
-              القيادة المدرسية
-            </div>
-          </div>
-          <div class="p-4 space-y-1.5">
-            <h4 class="text-sm font-bold text-white">الكوادر الإدارية والتربوية المبدعة</h4>
-            <p class="text-xs text-slate-300">اجتماعات مستمرة لتطوير الخطط التحصيلية وتعزيز الشراكة مع المجتمع المحلي والتربوي.</p>
-          </div>
-        </div>
-
-        <!-- صورة 6: التفاعل الصفي والتركيز الدراسي -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition">
-          <div class="h-60 overflow-hidden relative">
-            <img src="HUIO57facAACcx8.jfif" alt="تركيز الطلاب أثناء الحصة والكتابة" class="w-full h-full object-cover img-hover">
-            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-royal-950/80 backdrop-blur text-amber-400 font-bold text-[11px] border border-amber-500/30">
-              التحصيل العلمي
-            </div>
-          </div>
-          <div class="p-4 space-y-1.5">
-            <h4 class="text-sm font-bold text-white">الجدية والانضباط في تدوين الملاحظات</h4>
-            <p class="text-xs text-slate-300">بيئة صفية تركز على إتقان مخرجات التعلم وبناء الثقة لدى طلاب المرحلة الثانوية.</p>
-          </div>
-        </div>
 
       </div>
+    </section>
 
-      <!-- عرض بوستر برنامج حقوق الطالب ومسؤولياته -->
-      <div class="p-6 rounded-2xl bg-royal-950 border border-gold-500/30 flex flex-col md:flex-row items-center gap-6">
-        <img src="HUGGgFIbMAAwsFZ.jfif" alt="انفوجرافيك حقوق الطالب ومسؤولياته بمدرسة ظفار" class="w-full md:w-1/3 rounded-xl border border-slate-700 shadow-md">
-        <div class="space-y-3 text-right">
-          <span class="px-2.5 py-0.5 rounded bg-gold-500/10 text-gold-400 font-bold text-xs border border-gold-500/20">وثيقة السلوك والانضباط</span>
-          <h4 class="text-lg font-black text-white">طالب واعٍ .. مجتمع قوي .. وطن مزدهر</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            تحرص المدرسة تحت إشراف الإدارة المدرسية وأخصائيي التوجيه والخدمة الاجتماعية على تبيان واجبات وحقوق الطالب، والالتزام بالزي المدرسي والمظهر اللائق، وترسيخ قيم المواطنة والانتماء والمسؤولية الذاتية.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- المساران الأكاديميان فقط (العلمي والأدبي) -->
-  <section id="tracks" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto space-y-10">
-      <div class="text-center space-y-2">
-        <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">التنظيم الأكاديمي</span>
-        <h3 class="text-2xl md:text-4xl font-black text-white">المساران الأكاديميان في مدرسة ظفار (11 - 12)</h3>
-        <p class="text-xs md:text-sm text-slate-400">نظام تعليمي متكامل يؤهل مخرجات الدبلوم العام لفرز مركز القبول الموحد (HEAC):</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- المسار العلمي -->
-        <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1.5">
-              <i class="fa-solid fa-atom"></i> المسار الأول
-            </span>
-            <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
-          </div>
-          <h4 class="text-2xl font-black text-white">المسار العلمي (Scientific Track)</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            يركز على الرياضيات المتقدمة والعلوم التجريبية (كامبريدج) والتطبيقات المختبرية لإعداد الطلاب لكليات الطب والهندسة والذكاء الاصطناعي.
-          </p>
-          <div class="grid grid-cols-2 gap-2 text-xs font-semibold pt-2">
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-square-root-variable text-gold-400 ml-1"></i> الرياضيات المتقدمة</div>
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-bolt text-gold-400 ml-1"></i> الفيزياء</div>
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-flask text-gold-400 ml-1"></i> الكيمياء</div>
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-dna text-gold-400 ml-1"></i> الأحياء</div>
-          </div>
-        </div>
-
-        <!-- المسار الأدبي -->
-        <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
-              <i class="fa-solid fa-feather-pointed"></i> المسار الثاني
-            </span>
-            <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
-          </div>
-          <h4 class="text-2xl font-black text-white">المسار الأدبي (Literary Track)</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            يُعنى بالفكر الإنساني والملكات اللغوية والاجتماعية لإعداد الكفاءات في مجالات القانون والعلوم السياسية، إدارة الأعمال، واللغات والترجمة.
-          </p>
-          <div class="grid grid-cols-2 gap-2 text-xs font-semibold pt-2">
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-book-quran text-gold-400 ml-1"></i> اللغة العربية والآداب</div>
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-language text-gold-400 ml-1"></i> اللغة الإنجليزية</div>
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-landmark text-gold-400 ml-1"></i> هذا وطني (دراسات)</div>
-            <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-chart-pie text-gold-400 ml-1"></i> الرياضيات الأساسية / جغرافيا</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- قسم تدوينات ومنشورات X (النص مدمج مع الصورة) -->
-  <section id="live-feed" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto space-y-8">
-      
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center gap-1.5">
-            <i class="fa-brands fa-x-twitter text-gold-400"></i> النشر والتغطية الميدانية
-          </span>
-          <h3 class="text-2xl md:text-3xl font-black text-white mt-1">أحدث منشورات وصور المدرسة على X</h3>
-          <p class="text-xs text-slate-400 mt-1">تغطية مصورة ومباشرة من الحساب الرسمي (@EduGovDhf8101)</p>
-        </div>
-        <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
-          <i class="fa-brands fa-x-twitter text-base"></i> متابعة الحساب على X
-        </a>
-      </div>
-
-      <!-- شبكة المنشورات (صورة + نص مصاحب) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- قسم المرئيات والفيديوهات الميدانية للمدرسة -->
+    <section id="video-hub" class="py-16 px-4 bg-royal-900/60 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-10">
         
-        <!-- التدوينة 1 -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition flex flex-col justify-between">
-          <div>
-            <!-- الصورة المنشورة مع التغريدة -->
-            <div class="h-48 overflow-hidden relative">
-              <img src="HUIO5eqbwAAadva.jfif" alt="صورة الفعالية" class="w-full h-full object-cover">
-              <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/80 backdrop-blur text-[10px] text-gold-400 font-bold border border-gold-500/30">
-                <i class="fa-brands fa-x-twitter"></i> تغريدة مصورة
-              </span>
-            </div>
-            <!-- نص التدوينة -->
-            <div class="p-4 space-y-2">
-              <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span class="font-bold text-slate-200">مدرسة ظفار للبنين</span>
-                <span>@EduGovDhf8101</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                جانب من فعاليات وتطبيقات التعلم النشط وحصص المتابعة الفردية لدفاتر وأنشطة طلبة الصفين 11 و 12.
-              </p>
-            </div>
-          </div>
-          <div class="p-4 pt-0">
-            <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" class="text-xs text-gold-400 font-bold hover:underline flex items-center gap-1.5">
-              <span>عرض المنشور الأصلي</span> <i class="fa-solid fa-arrow-left text-[10px]"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- التدوينة 2 -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition flex flex-col justify-between">
-          <div>
-            <div class="h-48 overflow-hidden relative">
-              <img src="HUGGfihbIAAB1Em.jfif" alt="صورة محاضرة التوجيه" class="w-full h-full object-cover">
-              <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/80 backdrop-blur text-[10px] text-emerald-400 font-bold border border-emerald-500/30">
-                <i class="fa-brands fa-x-twitter"></i> توجيه وإرشاد
-              </span>
-            </div>
-            <div class="p-4 space-y-2">
-              <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span class="font-bold text-slate-200">التوجيه الاجتماعي</span>
-                <span>@EduGovDhf8101</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                تنفيذ برنامج "حقوق الطالب ومسؤولياته" لترسيخ الانضباط المدرسي وقيم المواطنة الإيجابية لبيئة مدرسية آمنة ومحفزة.
-              </p>
-            </div>
-          </div>
-          <div class="p-4 pt-0">
-            <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" class="text-xs text-gold-400 font-bold hover:underline flex items-center gap-1.5">
-              <span>عرض المنشور الأصلي</span> <i class="fa-solid fa-arrow-left text-[10px]"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- التدوينة 3 -->
-        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-gold-500/50 transition flex flex-col justify-between">
-          <div>
-            <div class="h-48 overflow-hidden relative">
-              <img src="HUIPM4fa8AATLx2.jfif" alt="صورة الحصة العلمية" class="w-full h-full object-cover">
-              <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/80 backdrop-blur text-[10px] text-blue-400 font-bold border border-blue-500/30">
-                <i class="fa-brands fa-x-twitter"></i> المسار العلمي
-              </span>
-            </div>
-            <div class="p-4 space-y-2">
-              <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span class="font-bold text-slate-200">العلوم والرياضيات</span>
-                <span>@EduGovDhf8101</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                شرح المفاهيم العلمية وحل المسائل التطبيقية لمنهج كامبريدج لتهيئة الطلبة لاختبارات دبلوم التعليم العام.
-              </p>
-            </div>
-          </div>
-          <div class="p-4 pt-0">
-            <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" class="text-xs text-gold-400 font-bold hover:underline flex items-center gap-1.5">
-              <span>عرض المنشور الأصلي</span> <i class="fa-solid fa-arrow-left text-[10px]"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-  
-<!-- قسم منصة X المحدّث (يعمل دائماً بدون مشاكل تحميل) -->
-  <section id="live-feed" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto space-y-8">
-      
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center gap-1.5">
-            <i class="fa-brands fa-x-twitter text-gold-400"></i> التغطية الإعلامية الرسمية
+        <div class="text-center space-y-2">
+          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-video text-gold-400"></i> الإنتاج المرئي والمبادرات
           </span>
-          <h3 class="text-2xl md:text-3xl font-black text-white mt-1">حساب المدرسة على منصة X</h3>
-          <p class="text-xs text-slate-400 mt-1">تابع أحدث الأخبار والفعاليات والأنشطة الميدانية عبر الحساب الرسمي (@EduGovDhf8101)</p>
+          <h3 class="text-2xl md:text-4xl font-black text-white" data-key="videos_heading">المرئيات الميدانية والأنشطة التوثيقية</h3>
+          <p class="text-xs md:text-sm text-slate-400" data-key="videos_sub">توثيق حي لمبادرات الاستدامة، بيئة المدرسة الخضراء، وتجارب استقصاء مادة الفيزياء في مختبرات المدرسة</p>
         </div>
-        <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
-          <i class="fa-brands fa-x-twitter text-base"></i> زيارة الحساب الرسمي ومتابعته
-        </a>
-      </div>
 
-      <!-- شبكة بطاقات التغطية الرسمية -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- فيديو 1: مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة) -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="relative bg-black aspect-video flex items-center justify-center">
+                <video controls class="w-full h-full object-cover rounded-t-2xl">
+                  <source src="video1.mp4" type="video/mp4">
+                  متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+              </div>
+              <div class="p-5 space-y-2 text-right">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold border border-emerald-500/30">
+                  رؤية عُمان 2040 • استدامة البيئة[span_6](start_span)[span_6](end_span)
+                </span>
+                <h4 class="text-base font-bold text-white">مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة)[span_7](start_span)[span_7](end_span)</h4>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  نموذج مدرسة ظفار للتنمية المستدامة وإعادة التدوير ونشر ثقافة المسؤولية الفردية والمواطنة الصالحة[span_8](start_span)[span_8](end_span).
+                </p>
+                <div class="pt-2 text-[11px] text-slate-400 border-t border-slate-800 space-y-1">
+                  <div><strong>إعداد:</strong> أ/ سهيل سالم المشيخي • أ/ محمد علي محمد أحمد[span_9](start_span)[span_9](end_span)</div>
+                  <div><strong>إشراف إدارة المدرسة:</strong> أ/ خالد المشيخي (مدير المدرسة)[span_10](start_span)[span_10](end_span)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- فيديو 2: ورشة العمل والمحاضرة التوعوية للطلاب -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="relative bg-black aspect-video flex items-center justify-center">
+                <video controls class="w-full h-full object-cover rounded-t-2xl">
+                  <source src="video2.mp4" type="video/mp4">
+                  متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+              </div>
+              <div class="p-5 space-y-2 text-right">
+                <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold border border-blue-500/30">
+                  تأثير الأقران • توجيه سلوكي[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)
+                </span>
+                <h4 class="text-base font-bold text-white">الورشة التوعوية والتطبيقية لفريق العمل الطلابي[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)</h4>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  حلقة عمل تفاعلية في قاعة مصادر التعلم مع الطلبة لشرح محاور التغيير السلوكي وآليات التدخل الميداني في ساحة المدرسة[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).
+                </p>
+                <div class="pt-2 text-[11px] text-slate-400 border-t border-slate-800 space-y-1">
+                  <div><strong>الفئة المستهدفة:</strong> طلبة الصفين 11 و 12[span_17](start_span)[span_17](end_span)</div>
+                  <div><strong>تقديم:</strong> أ/ سهيل سالم المشيخي (معلم أول فيزياء)[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- فيديو 3: استقصاء علمي 1-1 في مختبر الفيزياء -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="relative bg-black aspect-video flex items-center justify-center">
+                <video controls class="w-full h-full object-cover rounded-t-2xl">
+                  <source src="video3.mp4" type="video/mp4">
+                  متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+              </div>
+              <div class="p-5 space-y-2 text-right">
+                <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-bold border border-purple-500/30">
+                  منهاج كامبريدج • مختبر الفيزياء[span_20](start_span)[span_20](end_span)
+                </span>
+                <h4 class="text-base font-bold text-white">استقصاء علمي (1-1): الميكروميتر والقدمة ذات الورنية[span_21](start_span)[span_21](end_span)</h4>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  تطبيق عملي مباشر في مختبر الفيزياء لطلبة الصف الحادي عشر لقياس الأبعاد الدقيقة وحساب قراءات الأجهزة المعملية[span_22](start_span)[span_22](end_span).
+                </p>
+                <div class="pt-2 text-[11px] text-slate-400 border-t border-slate-800 space-y-1">
+                  <div><strong>إشراف:</strong> أ/ سهيل المشيخي • أ/ ياسر عبدالغفار[span_23](start_span)[span_23](end_span)</div>
+                  <div><strong>تصوير ومونتاج:</strong> الطالب البراء العوائد (صف 11/2)[span_24](start_span)[span_24](end_span)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- قسم منشورات وبوستات منصة X المحددة -->
+    <section id="feed-posts" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-10">
         
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-gold-500/50 transition flex flex-col justify-between">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <div class="flex items-center justify-between mb-3 text-xs">
-              <span class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-brands fa-x-twitter"></i> @EduGovDhf8101</span>
-              <span class="text-slate-400">تغطية ميدانية</span>
-            </div>
-            <p class="text-xs text-slate-200 leading-relaxed mb-4">
-              جانب من الفعاليات وحصص التعلم النشط والتطبيقات العملية بمختبرات وقاعات مدرسة ظفار للبنين (11-12).
-            </p>
+            <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center gap-1.5">
+              <i class="fa-brands fa-x-twitter text-gold-400"></i> التغطية الرسمية المعتمدة
+            </span>
+            <h3 class="text-2xl md:text-3xl font-black text-white mt-1">تدوينات مدرسة ظفار على منصة X</h3>
+            <p class="text-xs text-slate-400 mt-1">تغطيات مصورة ومباشرة تم نشرها عبر حساب تعليمية ظفار ومدرسة ظفار</p>
           </div>
-          <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" class="text-xs text-gold-400 font-bold hover:underline flex items-center gap-1">
-            مشاهدة التغريدة على X <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          <a href="https://x.com/EduGovDhf8101" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
+            <i class="fa-brands fa-x-twitter text-base"></i> زيارة الحساب على X (@EduGovDhf8101)
           </a>
         </div>
 
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-gold-500/50 transition flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3 text-xs">
-              <span class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-brands fa-x-twitter"></i> @EduGovDhf8101</span>
-              <span class="text-slate-400">توجيه وإرشاد</span>
-            </div>
-            <p class="text-xs text-slate-200 leading-relaxed mb-4">
-              تنفيذ برنامج "حقوق الطالب ومسؤولياته" لطلبة الصفين 11 و 12 لتعزيز الانضباط وقيم المواطنة الإيجابية.
-            </p>
-          </div>
-          <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" class="text-xs text-gold-400 font-bold hover:underline flex items-center gap-1">
-            مشاهدة التغريدة على X <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          </a>
-        </div>
+        <!-- شبكة البوستات الثلاثة المطلوبة مع روابطها المباشرة -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-gold-500/50 transition flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3 text-xs">
-              <span class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-brands fa-x-twitter"></i> @EduGovDhf8101</span>
-              <span class="text-slate-400">الأنشطة التربوية</span>
+          <!-- البوست 1: https://x.com/EduGovDhf8101/status/2106799678839005683 -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 hover:border-gold-500 transition flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="h-52 overflow-hidden relative">
+                <img src="HT20jMjbcAA2tT3.jfif" alt="اجتماعات الإدارة المدرسية واللجان" class="w-full h-full object-cover img-zoom">
+                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/85 backdrop-blur text-[10px] text-gold-400 font-bold border border-gold-500/30">
+                  <i class="fa-brands fa-x-twitter"></i> تدوينة رسمية
+                </span>
+              </div>
+              <div class="p-4 space-y-2 text-right">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                  <span class="font-bold text-slate-200">الإدارة والقيادة المدرسية</span>
+                  <span class="text-gold-400">@EduGovDhf8101</span>
+                </div>
+                <p class="text-xs text-slate-200 leading-relaxed">
+                  متابعة خطط التحصيل الدراسي وتفعيل اللجان التربوية واستثمار كافة إمكانيات المدرسة لخدمة أبنائنا الطلبة في مدرسة ظفار للبنين[span_25](start_span)[span_25](end_span).
+                </p>
+              </div>
             </div>
-            <p class="text-xs text-slate-200 leading-relaxed mb-4">
-              مشاركات متميزة لطلبة المدرسة في المعارض والملتقيات التربوية على مستوى تعليمية محافظة ظفار.
-            </p>
+            <div class="p-4 pt-0">
+              <a href="https://x.com/EduGovDhf8101/status/2106799678839005683" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-royal-900 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
+                <span>فتح التغريدة على X</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
           </div>
-          <a href="https://x.com/EduGovDhf8101?s=20" target="_blank" class="text-xs text-gold-400 font-bold hover:underline flex items-center gap-1">
-            مشاهدة التغريدة على X <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          </a>
+
+          <!-- البوست 2: https://x.com/EduGovDhf8101/status/2110202671588413498 -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 hover:border-gold-500 transition flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="h-52 overflow-hidden relative">
+                <img src="HUGGfihbIAAB1Em.jfif" alt="فعاليات التوجيه والإرشاد الطلابي" class="w-full h-full object-cover img-zoom">
+                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/85 backdrop-blur text-[10px] text-emerald-400 font-bold border border-emerald-500/30">
+                  <i class="fa-brands fa-x-twitter"></i> تدوينة رسمية
+                </span>
+              </div>
+              <div class="p-4 space-y-2 text-right">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                  <span class="font-bold text-slate-200">التوجيه الاجتماعي والمهني</span>
+                  <span class="text-gold-400">@EduGovDhf8101</span>
+                </div>
+                <p class="text-xs text-slate-200 leading-relaxed">
+                  برامج التوعية الطلابية وحقوق ومسؤوليات الطالب لغرس الانضباط المدرسي وقيم المواطنة الصالحة والمسؤولية الذاتية[span_26](start_span)[span_26](end_span).
+                </p>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://x.com/EduGovDhf8101/status/2110202671588413498" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-royal-900 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
+                <span>فتح التغريدة على X</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- البوست 3: https://x.com/EduGovDhf8101/status/2109689865956892920 -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 hover:border-gold-500 transition flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="h-52 overflow-hidden relative">
+                <img src="HUIO5eqbwAAadva.jfif" alt="حصص التعلم النشط والمجموعات" class="w-full h-full object-cover img-zoom">
+                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/85 backdrop-blur text-[10px] text-blue-400 font-bold border border-blue-500/30">
+                  <i class="fa-brands fa-x-twitter"></i> تدوينة رسمية
+                </span>
+              </div>
+              <div class="p-4 space-y-2 text-right">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                  <span class="font-bold text-slate-200">التعلم النشط والتحصيل</span>
+                  <span class="text-gold-400">@EduGovDhf8101</span>
+                </div>
+                <p class="text-xs text-slate-200 leading-relaxed">
+                  جانب من الحصص التفاعلية وتطبيقات المتابعة المباشرة لمستوى الطلاب في قاعات الدراسة لرفع الكفاءة والتحصيل الدراسي[span_27](start_span)[span_27](end_span).
+                </p>
+              </div>
+            </div>
+            <div class="p-4 pt-0">
+              <a href="https://x.com/EduGovDhf8101/status/2109689865956892920" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-royal-900 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
+                <span>فتح التغريدة على X</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
         </div>
 
       </div>
+    </section>
 
+    <!-- المساران الأكاديميان فقط (العلمي والأدبي) -->
+    <section id="tracks" class="py-16 px-4 bg-royal-900/40 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-10">
+        <div class="text-center space-y-2">
+          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">التنظيم الأكاديمي</span>
+          <h3 class="text-2xl md:text-4xl font-black text-white">المساران الأكاديميان في مدرسة ظفار (11 - 12)</h3>
+          <p class="text-xs md:text-sm text-slate-400">نظام تعليمي متكامل يؤهل مخرجات الدبلوم العام لفرز مركز القبول الموحد (HEAC):</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- المسار العلمي -->
+          <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1.5">
+                <i class="fa-solid fa-atom"></i> المسار الأول
+              </span>
+              <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
+            </div>
+            <h4 class="text-2xl font-black text-white">المسار العلمي (Scientific Track)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              يركز على الرياضيات المتقدمة والعلوم التجريبية (كامبريدج) والتطبيقات المختبرية لإعداد الطلاب لكليات الطب والهندسة والذكاء الاصطناعي[span_28](start_span)[span_28](end_span).
+            </p>
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold pt-2">
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-square-root-variable text-gold-400 ml-1"></i> الرياضيات المتقدمة</div>
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-bolt text-gold-400 ml-1"></i> الفيزياء</div>
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-flask text-gold-400 ml-1"></i> الكيمياء</div>
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-dna text-gold-400 ml-1"></i> الأحياء</div>
+            </div>
+            <button onclick="selectTrackForCalc('sci')" class="w-full mt-3 py-2.5 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-calculator"></i> تجربة حساب معدل المسار العلمي
+            </button>
+          </div>
+
+          <!-- المسار الأدبي -->
+          <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+                <i class="fa-solid fa-feather-pointed"></i> المسار الثاني
+              </span>
+              <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
+            </div>
+            <h4 class="text-2xl font-black text-white">المسار الأدبي (Literary Track)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              يُعنى بالفكر الإنساني والملكات اللغوية والاجتماعية لإعداد الكفاءات في مجالات القانون والعلوم السياسية، إدارة الأعمال، واللغات والترجمة.
+            </p>
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold pt-2">
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-book-quran text-gold-400 ml-1"></i> اللغة العربية والآداب</div>
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-language text-gold-400 ml-1"></i> اللغة الإنجليزية</div>
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-landmark text-gold-400 ml-1"></i> هذا وطني (دراسات)</div>
+              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-chart-pie text-gold-400 ml-1"></i> الرياضيات الأساسية / جغرافيا</div>
+            </div>
+            <button onclick="selectTrackForCalc('lit')" class="w-full mt-3 py-2.5 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-calculator"></i> تجربة حساب معدل المسار الأدبي
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- حاسبة المعدل التقديري -->
+    <section id="calculator" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="text-center space-y-2">
+          <h3 class="text-2xl md:text-3xl font-extrabold text-white">حاسبة درجات المسار ومعدل الدبلوم التقديري</h3>
+          <p class="text-xs md:text-sm text-slate-400">أدخل درجاتك التقديرية في المواد التخصصية للمسار لعرض النسبة المئوية والتوصيات الجامعية.</p>
+        </div>
+
+        <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30">
+          <div class="flex rounded-lg bg-royal-950 p-1 mb-6 border border-slate-800 max-w-sm mx-auto">
+            <button id="calcTabSci" onclick="switchCalcTrack('sci')" class="w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition">المسار العلمي</button>
+            <button id="calcTabLit" onclick="switchCalcTrack('lit')" class="w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition">المسار الأدبي</button>
+          </div>
+
+          <div id="calcInputs" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800">
+            <div class="text-right w-full sm:w-auto">
+              <span class="text-xs text-slate-400 block">المعدل العام التقديري:</span>
+              <span id="calcResult" class="text-2xl md:text-3xl font-black text-gold-400">-- %</span>
+            </div>
+            <button onclick="calculateGPA()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-bold text-xs md:text-sm transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>احسب المعدل والتوصية الجامعية</span>
+            </button>
+          </div>
+
+          <div id="calcRecommendation" class="mt-4 p-3.5 rounded-lg bg-royal-950 border border-slate-800 text-xs text-slate-300 hidden"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- نافذة البوابة المدرسية -->
+  <div id="portalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-royal-900 border border-gold-500/40 rounded-2xl max-w-md w-full p-6 text-right space-y-5 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-gold-400"></i>
+          <span>بوابة الدخول الموحد للطلاب وأولياء الأمور</span>
+        </h3>
+        <button onclick="closePortalModal()" class="text-slate-400 hover:text-white text-xl">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">الرقم المدني العُماني (Civil ID):</label>
+          <input type="text" placeholder="أدخل الرقم المدني" class="w-full bg-royal-950 border border-slate-700 rounded-lg p-2.5 text-white focus:border-gold-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">كلمة المرور أو التصديق الإلكتروني (PKI):</label>
+          <input type="password" placeholder="••••••••" class="w-full bg-royal-950 border border-slate-700 rounded-lg p-2.5 text-white focus:border-gold-500 outline-none">
+        </div>
+      </div>
+
+      <div class="pt-2 space-y-2">
+        <button onclick="performLogin()" class="w-full py-2.5 rounded-lg bg-gold-500 text-royal-950 font-bold text-xs hover:bg-gold-400 transition">
+          تسجيل الدخول للنظام المدرسي
+        </button>
+        <button onclick="closePortalModal()" class="w-full py-2 rounded-lg bg-royal-800 text-slate-300 font-bold text-xs hover:bg-royal-700 transition">
+          إلغاء
+        </button>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- سكربت تويتر مع التحميل الإجباري -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" onload="if(window.twttr) { twttr.widgets.load(); }"></script>
-
-  <!-- الفوتر -->
+  <!-- تذييل الصفحة -->
   <footer class="bg-royal-950 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
     <p>جميع الحقوق محفوظة © 2026 مدرسة ظفار للبنين (11-12) • صلالة، محافظة ظفار، سلطنة عُمان</p>
     <p class="mt-1 text-[11px] text-slate-600">Dhofar Secondary School for Boys (11-12) • Salalah, Sultanate of Oman</p>
   </footer>
 
+  <!-- البرمجة التفاعلية -->
   <script>
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    function openPortalModal() {
+      document.getElementById('portalModal').classList.remove('hidden');
+    }
+    function closePortalModal() {
+      document.getElementById('portalModal').classList.add('hidden');
+    }
+    function performLogin() {
+      closePortalModal();
+      showToast('جاري التحقق من الهوية عبر بوابة وزارة التربية والتعليم...');
+    }
+
+    let currentCalcTrack = 'sci';
+    const trackSubjects = {
+      sci: [
+        { id: 'm1', name: 'الرياضيات المتقدمة', enName: 'Pure Mathematics', default: 92 },
+        { id: 'm2', name: 'الفيزياء', enName: 'Physics', default: 90 },
+        { id: 'm3', name: 'الكيمياء', enName: 'Chemistry', default: 88 },
+        { id: 'm4', name: 'الأحياء', enName: 'Biology', default: 91 }
+      ],
+      lit: [
+        { id: 'm1', name: 'اللغة العربية والآداب', enName: 'Arabic Language', default: 94 },
+        { id: 'm2', name: 'اللغة الإنجليزية المتقدمة', enName: 'Advanced English', default: 89 },
+        { id: 'm3', name: 'هذا وطني (الدراسات الاجتماعية)', enName: 'Social Studies', default: 95 },
+        { id: 'm4', name: 'الرياضيات الأساسية / الجغرافيا', enName: 'Core Math / Geography', default: 90 }
+      ]
+    };
+
+    function renderCalcInputs() {
+      const container = document.getElementById('calcInputs');
+      const list = trackSubjects[currentCalcTrack];
+      container.innerHTML = list.map(item => `
+        <div class="bg-royal-950 p-3 rounded-xl border border-slate-800">
+          <label class="block text-[11px] font-bold text-slate-300 mb-1.5 truncate">
+            ${currentLang === 'ar' ? item.name : item.enName}
+          </label>
+          <input type="number" id="${item.id}" min="0" max="100" value="${item.default}" 
+                 class="w-full bg-royal-900 border border-slate-700 rounded-lg p-2 text-gold-400 font-bold text-sm focus:border-gold-500 outline-none text-center">
+        </div>
+      `).join('');
+    }
+
+    function switchCalcTrack(type) {
+      currentCalcTrack = type;
+      const btnSci = document.getElementById('calcTabSci');
+      const btnLit = document.getElementById('calcTabLit');
+
+      if (type === 'sci') {
+        btnSci.className = "w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition";
+        btnLit.className = "w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition";
+      } else {
+        btnLit.className = "w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition";
+        btnSci.className = "w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition";
+      }
+      renderCalcInputs();
+      document.getElementById('calcResult').innerText = '-- %';
+      document.getElementById('calcRecommendation').classList.add('hidden');
+    }
+
+    function selectTrackForCalc(type) {
+      switchCalcTrack(type);
+      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function calculateGPA() {
+      const inputs = document.querySelectorAll('#calcInputs input');
+      let sum = 0, count = 0;
+      inputs.forEach(input => {
+        let val = parseFloat(input.value) || 0;
+        if (val > 100) val = 100;
+        if (val < 0) val = 0;
+        sum += val;
+        count++;
+      });
+      const avg = (sum / count).toFixed(1);
+      document.getElementById('calcResult').innerText = avg + ' %';
+
+      const rec = document.getElementById('calcRecommendation');
+      rec.classList.remove('hidden');
+
+      if (currentCalcTrack === 'sci') {
+        if (avg >= 90) {
+          rec.innerHTML = `<span class="text-gold-400 font-bold">✨ معدل ممتاز (المسار العلمي):</span> يؤهلك للمنافسة بقوة على كليات الطب البشري، طب الأسنان، الهندسة بجامعة السلطان قابوس، والابتعاث الخارجي.`;
+        } else if (avg >= 80) {
+          rec.innerHTML = `<span class="text-gold-400 font-bold">👍 معدل جيد جداً (المسار العلمي):</span> يؤهلك لكليات الهندسة، تقنية المعلومات والذكاء الاصطناعي، والعلوم التطبيقية والصحية.`;
+        } else {
+          rec.innerHTML = `<span class="text-gold-400 font-bold">📚 المسار العلمي:</span> ركّز على حل المسائل في مادتي الرياضيات والفيزياء لرفع التنافسية في فرز القبول الموحد.`;
+        }
+      } else {
+        if (avg >= 90) {
+          rec.innerHTML = `<span class="text-gold-400 font-bold">✨ معدل ممتاز (المسار الأدبي):</span> يؤهلك للمنافسة على كليات الحقوق والقانون، الاقتصاد والعلوم السياسية، واللغات والترجمة بجامعة السلطان قابوس.`;
+        } else if (avg >= 80) {
+          rec.innerHTML = `<span class="text-gold-400 font-bold">👍 معدل جيد جداً (المسار الأدبي):</span> يؤهلك لكليات إدارة الأعمال، الإعلام، والتربية والآداب.`;
+        } else {
+          rec.innerHTML = `<span class="text-gold-400 font-bold">📚 المسار الأدبي:</span> الاستثمار في درجات اللغتين العربية والإنجليزية يفتح أمامك خيارات تخصصية متعددة.`;
+        }
+      }
+    }
+
     const translations = {
       en: {
         brand_title: "Dhofar Secondary School for Boys (11-12)",
         brand_sub: "Salalah, Dhofar Governorate, Oman",
         nav_mission: "School Mission",
-        nav_gallery: "Campus Photos",
+        nav_videos: "Media & Videos",
+        nav_feed: "X Posts",
         nav_tracks: "Academic Tracks (2)",
-        nav_feed: "Live X Feed",
-        mission_label: "Official Educational Mission",
+        nav_calc: "GPA Calculator",
+        btn_portal: "MOE Portal",
+        mission_badge: "Official Educational Mission",
         school_mission: '"Providing distinguished academic achievement, engaging students across diverse educational activities, and maximizing all school resources supported by creative leadership and active community partnership."',
-        hero_heading: "Omani Heritage & Academic Excellence for Grades (11 - 12)",
-        hero_desc: "Dhofar Secondary School for Boys combines adherence to Omani identity (white dishdasha and kummah) with high academic standards in Cambridge sciences and literary disciplines."
+        hero_title: "Omani Heritage & Academic Excellence for Grades (11 - 12)",
+        hero_desc: "Dhofar Secondary School for Boys combines adherence to Omani identity (white dishdasha and kummah) with high academic standards in Cambridge sciences and literary disciplines.",
+        videos_heading: "Campus Field Videos & Initiatives",
+        videos_sub: "Live documentation of environmental sustainability, green campus initiatives, and Cambridge physics lab experiments."
       },
       ar: {
         brand_title: "مدرسة ظفار للبنين (11-12)",
-        brand_sub: "Dhofar Post-Basic School for Boys",
+        brand_sub: "Dhofar Post-Basic School for Boys (11-12)",
         nav_mission: "رسالة المدرسة",
-        nav_gallery: "صور الميدان المدرسي",
+        nav_videos: "مرئيات المدرسة",
+        nav_feed: "تدوينات X",
         nav_tracks: "المسارات الأكاديمية (2)",
-        nav_feed: "تغطية منصة X",
-        mission_label: "الرسالة التربوية الرسمية للمدرسة",
+        nav_calc: "حاسبة الدبلوم",
+        btn_portal: "البوابة التعليمية",
+        mission_badge: "الرسالة التربوية الرسمية للمدرسة",
         school_mission: '"تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"',
-        hero_heading: "أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)",
-        hero_desc: "تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية."
+        hero_title: "أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)",
+        hero_desc: "تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية لتأهيل الطلبة لمقاعد التعليم العالي.",
+        videos_heading: "المرئيات الميدانية والأنشطة التوثيقية",
+        videos_sub: "توثيق حي لمبادرات الاستدامة، بيئة المدرسة الخضراء، وتجارب استقصاء مادة الفيزياء في مختبرات المدرسة"
       }
     };
 
@@ -558,7 +676,10 @@
           el.textContent = translations[currentLang][key];
         }
       });
+      renderCalcInputs();
     });
+
+    renderCalcInputs();
   </script>
 </body>
 </html>
