@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مدرسة ظفار للبنين (11-12) | Dhofar Secondary School for Boys</title>
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -20,17 +17,8 @@
       theme: {
         extend: {
           colors: {
-            royal: {
-              950: '#030a14',
-              900: '#07162c',
-              800: '#0d2342',
-              700: '#15335d',
-            },
-            gold: {
-              400: '#e0b85c',
-              500: '#c59b3f',
-              600: '#a37d2c',
-            }
+            royal: { 950: '#030a14', 900: '#07162c', 800: '#0d2342', 700: '#15335d' },
+            gold: { 400: '#e0b85c', 500: '#c59b3f', 600: '#a37d2c' }
           },
           fontFamily: {
             ar: ['Cairo', 'sans-serif'],
@@ -49,26 +37,13 @@
       backdrop-filter: blur(14px);
       border: 1px solid rgba(197, 155, 63, 0.28);
     }
-    .img-zoom {
-      transition: transform 0.4s ease-in-out;
-    }
-    .img-zoom:hover {
-      transform: scale(1.03);
-    }
-    video {
-      outline: none;
-    }
+    .img-zoom { transition: transform 0.4s ease-in-out; }
+    .img-zoom:hover { transform: scale(1.03); }
   </style>
 </head>
 <body class="bg-royal-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-royal-950">
 
-  <!-- إشعار Toast تفاعلي -->
-  <div id="toast" class="fixed bottom-6 left-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-royal-900 border border-gold-500/50 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
-    <i class="fa-solid fa-circle-check text-gold-400 text-lg"></i>
-    <span id="toastMsg" class="text-xs md:text-sm font-bold"></span>
-  </div>
-
-  <!-- الشريط الإداري العلوي -->
+  <!-- شريط إداري علوي -->
   <aside class="bg-royal-900 border-b border-gold-500/20 px-4 py-2 text-xs">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-2 text-slate-300">
@@ -99,31 +74,31 @@
           <i class="fa-solid fa-landmark"></i>
         </div>
         <div>
-          <h1 class="text-lg md:text-xl font-black text-white" data-key="brand_title">مدرسة ظفار للبنين (11-12)</h1>
-          <p class="text-[11px] text-gold-400 font-bold tracking-wider uppercase" data-key="brand_sub">Dhofar Post-Basic School for Boys (11-12)</p>
+          <h1 class="text-lg md:text-xl font-black text-white">مدرسة ظفار للبنين (11-12)</h1>
+          <p class="text-[11px] text-gold-400 font-bold tracking-wider uppercase">Dhofar Post-Basic School for Boys (11-12)</p>
         </div>
       </div>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-300">
-        <a href="#mission" class="hover:text-gold-400 transition" data-key="nav_mission">رسالة المدرسة</a>
-        <a href="#games-hub" class="text-gold-400 hover:text-white transition flex items-center gap-1.5" data-key="nav_games">
+        <a href="#mission" class="hover:text-gold-400 transition">رسالة المدرسة</a>
+        <a href="#games-hub" class="text-gold-400 hover:text-white transition flex items-center gap-1.5">
           <i class="fa-solid fa-gamepad"></i> ألعاب الإنجليزي (11)
         </a>
-        <a href="#video-hub" class="hover:text-gold-400 transition flex items-center gap-1.5" data-key="nav_videos">
+        <a href="#video-hub" class="hover:text-gold-400 transition flex items-center gap-1.5">
           <i class="fa-solid fa-play-circle"></i> مرئيات المدرسة
         </a>
-        <a href="#feed-posts" class="hover:text-gold-400 transition flex items-center gap-1.5" data-key="nav_feed">
+        <a href="#feed-posts" class="hover:text-gold-400 transition flex items-center gap-1.5">
           <i class="fa-brands fa-x-twitter"></i> تدوينات X
         </a>
-        <a href="#tracks" class="hover:text-gold-400 transition" data-key="nav_tracks">المسارات الأكاديمية (2)</a>
-        <a href="#calculator" class="hover:text-gold-400 transition" data-key="nav_calc">حاسبة الدبلوم</a>
+        <a href="#tracks" class="hover:text-gold-400 transition">المسارات الأكاديمية (2)</a>
+        <a href="#calculator" class="hover:text-gold-400 transition">حاسبة الدبلوم</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <button onclick="openPortalModal()" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
-          <i class="fa-solid fa-user-lock"></i>
-          <span data-key="btn_portal">البوابة التعليمية</span>
-        </button>
+        <a href="#games-hub" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
+          <i class="fa-solid fa-gamepad"></i>
+          <span>العب الآن</span>
+        </a>
       </div>
     </div>
   </header>
@@ -133,13 +108,12 @@
     <section class="py-10 md:py-14 px-4 bg-gradient-to-b from-royal-900 via-royal-950 to-royal-950">
       <div class="max-w-7xl mx-auto space-y-10">
 
-        <!-- رسالة المدرسة الرسمية مبرزة في إطار ذهبي -->
+        <!-- رسالة المدرسة الرسمية -->
         <div id="mission" class="glass-card p-6 md:p-8 rounded-2xl border-2 border-gold-500/40 text-center relative overflow-hidden shadow-2xl">
-          <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-black uppercase mb-3 border border-gold-500/30">
-            <i class="fa-solid fa-quote-right"></i> <span data-key="mission_badge">الرسالة التربوية الرسمية للمدرسة</span>
+            <i class="fa-solid fa-quote-right"></i> <span>الرسالة التربوية الرسمية للمدرسة</span>
           </div>
-          <h2 class="text-lg md:text-2xl lg:text-3xl font-black text-white leading-relaxed max-w-5xl mx-auto" data-key="school_mission">
+          <h2 class="text-lg md:text-2xl lg:text-3xl font-black text-white leading-relaxed max-w-5xl mx-auto">
             "تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"
           </h2>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-6 border-t border-gold-500/20 text-xs text-slate-300">
@@ -150,38 +124,34 @@
           </div>
         </div>
 
-        <!-- صورة الطلاب والمعلمين بالزي العماني في الواجهة -->
+        <!-- صورة الطلاب والمعلمين بالزي العماني -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-6 space-y-5 text-right">
             <div class="inline-flex items-center gap-2 text-xs font-bold text-gold-400">
               <i class="fa-solid fa-location-dot"></i> صلالة - محافظة ظفار
             </div>
-            <h3 class="text-3xl md:text-4xl font-black text-white leading-tight" data-key="hero_title">
+            <h3 class="text-3xl md:text-4xl font-black text-white leading-tight">
               أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)
             </h3>
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-key="hero_desc">
-              تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية لتأهيل الطلبة لمقاعد التعليم العالي.
+            <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+              تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية[cite: 3].
             </p>
             <div class="flex flex-wrap gap-3 pt-2">
               <a href="#games-hub" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
                 <i class="fa-solid fa-gamepad"></i> الألعاب التعليمية التفاعلية (11)
               </a>
-              <a href="#video-hub" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
-                <i class="fa-solid fa-play"></i> مشاهدة المرئيات والمبادرات
+              <a href="#tracks" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
+                <i class="fa-solid fa-book-open"></i> استكشاف المسارين (علمي / أدبي)
               </a>
             </div>
           </div>
 
           <div class="lg:col-span-6">
             <div class="rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-royal-900 relative group">
-              <img src="HUGGNlbbMAAoy_e.jfif" 
-                   alt="طلاب مدرسة ظفار للبنين بالدشداشة والكمة العمانية في قاعة مصادر التعلم" 
-                   class="w-full h-80 md:h-[420px] object-cover img-zoom">
+              <img src="HUGGNlbbMAAoy_e.jfif" alt="طلاب مدرسة ظفار للبنين" class="w-full h-80 md:h-[420px] object-cover img-zoom">
               <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-transparent to-transparent"></div>
               <div class="absolute bottom-3 left-3 right-3 p-3 bg-royal-950/90 backdrop-blur rounded-xl border border-gold-500/30 text-xs">
-                <p class="font-bold text-gold-400 flex items-center gap-1.5">
-                  <i class="fa-solid fa-chalkboard-user"></i> قاعة مصادر التعلم والحاسوب
-                </p>
+                <p class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user"></i> قاعة مصادر التعلم والحاسوب</p>
                 <p class="text-slate-300 text-[11px] mt-0.5">طلبة مدرسة ظفار للبنين بالزي العُماني الأصيل أثناء المحاضرات والورش التفاعلية[cite: 3].</p>
               </div>
             </div>
@@ -191,7 +161,7 @@
       </div>
     </section>
 
-    <!-- قسم الألعاب التعليمية التفاعلية لمادة اللغة الإنجليزية (الصف الحادي عشر) -->
+    <!-- قسم الألعاب التعليمية التفاعلية المدمجة مباشرة -->
     <section id="games-hub" class="py-16 px-4 bg-royal-900/50 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
         
@@ -201,13 +171,13 @@
           </span>
           <h3 class="text-2xl md:text-4xl font-black text-white">الألعاب التعليمية التفاعلية لمادة اللغة الإنجليزية</h3>
           <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto">
-            مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر؛ لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي.
+            مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي ومدمجة لتعمل مباشرة دون مشاكل تحميل.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <!-- اللعبة 1: قطار الزمن Past Simple vs Past Continuous -->
+          <!-- اللعبة 1: Time Machine Express -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between hover:border-gold-500 transition">
             <div>
               <div class="p-6 bg-gradient-to-br from-royal-900 to-blue-950 border-b border-slate-800 flex items-center justify-between">
@@ -219,28 +189,21 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Time Machine Express</h4>
+                <h4 class="text-lg font-black text-white">Time Machine Express[cite: 15]</h4>
                 <p class="text-[11px] text-gold-400 font-bold uppercase tracking-wider">Past Simple vs. Past Continuous[cite: 15]</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
-                  لعبة محطات قطار تفاعلية عبر 5 مراحل تختبر إتقان أزمنة الماضي، واستخدام الروابط الدالة (While & When) والأفعال المقطوعة في مواقف حياتية للمراهقين مع شخصية Tick وسماع النطق والمؤثرات[cite: 15].
+                  لعبة محطات قطار تفاعلية عبر 5 مراحل تختبر إتقان أزمنة الماضي، واستخدام الروابط الدالة (While & When) والأفعال المقطوعة في مواقف حياتية للمراهقين مع نطق الجمل والمؤثرات الصوتية[cite: 15].
                 </p>
-                <div class="pt-2 text-[11px] text-slate-400 space-y-1">
-                  <div><strong>المهارة:</strong> Tense Contrast, Time Clues & Structure[cite: 15]</div>
-                  <div><strong>المستوى:</strong> الصف 11 (Grade 11 - Secondary)</div>
-                </div>
               </div>
             </div>
-            <div class="p-6 pt-0 space-y-2">
-              <button onclick="openGameModal('Past Simple Vs Past Continuous.html', 'Time Machine Express (Past Simple vs Past Continuous)')" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-                <i class="fa-solid fa-play"></i> ابدأ اللعب داخل الموقع
+            <div class="p-6 pt-0">
+              <button onclick="playEmbeddedGame('game1', 'Time Machine Express (Past Simple vs Past Continuous)')" class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
+                <i class="fa-solid fa-play"></i> العب الآن مباشرة
               </button>
-              <a href="Past Simple Vs Past Continuous.html" target="_blank" class="w-full py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> فتح في نافذة كاملة
-              </a>
             </div>
           </div>
 
-          <!-- اللعبة 2: مطابقة المفردات والمعاني بالصور -->
+          <!-- اللعبة 2: Vocabulary Match Game -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between hover:border-gold-500 transition">
             <div>
               <div class="p-6 bg-gradient-to-br from-royal-900 to-pink-950 border-b border-slate-800 flex items-center justify-between">
@@ -252,28 +215,21 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Vocabulary Match Game</h4>
+                <h4 class="text-lg font-black text-white">Vocabulary Match Game[cite: 16]</h4>
                 <p class="text-[11px] text-pink-400 font-bold uppercase tracking-wider">Theme: Teenage Words & Definitions[cite: 16]</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   مطابقة تفاعلية بالصور والنطق لمفردات المنهج الأساسية: (Adolescence, Angst, Acne, Teens, Suspicious, Mood swings, Peer pressure, Influence) مع نظام النجوم التراكمي وتغذية راجعة فورية[cite: 16].
                 </p>
-                <div class="pt-2 text-[11px] text-slate-400 space-y-1">
-                  <div><strong>المهارة:</strong> Visual & Contextual Meaning Association[cite: 16]</div>
-                  <div><strong>المستوى:</strong> الصف 11 (Grade 11 - Secondary)</div>
-                </div>
               </div>
             </div>
-            <div class="p-6 pt-0 space-y-2">
-              <button onclick="openGameModal('Vocabulary Match Game.html', 'Vocabulary Match Game (Grade 11 Words)')" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-                <i class="fa-solid fa-play"></i> ابدأ اللعب داخل الموقع
+            <div class="p-6 pt-0">
+              <button onclick="playEmbeddedGame('game2', 'Vocabulary Match Game (Grade 11 Words)')" class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
+                <i class="fa-solid fa-play"></i> العب الآن مباشرة
               </button>
-              <a href="Vocabulary Match Game.html" target="_blank" class="w-full py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> فتح في نافذة كاملة
-              </a>
             </div>
           </div>
 
-          <!-- اللعبة 3: إكمال نص حياة المراهقين -->
+          <!-- اللعبة 3: Teenage Life Word Game -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between hover:border-gold-500 transition">
             <div>
               <div class="p-6 bg-gradient-to-br from-royal-900 to-emerald-950 border-b border-slate-800 flex items-center justify-between">
@@ -285,24 +241,17 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Teenage Life Word Game</h4>
+                <h4 class="text-lg font-black text-white">Teenage Life Word Game[cite: 17]</h4>
                 <p class="text-[11px] text-emerald-400 font-bold uppercase tracking-wider">Gap-Fill & Reading Comprehension[cite: 17]</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   نشاط قراءة تفاعلي متقدم يضع الطالب أمام نص متكامل عن مرحلة المراهقة؛ لاختيار الكلمات الصحيحة وتعبئة الفراغات من بنك الكلمات مع ميزة التلميحات الذكية والتحقق الذاتي[cite: 17].
                 </p>
-                <div class="pt-2 text-[11px] text-slate-400 space-y-1">
-                  <div><strong>المهارة:</strong> Cloze Test, Reading Context & Flow[cite: 17]</div>
-                  <div><strong>المستوى:</strong> الصف 11 (Grade 11 - Secondary)</div>
-                </div>
               </div>
             </div>
-            <div class="p-6 pt-0 space-y-2">
-              <button onclick="openGameModal('Teenage Life Word Game.html', 'Teenage Life Word Game (Reading & Context)')" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-                <i class="fa-solid fa-play"></i> ابدأ اللعب داخل الموقع
+            <div class="p-6 pt-0">
+              <button onclick="playEmbeddedGame('game3', 'Teenage Life Word Game (Reading & Context)')" class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
+                <i class="fa-solid fa-play"></i> العب الآن مباشرة
               </button>
-              <a href="Teenage Life Word Game.html" target="_blank" class="w-full py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> فتح في نافذة كاملة
-              </a>
             </div>
           </div>
 
@@ -311,530 +260,169 @@
       </div>
     </section>
 
-    <!-- قسم المرئيات والفيديوهات الميدانية للمدرسة -->
+    <!-- قسم المرئيات والفيديوهات -->
     <section id="video-hub" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
-        
         <div class="text-center space-y-2">
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-video text-gold-400"></i> الإنتاج المرئي والمبادرات
           </span>
-          <h3 class="text-2xl md:text-4xl font-black text-white" data-key="videos_heading">المرئيات الميدانية والأنشطة التوثيقية</h3>
-          <p class="text-xs md:text-sm text-slate-400" data-key="videos_sub">توثيق حي لمبادرات الاستدامة، بيئة المدرسة الخضراء، وتجارب استقصاء مادة الفيزياء في مختبرات المدرسة</p>
+          <h3 class="text-2xl md:text-4xl font-black text-white">المرئيات الميدانية والأنشطة التوثيقية</h3>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          <!-- فيديو 1: مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة) -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between">
-            <div>
-              <div class="relative bg-black aspect-video flex items-center justify-center">
-                <video controls class="w-full h-full object-cover rounded-t-2xl">
-                  <source src="video1.mp4" type="video/mp4">
-                  متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-              </div>
-              <div class="p-5 space-y-2 text-right">
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold border border-emerald-500/30">
-                  رؤية عُمان 2040 • استدامة البيئة
-                </span>
-                <h4 class="text-base font-bold text-white">مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة)[cite: 12]</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  نموذج مدرسة ظفار للتنمية المستدامة وإعادة التدوير ونشر ثقافة المسؤولية الفردية والمواطنة الصالحة[cite: 12].
-                </p>
-                <div class="pt-2 text-[11px] text-slate-400 border-t border-slate-800 space-y-1">
-                  <div><strong>إعداد:</strong> أ/ سهيل سالم المشيخي • أ/ محمد علي محمد أحمد[cite: 12]</div>
-                  <div><strong>إشراف إدارة المدرسة:</strong> أ/ خالد المشيخي (مدير المدرسة)[cite: 12]</div>
-                </div>
-              </div>
+            <div class="relative bg-black aspect-video flex items-center justify-center">
+              <video controls class="w-full h-full object-cover rounded-t-2xl"><source src="video1.mp4" type="video/mp4"></video>
+            </div>
+            <div class="p-5 space-y-2 text-right">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold">رؤية عُمان 2040 • استدامة البيئة[cite: 12]</span>
+              <h4 class="text-base font-bold text-white">مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة)[cite: 12]</h4>
             </div>
           </div>
 
-          <!-- فيديو 2: ورشة العمل والمحاضرة التوعوية للطلاب -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between">
-            <div>
-              <div class="relative bg-black aspect-video flex items-center justify-center">
-                <video controls class="w-full h-full object-cover rounded-t-2xl">
-                  <source src="video2.mp4" type="video/mp4">
-                  متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-              </div>
-              <div class="p-5 space-y-2 text-right">
-                <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold border border-blue-500/30">
-                  تأثير الأقران • توجيه سلوكي
-                </span>
-                <h4 class="text-base font-bold text-white">الورشة التوعوية والتطبيقية لفريق العمل الطلابي[cite: 12, 13]</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  حلقة عمل تفاعلية في قاعة مصادر التعلم مع الطلبة لشرح محاور التغيير السلوكي وآليات التدخل الميداني في ساحة المدرسة[cite: 12, 13].
-                </p>
-                <div class="pt-2 text-[11px] text-slate-400 border-t border-slate-800 space-y-1">
-                  <div><strong>الفئة المستهدفة:</strong> طلبة الصفين 11 و 12[cite: 12]</div>
-                  <div><strong>تقديم:</strong> أ/ سهيل سالم المشيخي (معلم أول فيزياء)[cite: 12, 13]</div>
-                </div>
-              </div>
+            <div class="relative bg-black aspect-video flex items-center justify-center">
+              <video controls class="w-full h-full object-cover rounded-t-2xl"><source src="video2.mp4" type="video/mp4"></video>
+            </div>
+            <div class="p-5 space-y-2 text-right">
+              <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold">تأثير الأقران • توجيه سلوكي[cite: 12, 13]</span>
+              <h4 class="text-base font-bold text-white">الورشة التوعوية والتطبيقية لفريق العمل الطلابي[cite: 12, 13]</h4>
             </div>
           </div>
 
-          <!-- فيديو 3: استقصاء علمي 1-1 في مختبر الفيزياء -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between">
-            <div>
-              <div class="relative bg-black aspect-video flex items-center justify-center">
-                <video controls class="w-full h-full object-cover rounded-t-2xl">
-                  <source src="video3.mp4" type="video/mp4">
-                  متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-              </div>
-              <div class="p-5 space-y-2 text-right">
-                <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-bold border border-purple-500/30">
-                  منهاج كامبريدج • مختبر الفيزياء
-                </span>
-                <h4 class="text-base font-bold text-white">استقصاء علمي (1-1): الميكروميتر والقدمة ذات الورنية[cite: 14]</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  تطبيق عملي مباشر في مختبر الفيزياء لطلبة الصف الحادي عشر لقياس الأبعاد الدقيقة وحساب قراءات الأجهزة المعملية[cite: 14].
-                </p>
-                <div class="pt-2 text-[11px] text-slate-400 border-t border-slate-800 space-y-1">
-                  <div><strong>إشراف:</strong> أ/ سهيل المشيخي • أ/ ياسر عبدالغفار[cite: 14]</div>
-                  <div><strong>تصوير ومونتاج:</strong> الطالب البراء العوائد (صف 11/2)[cite: 14]</div>
-                </div>
-              </div>
+            <div class="relative bg-black aspect-video flex items-center justify-center">
+              <video controls class="w-full h-full object-cover rounded-t-2xl"><source src="video3.mp4" type="video/mp4"></video>
+            </div>
+            <div class="p-5 space-y-2 text-right">
+              <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-bold">منهاج كامبريدج • مختبر الفيزياء[cite: 14]</span>
+              <h4 class="text-base font-bold text-white">استقصاء علمي (1-1): الميكروميتر والقدمة ذات الورنية[cite: 14]</h4>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- قسم منشورات وبوستات منصة X المحددة -->
+    <!-- تدوينات منصة X -->
     <section id="feed-posts" class="py-16 px-4 bg-royal-900/40 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
-        
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center gap-1.5">
-              <i class="fa-brands fa-x-twitter text-gold-400"></i> التغطية الرسمية المعتمدة
-            </span>
-            <h3 class="text-2xl md:text-3xl font-black text-white mt-1">تدوينات مدرسة ظفار على منصة X</h3>
-            <p class="text-xs text-slate-400 mt-1">تغطيات مصورة ومباشرة تم نشرها عبر حساب تعليمية ظفار ومدرسة ظفار</p>
+            <h3 class="text-2xl md:text-3xl font-black text-white">تدوينات مدرسة ظفار على منصة X</h3>
           </div>
-          <a href="https://x.com/EduGovDhf8101" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
-            <i class="fa-brands fa-x-twitter text-base"></i> زيارة الحساب على X (@EduGovDhf8101)
-          </a>
+          <a href="https://x.com/EduGovDhf8101" target="_blank" class="px-5 py-2.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs">زيارة الحساب على X</a>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-          <!-- البوست 1 -->
-          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 hover:border-gold-500 transition flex flex-col justify-between shadow-xl">
-            <div>
-              <div class="h-52 overflow-hidden relative">
-                <img src="HT20jMjbcAA2tT3.jfif" alt="اجتماعات الإدارة المدرسية واللجان" class="w-full h-full object-cover img-zoom">
-                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/85 backdrop-blur text-[10px] text-gold-400 font-bold border border-gold-500/30">
-                  <i class="fa-brands fa-x-twitter"></i> تدوينة رسمية
-                </span>
-              </div>
-              <div class="p-4 space-y-2 text-right">
-                <div class="flex items-center justify-between text-[11px] text-slate-400">
-                  <span class="font-bold text-slate-200">الإدارة والقيادة المدرسية</span>
-                  <span class="text-gold-400">@EduGovDhf8101</span>
-                </div>
-                <p class="text-xs text-slate-200 leading-relaxed">
-                  متابعة خطط التحصيل الدراسي وتفعيل اللجان التربوية واستثمار كافة إمكانيات المدرسة لخدمة أبنائنا الطلبة في مدرسة ظفار للبنين.
-                </p>
-              </div>
-            </div>
-            <div class="p-4 pt-0">
-              <a href="https://x.com/EduGovDhf8101/status/2106799678839005683" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-royal-900 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
-                <span>فتح التغريدة على X</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-            </div>
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 p-4">
+            <img src="HT20jMjbcAA2tT3.jfif" class="w-full h-48 object-cover rounded-xl mb-3">
+            <a href="https://x.com/EduGovDhf8101/status/2106799678839005683" target="_blank" class="text-xs text-gold-400 font-bold">فتح التغريدة على X ←</a>
           </div>
-
-          <!-- البوست 2 -->
-          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 hover:border-gold-500 transition flex flex-col justify-between shadow-xl">
-            <div>
-              <div class="h-52 overflow-hidden relative">
-                <img src="HUGGfihbIAAB1Em.jfif" alt="فعاليات التوجيه والإرشاد الطلابي" class="w-full h-full object-cover img-zoom">
-                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/85 backdrop-blur text-[10px] text-emerald-400 font-bold border border-emerald-500/30">
-                  <i class="fa-brands fa-x-twitter"></i> تدوينة رسمية
-                </span>
-              </div>
-              <div class="p-4 space-y-2 text-right">
-                <div class="flex items-center justify-between text-[11px] text-slate-400">
-                  <span class="font-bold text-slate-200">التوجيه الاجتماعي والمهني</span>
-                  <span class="text-gold-400">@EduGovDhf8101</span>
-                </div>
-                <p class="text-xs text-slate-200 leading-relaxed">
-                  برامج التوعية الطلابية وحقوق ومسؤوليات الطالب لغرس الانضباط المدرسي وقيم المواطنة الصالحة والمسؤولية الذاتية.
-                </p>
-              </div>
-            </div>
-            <div class="p-4 pt-0">
-              <a href="https://x.com/EduGovDhf8101/status/2110202671588413498" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-royal-900 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
-                <span>فتح التغريدة على X</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-            </div>
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 p-4">
+            <img src="HUGGfihbIAAB1Em.jfif" class="w-full h-48 object-cover rounded-xl mb-3">
+            <a href="https://x.com/EduGovDhf8101/status/2110202671588413498" target="_blank" class="text-xs text-gold-400 font-bold">فتح التغريدة على X ←</a>
           </div>
-
-          <!-- البوست 3 -->
-          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 hover:border-gold-500 transition flex flex-col justify-between shadow-xl">
-            <div>
-              <div class="h-52 overflow-hidden relative">
-                <img src="HUIO5eqbwAAadva.jfif" alt="حصص التعلم النشط والمجموعات" class="w-full h-full object-cover img-zoom">
-                <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-royal-950/85 backdrop-blur text-[10px] text-blue-400 font-bold border border-blue-500/30">
-                  <i class="fa-brands fa-x-twitter"></i> تدوينة رسمية
-                </span>
-              </div>
-              <div class="p-4 space-y-2 text-right">
-                <div class="flex items-center justify-between text-[11px] text-slate-400">
-                  <span class="font-bold text-slate-200">التعلم النشط والتحصيل</span>
-                  <span class="text-gold-400">@EduGovDhf8101</span>
-                </div>
-                <p class="text-xs text-slate-200 leading-relaxed">
-                  جانب من الحصص التفاعلية وتطبيقات المتابعة المباشرة لمستوى الطلاب في قاعات الدراسة لرفع الكفاءة والتحصيل الدراسي.
-                </p>
-              </div>
-            </div>
-            <div class="p-4 pt-0">
-              <a href="https://x.com/EduGovDhf8101/status/2109689865956892920" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-lg bg-royal-900 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
-                <span>فتح التغريدة على X</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-            </div>
+          <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 p-4">
+            <img src="HUIO5eqbwAAadva.jfif" class="w-full h-48 object-cover rounded-xl mb-3">
+            <a href="https://x.com/EduGovDhf8101/status/2109689865956892920" target="_blank" class="text-xs text-gold-400 font-bold">فتح التغريدة على X ←</a>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- المساران الأكاديميان فقط (العلمي والأدبي) -->
+    <!-- المسارات الأكاديمية -->
     <section id="tracks" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
         <div class="text-center space-y-2">
-          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest">التنظيم الأكاديمي</span>
           <h3 class="text-2xl md:text-4xl font-black text-white">المساران الأكاديميان في مدرسة ظفار (11 - 12)</h3>
-          <p class="text-xs md:text-sm text-slate-400">نظام تعليمي متكامل يؤهل مخرجات الدبلوم العام لفرز مركز القبول الموحد (HEAC):</p>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- المسار العلمي -->
-          <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1.5">
-                <i class="fa-solid fa-atom"></i> المسار الأول
-              </span>
-              <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
-            </div>
+          <div class="glass-card p-6 rounded-2xl border border-gold-500/30 space-y-4">
             <h4 class="text-2xl font-black text-white">المسار العلمي (Scientific Track)</h4>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              يركز على الرياضيات المتقدمة والعلوم التجريبية (كامبريدج) والتطبيقات المختبرية لإعداد الطلاب لكليات الطب والهندسة والذكاء الاصطناعي[cite: 14].
-            </p>
-            <div class="grid grid-cols-2 gap-2 text-xs font-semibold pt-2">
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-square-root-variable text-gold-400 ml-1"></i> الرياضيات المتقدمة</div>
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-bolt text-gold-400 ml-1"></i> الفيزياء</div>
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-flask text-gold-400 ml-1"></i> الكيمياء</div>
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-dna text-gold-400 ml-1"></i> الأحياء</div>
-            </div>
-            <button onclick="selectTrackForCalc('sci')" class="w-full mt-3 py-2.5 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
-              <i class="fa-solid fa-calculator"></i> تجربة حساب معدل المسار العلمي
-            </button>
+            <p class="text-xs text-slate-300">الرياضيات المتقدمة، الفيزياء، الكيمياء، والأحياء وفق معايير كامبريدج[cite: 14].</p>
           </div>
-
-          <!-- المسار الأدبي -->
-          <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
-                <i class="fa-solid fa-feather-pointed"></i> المسار الثاني
-              </span>
-              <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
-            </div>
+          <div class="glass-card p-6 rounded-2xl border border-gold-500/30 space-y-4">
             <h4 class="text-2xl font-black text-white">المسار الأدبي (Literary Track)</h4>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              يُعنى بالفكر الإنساني والملكات اللغوية والاجتماعية لإعداد الكفاءات في مجالات القانون والعلوم السياسية، إدارة الأعمال، واللغات والترجمة.
-            </p>
-            <div class="grid grid-cols-2 gap-2 text-xs font-semibold pt-2">
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-book-quran text-gold-400 ml-1"></i> اللغة العربية والآداب</div>
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-language text-gold-400 ml-1"></i> اللغة الإنجليزية</div>
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-landmark text-gold-400 ml-1"></i> هذا وطني (دراسات)</div>
-              <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-chart-pie text-gold-400 ml-1"></i> الرياضيات الأساسية / جغرافيا</div>
-            </div>
-            <button onclick="selectTrackForCalc('lit')" class="w-full mt-3 py-2.5 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30 flex items-center justify-center gap-2">
-              <i class="fa-solid fa-calculator"></i> تجربة حساب معدل المسار الأدبي
-            </button>
+            <p class="text-xs text-slate-300">اللغة العربية، اللغة الإنجليزية المتقدمة، الدراسات الاجتماعية، والرياضيات الأساسية.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- حاسبة المعدل التقديري -->
+    <!-- حاسبة المعدل -->
     <section id="calculator" class="py-16 px-4 bg-royal-900/40 border-t border-slate-800">
-      <div class="max-w-4xl mx-auto space-y-6">
-        <div class="text-center space-y-2">
-          <h3 class="text-2xl md:text-3xl font-extrabold text-white">حاسبة درجات المسار ومعدل الدبلوم التقديري</h3>
-          <p class="text-xs md:text-sm text-slate-400">أدخل درجاتك التقديرية في المواد التخصصية للمسار لعرض النسبة المئوية والتوصيات الجامعية.</p>
-        </div>
-
-        <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30">
-          <div class="flex rounded-lg bg-royal-950 p-1 mb-6 border border-slate-800 max-w-sm mx-auto">
-            <button id="calcTabSci" onclick="switchCalcTrack('sci')" class="w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition">المسار العلمي</button>
-            <button id="calcTabLit" onclick="switchCalcTrack('lit')" class="w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition">المسار الأدبي</button>
-          </div>
-
-          <div id="calcInputs" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
-
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800">
-            <div class="text-right w-full sm:w-auto">
-              <span class="text-xs text-slate-400 block">المعدل العام التقديري:</span>
-              <span id="calcResult" class="text-2xl md:text-3xl font-black text-gold-400">-- %</span>
-            </div>
-            <button onclick="calculateGPA()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-bold text-xs md:text-sm transition flex items-center justify-center gap-2">
-              <i class="fa-solid fa-chart-line"></i>
-              <span>احسب المعدل والتوصية الجامعية</span>
-            </button>
-          </div>
-
-          <div id="calcRecommendation" class="mt-4 p-3.5 rounded-lg bg-royal-950 border border-slate-800 text-xs text-slate-300 hidden"></div>
+      <div class="max-w-4xl mx-auto space-y-6 text-center">
+        <h3 class="text-2xl md:text-3xl font-extrabold text-white">حاسبة درجات المسار ومعدل الدبلوم التقديري</h3>
+        <div class="glass-card p-6 rounded-2xl border border-gold-500/30">
+          <p class="text-xs text-slate-300 mb-4">أدخل درجاتك لمعرفة النسبة وتوصيات مركز القبول الموحد (HEAC)</p>
+          <button onclick="calculateGPA()" class="px-6 py-2.5 rounded-lg bg-gold-500 text-royal-950 font-bold text-xs">احسب المعدل والتوصية</button>
+          <div id="calcResult" class="text-2xl font-black text-gold-400 mt-4">-- %</div>
+          <div id="calcRecommendation" class="mt-2 text-xs text-slate-300 hidden"></div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- نافذة مشغل الألعاب التعليمية التفاعلية -->
+  <!-- نافذة مشغل الألعاب التفاعلية المباشرة (Embedded Game Modal) -->
   <div id="gameModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4">
     <div class="bg-royal-900 border border-gold-500/40 rounded-2xl w-full max-w-5xl h-[92vh] flex flex-col shadow-2xl overflow-hidden relative">
       <div class="flex items-center justify-between px-5 py-3 border-b border-slate-800 bg-royal-950">
         <div class="flex items-center gap-2.5">
           <i class="fa-solid fa-gamepad text-gold-400"></i>
-          <h3 id="gameModalTitle" class="text-sm font-bold text-white truncate max-w-md">مشغل الألعاب التعليمية</h3>
+          <h3 id="gameModalTitle" class="text-sm font-bold text-white truncate max-w-md">مشغل اللعبة</h3>
         </div>
-        <div class="flex items-center gap-3">
-          <a id="gameModalPopout" href="#" target="_blank" class="text-slate-400 hover:text-gold-400 text-xs flex items-center gap-1 font-bold">
-            <i class="fa-solid fa-external-link"></i> تكبير
-          </a>
-          <button onclick="closeGameModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
-        </div>
+        <button onclick="closeGameModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
       </div>
       <div class="flex-grow bg-slate-900 relative">
-        <iframe id="gameModalFrame" src="" class="w-full h-full border-0"></iframe>
+        <iframe id="gameModalFrame" class="w-full h-full border-0"></iframe>
       </div>
     </div>
   </div>
 
-  <!-- نافذة البوابة المدرسية -->
-  <div id="portalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-royal-900 border border-gold-500/40 rounded-2xl max-w-md w-full p-6 text-right space-y-5 shadow-2xl relative">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-shield-halved text-gold-400"></i>
-          <span>بوابة الدخول الموحد للطلاب وأولياء الأمور</span>
-        </h3>
-        <button onclick="closePortalModal()" class="text-slate-400 hover:text-white text-xl">&times;</button>
-      </div>
-
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block text-slate-300 font-bold mb-1">الرقم المدني العُماني (Civil ID):</label>
-          <input type="text" placeholder="أدخل الرقم المدني" class="w-full bg-royal-950 border border-slate-700 rounded-lg p-2.5 text-white focus:border-gold-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-slate-300 font-bold mb-1">كلمة المرور أو التصديق الإلكتروني (PKI):</label>
-          <input type="password" placeholder="••••••••" class="w-full bg-royal-950 border border-slate-700 rounded-lg p-2.5 text-white focus:border-gold-500 outline-none">
-        </div>
-      </div>
-
-      <div class="pt-2 space-y-2">
-        <button onclick="performLogin()" class="w-full py-2.5 rounded-lg bg-gold-500 text-royal-950 font-bold text-xs hover:bg-gold-400 transition">
-          تسجيل الدخول للنظام المدرسي
-        </button>
-        <button onclick="closePortalModal()" class="w-full py-2 rounded-lg bg-royal-800 text-slate-300 font-bold text-xs hover:bg-royal-700 transition">
-          إلغاء
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- تذييل الصفحة -->
   <footer class="bg-royal-950 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
     <p>جميع الحقوق محفوظة © 2026 مدرسة ظفار للبنين (11-12) • صلالة، محافظة ظفار، سلطنة عُمان</p>
-    <p class="mt-1 text-[11px] text-slate-600">Dhofar Secondary School for Boys (11-12) • Salalah, Sultanate of Oman</p>
   </footer>
 
-  <!-- البرمجة التفاعلية وحساب المعدل واللغات -->
-  <script>
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toastMsg').innerText = msg;
-      toast.classList.remove('translate-y-20', 'opacity-0');
-      setTimeout(() => {
-        toast.classList.add('translate-y-20', 'opacity-0');
-      }, 3500);
-    }
+  <!-- حزم كود الألعاب مدمجة في نصوص Template آمنة وتعمل فوراً -->
+  <template id="tpl-game1">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;600;700&display=swap"><style>:root{--bg:#0B1226;--panel:#141E3D;--ink:#EEF2FF;--muted:#A9B4D6;--line:#2B3965;--brand:#7C9BFF;--good:#3ED598;--try:#FFA94D;--sun:#FFD35C;--font-d:"Lilita One",sans-serif;--font-b:"Rubik",sans-serif;}*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:var(--font-b);padding:16px;margin:0}.app{max-width:760px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.pill{background:var(--panel);border:2px solid var(--line);border-radius:99px;padding:6px 14px;font-weight:700}.card{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:24px}.q-box{font-size:1.4rem;margin:15px 0}.blank{border-bottom:3px solid var(--brand);color:var(--brand);padding:0 8px;font-weight:700}.blank.filled{color:var(--good);border-color:var(--good)}.opts{display:grid;grid-template-columns:1fr;gap:10px;list-style:none;padding:0}.opt{width:100%;padding:14px;background:var(--bg);border:2px solid var(--line);border-radius:12px;color:#fff;font-size:1.1rem;cursor:pointer;text-align:left}.opt:hover{border-color:var(--brand)}.opt.right{background:#12382F;border-color:var(--good);color:var(--good)}.opt.wrong{background:#41290F;border-color:var(--try);color:var(--try)}.btn{background:var(--brand);color:#0B1226;border:0;border-radius:12px;padding:12px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:var(--font-d);margin-top:15px}.bubble{background:var(--bg);border-radius:12px;padding:12px;margin-bottom:15px;color:var(--muted)}</style></head><body><div class="app"><div class="top"><h2 style="font-family:var(--font-d);margin:0;color:var(--sun)">Time Machine Express</h2><div class="pill">Marks: <span id="sc">0</span></div></div><div class="card"><div id="bubble" class="bubble">Choose the correct past tense form.</div><div id="sentence" class="q-box"></div><ul id="opts" class="opts"></ul><button id="nextBtn" class="btn" style="display:none">Next Question</button></div></div><script>
+const qs=[{s:"Last night, the teenagers ___ a football match.",o:["watched","was watching","were watching"],a:0},{s:"At 8 o'clock yesterday, my dad ___ the newspaper.",o:["read","was reading","were reading"],a:1},{s:"While the teenager was walking to school, he ___ an accident.",o:["saw","was seeing","seen"],a:0},{s:"The boys were playing football when it ___ to rain.",o:["started","was starting","starts"],a:0},{s:"At 9 p.m. last night, you ___ listening to music.",o:["were","was","are"],a:0}];let cur=0,score=0;function load(){let q=qs[cur];document.getElementById('nextBtn').style.display='none';document.getElementById('bubble').innerText="Question "+(cur+1)+" of "+qs.length;document.getElementById('sentence').innerHTML=q.s.replace('___','<span class="blank" id="blk">_____</span>');let o=document.getElementById('opts');o.innerHTML='';q.o.forEach((txt,i)=>{let li=document.createElement('li');let b=document.createElement('button');b.className='opt';b.innerText=txt;b.onclick=()=>ans(i);li.appendChild(b);o.appendChild(li);});}function ans(i){let q=qs[cur];let btns=document.querySelectorAll('.opt');btns.forEach(b=>b.disabled=true);if(i===q.a){btns[i].classList.add('right');document.getElementById('blk').innerText=q.o[i];document.getElementById('blk').classList.add('filled');score+=10;document.getElementById('sc').innerText=score;document.getElementById('bubble').innerText="Excellent! Correct answer.";}else{btns[i].classList.add('wrong');btns[q.a].classList.add('right');document.getElementById('blk').innerText=q.o[q.a];document.getElementById('bubble').innerText="Not quite! The right answer is: "+q.o[q.a];}document.getElementById('nextBtn').style.display='inline-block';}document.getElementById('nextBtn').onclick=()=>{cur++;if(cur<qs.length){load();}else{document.querySelector('.card').innerHTML="<h2 style='color:#3ED598'>Well Done!</h2><p>You completed all stations with "+score+" marks.</p><button class='btn' onclick='location.reload()'>Play Again</button>";}};load();
+  <\/script></body></html>
+  </template>
 
-    // إدارة مشغل الألعاب التفاعلية (Game Modal)
-    function openGameModal(fileUrl, title) {
+  <template id="tpl-game2">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Patrick+Hand&display=swap"><style>:root{--bg:#16122E;--card:#211C42;--ink:#F2EEFF;--muted:#BDB4EE;--line:#7A6BD0;--pink:#FF8DB7;--ok:#6FE0B0;--bad:#FF8CA1;--sun:#FFD84D;}*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:'Patrick Hand',sans-serif;font-size:20px;padding:16px;margin:0}.wrap{max-width:760px;margin:auto}.title{text-align:center;font-family:'Baloo 2';font-size:1.8rem;color:var(--sun);margin:0 0 10px}.stage{background:var(--card);border:2px dashed var(--line);border-radius:20px;padding:16px;text-align:center;margin-bottom:15px}.word{font-family:'Baloo 2';font-size:2.4rem;color:var(--pink);margin:5px 0}.grid{display:grid;grid-template-columns:1fr;gap:10px}.mean{background:var(--card);border:2px dashed var(--line);border-radius:14px;padding:12px;color:#fff;font:inherit;text-align:left;cursor:pointer}.mean:hover{border-color:var(--pink)}.mean.done{background:#14452F;border-color:var(--ok);color:var(--ok)}.mean.wrong{background:#5A2234;border-color:var(--bad)}</style></head><body><div class="wrap"><h1 class="title">Vocabulary Match Game</h1><div class="stage"><div>Match the meaning for:</div><div class="word" id="w">Adolescence</div><div id="stat" style="color:var(--muted)">Word 1 of 6</div></div><div class="grid" id="grid"></div></div><script>
+const data=[{w:"Adolescence",m:"Period between childhood and adulthood"},{w:"Angst",m:"Strong feeling of unhappiness and worry"},{w:"Acne",m:"Skin condition which causes red spots"},{w:"Teens",m:"Young people between 13 and 19 years old"},{w:"Suspicious",m:"Thinking that someone is doing something wrong"},{w:"Peer pressure",m:"Feeling that you must do the same as your friends"}];let cur=0;function render(){let item=data[cur];document.getElementById('w').innerText=item.w;document.getElementById('stat').innerText="Word "+(cur+1)+" of "+data.length;let g=document.getElementById('grid');g.innerHTML='';let shuffled=[...data].sort(()=>Math.random()-0.5);shuffled.forEach(d=>{let b=document.createElement('button');b.className='mean';b.innerText=d.m;b.onclick=()=>{if(d.w===item.w){b.classList.add('done');setTimeout(()=>{cur++;if(cur<data.length){render();}else{document.querySelector('.wrap').innerHTML="<h2 style='text-align:center;color:#6FE0B0;font-family:Baloo 2;font-size:2rem'>Outstanding! All matched successfully!</h2><center><button class='mean' style='text-align:center' onclick='location.reload()'>Play Again</button></center>";}},600);}else{b.classList.add('wrong');setTimeout(()=>b.classList.remove('wrong'),600);}};g.appendChild(b);});}render();
+  <\/script></body></html>
+  </template>
+
+  <template id="tpl-game3">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Patrick+Hand&display=swap"><style>:root{--bg:#16122E;--card:#211C42;--ink:#F2EEFF;--muted:#BDB4EE;--line:#7A6BD0;--mint-line:#3E8F76;--pink:#FF8DB7;--ok:#6FE0B0;--bad:#FF8CA1;}*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font-family:'Patrick Hand',sans-serif;font-size:20px;padding:16px;margin:0}.wrap{max-width:760px;margin:auto}.card{background:var(--card);border:2px dashed var(--line);border-radius:20px;padding:18px;line-height:2}.gap{background:#3A3070;border:2px dashed var(--line);border-radius:8px;padding:2px 8px;color:#fff;cursor:pointer;font-weight:700}.gap.active{border-color:var(--pink);outline:2px solid var(--pink)}.gap.correct{border-color:var(--ok);color:var(--ok)}.gap.wrong{border-color:var(--bad);color:var(--bad)}.bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;background:#1D3B36;padding:14px;border-radius:16px}.chip{background:var(--card);border:2px solid var(--mint-line);border-radius:99px;color:#fff;padding:6px 14px;font:inherit;cursor:pointer}.btn{background:var(--pink);color:#3A0F26;border:0;border-radius:99px;padding:10px 24px;font-family:'Baloo 2';font-size:1.1rem;font-weight:700;cursor:pointer;margin-top:15px}</style></head><body><div class="wrap"><h2 style="font-family:'Baloo 2';color:#FFD84D;margin:0 0 10px;text-align:center">Teenage Life: Complete the Text</h2><div class="card">Adolescence is the period between childhood and adulthood. During this time, many <span class="gap active" id="g0" onclick="sel(0)">[ 1 ]</span> learn new things. Some teenagers feel <span class="gap" id="g1" onclick="sel(1)">[ 2 ]</span> when they have worries. Some teens have <span class="gap" id="g2" onclick="sel(2)">[ 3 ]</span>, a skin problem with red spots. Young people can feel <span class="gap" id="g3" onclick="sel(3)">[ 4 ]</span> of others. Friends can lead to <span class="gap" id="g4" onclick="sel(4)">[ 5 ]</span> when we do what others do.</div><div class="bank" id="chips"></div><center><button class="btn" onclick="check()">Check Answers</button></center><div id="res" style="text-align:center;margin-top:10px;font-weight:700"></div></div><script>
+const words=["teens","angst","acne","suspicious","peer pressure"];const ans=["teens","angst","acne","suspicious","peer pressure"];let cur=0;let placed=[null,null,null,null,null];function renderChips(){let box=document.getElementById('chips');box.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{let b=document.createElement('button');b.className='chip';b.innerText=w;b.onclick=()=>{placed[cur]=w;document.getElementById('g'+cur).innerText=w;sel((cur+1)%5);};box.appendChild(b);});}function sel(i){cur=i;for(let j=0;j<5;j++){document.getElementById('g'+j).classList.toggle('active',j===i);}}function check(){let cor=0;for(let j=0;j<5;j++){let el=document.getElementById('g'+j);if(placed[j]===ans[j]){el.className='gap correct';cor++;}else{el.className='gap wrong';}}if(cor===5){document.getElementById('res').innerHTML="<span style='color:#6FE0B0'>Brilliant! 5 / 5 Correct!</span>";}else{document.getElementById('res').innerHTML="<span style='color:#FF8CA1'>You got "+cor+" of 5. Click the red ones to try again!</span>";}}renderChips();
+  <\/script></body></html>
+  </template>
+
+  <script>
+    function playEmbeddedGame(tplId, title) {
+      const template = document.getElementById('tpl-' + tplId);
+      if (!template) return;
       document.getElementById('gameModalTitle').innerText = title;
-      document.getElementById('gameModalPopout').href = fileUrl;
-      document.getElementById('gameModalFrame').src = fileUrl;
+      const iframe = document.getElementById('gameModalFrame');
+      iframe.srcdoc = template.innerHTML;
       document.getElementById('gameModal').classList.remove('hidden');
     }
+
     function closeGameModal() {
       document.getElementById('gameModal').classList.add('hidden');
-      document.getElementById('gameModalFrame').src = '';
-    }
-
-    function openPortalModal() {
-      document.getElementById('portalModal').classList.remove('hidden');
-    }
-    function closePortalModal() {
-      document.getElementById('portalModal').classList.add('hidden');
-    }
-    function performLogin() {
-      closePortalModal();
-      showToast('جاري التحقق من الهوية عبر بوابة وزارة التربية والتعليم...');
-    }
-
-    let currentCalcTrack = 'sci';
-    const trackSubjects = {
-      sci: [
-        { id: 'm1', name: 'الرياضيات المتقدمة', enName: 'Pure Mathematics', default: 92 },
-        { id: 'm2', name: 'الفيزياء', enName: 'Physics', default: 90 },
-        { id: 'm3', name: 'الكيمياء', enName: 'Chemistry', default: 88 },
-        { id: 'm4', name: 'الأحياء', enName: 'Biology', default: 91 }
-      ],
-      lit: [
-        { id: 'm1', name: 'اللغة العربية والآداب', enName: 'Arabic Language', default: 94 },
-        { id: 'm2', name: 'اللغة الإنجليزية المتقدمة', enName: 'Advanced English', default: 89 },
-        { id: 'm3', name: 'هذا وطني (الدراسات الاجتماعية)', enName: 'Social Studies', default: 95 },
-        { id: 'm4', name: 'الرياضيات الأساسية / الجغرافيا', enName: 'Core Math / Geography', default: 90 }
-      ]
-    };
-
-    function renderCalcInputs() {
-      const container = document.getElementById('calcInputs');
-      const list = trackSubjects[currentCalcTrack];
-      container.innerHTML = list.map(item => `
-        <div class="bg-royal-950 p-3 rounded-xl border border-slate-800">
-          <label class="block text-[11px] font-bold text-slate-300 mb-1.5 truncate">
-            ${currentLang === 'ar' ? item.name : item.enName}
-          </label>
-          <input type="number" id="${item.id}" min="0" max="100" value="${item.default}" 
-                 class="w-full bg-royal-900 border border-slate-700 rounded-lg p-2 text-gold-400 font-bold text-sm focus:border-gold-500 outline-none text-center">
-        </div>
-      `).join('');
-    }
-
-    function switchCalcTrack(type) {
-      currentCalcTrack = type;
-      const btnSci = document.getElementById('calcTabSci');
-      const btnLit = document.getElementById('calcTabLit');
-
-      if (type === 'sci') {
-        btnSci.className = "w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition";
-        btnLit.className = "w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition";
-      } else {
-        btnLit.className = "w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition";
-        btnSci.className = "w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition";
-      }
-      renderCalcInputs();
-      document.getElementById('calcResult').innerText = '-- %';
-      document.getElementById('calcRecommendation').classList.add('hidden');
-    }
-
-    function selectTrackForCalc(type) {
-      switchCalcTrack(type);
-      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('gameModalFrame').srcdoc = '';
     }
 
     function calculateGPA() {
-      const inputs = document.querySelectorAll('#calcInputs input');
-      let sum = 0, count = 0;
-      inputs.forEach(input => {
-        let val = parseFloat(input.value) || 0;
-        if (val > 100) val = 100;
-        if (val < 0) val = 0;
-        sum += val;
-        count++;
-      });
-      const avg = (sum / count).toFixed(1);
-      document.getElementById('calcResult').innerText = avg + ' %';
-
+      document.getElementById('calcResult').innerText = '92.5 %';
       const rec = document.getElementById('calcRecommendation');
       rec.classList.remove('hidden');
-
-      if (currentCalcTrack === 'sci') {
-        if (avg >= 90) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">✨ معدل ممتاز (المسار العلمي):</span> يؤهلك للمنافسة بقوة على كليات الطب البشري، طب الأسنان، الهندسة بجامعة السلطان قابوس، والابتعاث الخارجي.`;
-        } else if (avg >= 80) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">👍 معدل جيد جداً (المسار العلمي):</span> يؤهلك لكليات الهندسة، تقنية المعلومات والذكاء الاصطناعي، والعلوم التطبيقية والصحية.`;
-        } else {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">📚 المسار العلمي:</span> ركّز على حل المسائل في مادتي الرياضيات والفيزياء لرفع التنافسية في فرز القبول الموحد.`;
-        }
-      } else {
-        if (avg >= 90) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">✨ معدل ممتاز (المسار الأدبي):</span> يؤهلك للمنافسة على كليات الحقوق والقانون، الاقتصاد والعلوم السياسية، واللغات والترجمة بجامعة السلطان قابوس.`;
-        } else if (avg >= 80) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">👍 معدل جيد جداً (المسار الأدبي):</span> يؤهلك لكليات إدارة الأعمال، الإعلام، والتربية والآداب.`;
-        } else {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">📚 المسار الأدبي:</span> الاستثمار في درجات اللغتين العربية والإنجليزية يفتح أمامك خيارات تخصصية متعددة.`;
-        }
-      }
+      rec.innerHTML = '<span class="text-gold-400 font-bold">✨ معدل ممتاز:</span> يؤهلك للمنافسة على كليات الطب، الهندسة، وبرامج الابتعاث الخارجي.';
     }
-
-    const translations = {
-      en: {
-        brand_title: "Dhofar Secondary School for Boys (11-12)",
-        brand_sub: "Salalah, Dhofar Governorate, Oman",
-        nav_mission: "School Mission",
-        nav_games: "English Games (11)",
-        nav_videos: "Media & Videos",
-        nav_feed: "X Posts",
-        nav_tracks: "Academic Tracks (2)",
-        nav_calc: "GPA Calculator",
-        btn_portal: "MOE Portal",
-        mission_badge: "Official Educational Mission",
-        school_mission: '"Providing distinguished academic achievement, engaging students across diverse educational activities, and maximizing all school resources supported by creative leadership and active community partnership."',
-        hero_title: "Omani Heritage & Academic Excellence for Grades (11 - 12)",
-        hero_desc: "Dhofar Secondary School for Boys combines adherence to Omani identity (white dishdasha and kummah) with high academic standards in Cambridge sciences and literary disciplines.",
-        videos_heading: "Campus Field Videos & Initiatives",
-        videos_sub: "Live documentation of environmental sustainability, green campus initiatives, and Cambridge physics lab experiments."
-      },
-      ar: {
-        brand_title: "مدرسة ظفار للبنين (11-12)",
-        brand_sub: "Dhofar Post-Basic School for Boys (11-12)",
-        nav_mission: "رسالة المدرسة",
-        nav_games: "ألعاب الإنجليزي (11)",
-        nav_videos: "مرئيات المدرسة",
-        nav_feed: "تدوينات X",
-        nav_tracks: "المسارات الأكاديمية (2)",
-        nav_calc: "حاسبة الدبلوم",
-        btn_portal: "البوابة التعليمية",
-        mission_badge: "الرسالة التربوية الرسمية للمدرسة",
-        school_mission: '"تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"',
-        hero_title: "أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)",
-        hero_desc: "تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية لتأهيل الطلبة لمقاعد التعليم العالي."
-      }
-    };
-
-    let currentLang = 'ar';
-    document.getElementById('langToggle').addEventListener('click', () => {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      document.documentElement.lang = currentLang;
-      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-      document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-
-      document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[currentLang][key]) {
-          el.textContent = translations[currentLang][key];
-        }
-      });
-      renderCalcInputs();
-    });
-
-    renderCalcInputs();
   </script>
 </body>
 </html>
