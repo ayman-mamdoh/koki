@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -33,9 +33,16 @@
     body { font-family: 'Cairo', sans-serif; }
     html[dir="ltr"] body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .glass-card {
-      background: rgba(13, 35, 66, 0.82);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(197, 155, 63, 0.28);
+      background: rgba(13, 35, 66, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(197, 155, 63, 0.32);
+    }
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      opacity: 0.35;
     }
     .img-zoom { transition: transform 0.4s ease-in-out; }
     .img-zoom:hover { transform: scale(1.03); }
@@ -50,14 +57,15 @@
     <span id="toastMsg" class="text-xs md:text-sm font-bold"></span>
   </div>
 
-  <!-- شريط إداري علوي -->
-  <aside class="bg-royal-900 border-b border-gold-500/20 px-4 py-2 text-xs">
+  <!-- الشريط الإداري العلوي -->
+  <aside class="bg-royal-900 border-b border-gold-500/20 px-4 py-2.5 text-xs">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-2 text-slate-300">
-        <span class="px-2.5 py-0.5 rounded-full bg-gold-500/10 text-gold-400 font-bold border border-gold-500/30">
-          <i class="fa-solid fa-graduation-cap"></i> سلطنة عُمان • <span data-key="top_ministry">وزارة التعليم</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-gold-500/10 text-gold-400 font-bold border border-gold-500/30 flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap"></i> 
+          <span data-key="top_country">سلطنة عُمان</span> • <span data-key="top_ministry">وزارة التعليم</span>
         </span>
-        <span class="hidden sm:inline text-slate-400">|</span>
+        <span class="hidden sm:inline text-slate-500">|</span>
         <span class="hidden sm:inline" data-key="top_location">المديرية العامة للتعليم بمحافظة ظفار • ولاية صلالة</span>
       </div>
 
@@ -66,29 +74,30 @@
           <i class="fa-brands fa-x-twitter"></i> <span>@EduGovDhf8101</span>
         </a>
         <span class="text-slate-600">|</span>
-        <button id="langToggle" class="px-3 py-1 rounded bg-royal-800 text-gold-400 hover:bg-gold-500 hover:text-royal-950 font-bold transition border border-gold-500/30 text-xs">
+        <button id="langToggle" class="px-3.5 py-1 rounded-md bg-royal-800 text-gold-400 hover:bg-gold-500 hover:text-royal-950 font-black transition border border-gold-500/30 text-xs shadow-sm">
           English
         </button>
       </div>
     </div>
   </aside>
 
-  <!-- الترويسة الرئيسية -->
-  <header class="sticky top-0 z-40 bg-royal-950/90 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-xl bg-black border border-gold-500/40 p-1 flex items-center justify-center shadow-lg shadow-gold-500/10 overflow-hidden flex-shrink-0">
-          <img src="شعار وزارة التعليم.jpg" alt="شعار وزارة التعليم" class="w-full h-full object-contain">
+  <!-- الترويسة الرئيسية مع تكبير اسم المدرسة وتحسين الشعار -->
+  <header class="sticky top-0 z-40 bg-royal-950/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/40">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-black border-2 border-gold-500/50 p-1.5 flex items-center justify-center shadow-lg shadow-gold-500/15 overflow-hidden flex-shrink-0">
+          <img src="شعار وزارة التعليم.jpg" alt="Logo" class="w-full h-full object-contain">
         </div>
         <div>
-          <h1 class="text-lg md:text-xl font-black text-white" data-key="brand_title">مدرسة ظفار للبنين (11-12)</h1>
-          <p class="text-[11px] text-gold-400 font-bold tracking-wider uppercase" data-key="brand_sub">Dhofar Post-Basic School for Boys (11-12)</p>
+          <!-- تكبير حجم خط مدرسة ظفار للبنين -->
+          <h1 class="text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight" data-key="brand_title">مدرسة ظفار للبنين (11-12)</h1>
+          <p class="text-xs md:text-sm text-gold-400 font-bold tracking-wider uppercase mt-0.5" data-key="brand_sub">Dhofar Post-Basic School for Boys (11-12)</p>
         </div>
       </div>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-300">
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-300">
         <a href="#mission" class="hover:text-gold-400 transition" data-key="nav_mission">رسالة المدرسة</a>
-        <a href="#portals-hub" class="hover:text-gold-400 transition flex items-center gap-1.5 text-gold-400">
+        <a href="#portals-hub" class="hover:text-gold-400 transition flex items-center gap-1.5 text-gold-400" data-key="nav_portals">
           <i class="fa-solid fa-link"></i> المنصات والمكتبات
         </a>
         <a href="#curriculum" class="hover:text-gold-400 transition" data-key="nav_curriculum">الخطة الدراسية</a>
@@ -104,48 +113,48 @@
       </nav>
 
       <div class="relative">
-        <button id="platformsDropdownBtn" onclick="toggleDropdown()" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
+        <button id="platformsDropdownBtn" onclick="toggleDropdown()" class="px-4 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
           <i class="fa-solid fa-building-columns"></i>
-          <span>المنصات الرسمية</span>
+          <span data-key="btn_platforms">المنصات الرسمية</span>
           <i class="fa-solid fa-chevron-down text-[10px]"></i>
         </button>
 
-        <!-- قائمة منسدلة بجميع الروابط والمنصات والمكتبات -->
-        <div id="platformsDropdownMenu" class="hidden absolute left-0 mt-2 w-64 rounded-xl bg-royal-900 border border-gold-500/40 shadow-2xl py-2 z-50 text-right max-h-[80vh] overflow-y-auto">
-          <div class="px-4 py-1 text-[10px] font-bold text-gold-400 uppercase tracking-wider border-b border-slate-800">بوابات ومنصات رسمية</div>
-          <a href="https://home.moe.gov.om/index.moe" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+        <!-- قائمة منسدلة بالمنصات الثماني -->
+        <div id="platformsDropdownMenu" class="hidden absolute left-0 mt-2 w-72 rounded-xl bg-royal-900 border border-gold-500/40 shadow-2xl py-2 z-50 text-right max-h-[80vh] overflow-y-auto">
+          <div class="px-4 py-1 text-[10px] font-bold text-gold-400 uppercase tracking-wider border-b border-slate-800" data-key="drop_group_portals">بوابات ومنصات رسمية</div>
+          <a href="https://home.moe.gov.om/index.moe" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-graduation-cap text-gold-400"></i>
-            <span>البوابة التعليمية لسلطنة عُمان</span>
+            <span data-key="portal_moe">البوابة التعليمية لسلطنة عُمان</span>
           </a>
-          <a href="https://eportal.moe.gov.om/egov/Login?returnurl=%2fegov" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <a href="https://eportal.moe.gov.om/egov/Login?returnurl=%2fegov" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-chalkboard-user text-blue-400"></i>
-            <span>منصة منظرة</span>
+            <span data-key="portal_manzara">منصة منظرة</span>
           </a>
-          <a href="https://lms.moe.gov.om" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <a href="https://lms.moe.gov.om" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-book-open text-purple-400"></i>
-            <span>منصة نور التعليمية</span>
+            <span data-key="portal_noor">منصة نور التعليمية</span>
           </a>
-          <a href="https://ejada.gov.om/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <a href="https://ejada.gov.om/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-award text-emerald-400"></i>
-            <span>منصة إجادة</span>
+            <span data-key="portal_ejada">منصة إجادة</span>
           </a>
-          <a href="https://pext-hrss.mol.gov.om/OA_HTML/AppsLocalLogin.jsp?langCode=AR&_logoutRedirect=y" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <a href="https://pext-hrss.mol.gov.om/OA_HTML/AppsLocalLogin.jsp?langCode=AR&_logoutRedirect=y" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-users-gear text-cyan-400"></i>
-            <span>نظام مورد (وزارة العمل)</span>
+            <span data-key="portal_mawarid">نظام مورد (وزارة العمل)</span>
           </a>
 
-          <div class="px-4 pt-2 pb-1 text-[10px] font-bold text-gold-400 uppercase tracking-wider border-t border-b border-slate-800 mt-1">المكتبات الرقمية والمناهج</div>
-          <a href="https://ict.moe.gov.om/book" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <div class="px-4 pt-2 pb-1 text-[10px] font-bold text-gold-400 uppercase tracking-wider border-t border-b border-slate-800 mt-1" data-key="drop_group_libs">المكتبات الرقمية والمناهج</div>
+          <a href="https://ict.moe.gov.om/book" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-book text-amber-400"></i>
-            <span>مكتبة المناهج العُمانية</span>
+            <span data-key="lib_curriculum">مكتبة المناهج العُمانية</span>
           </a>
-          <a href="https://ict.moe.gov.om/TeacherBook/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <a href="https://ict.moe.gov.om/TeacherBook/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-book-bookmark text-rose-400"></i>
-            <span>مكتبة دليل المعلم</span>
+            <span data-key="lib_guide">مكتبة دليل المعلم</span>
           </a>
-          <a href="https://ict.moe.gov.om/audio/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+          <a href="https://ict.moe.gov.om/audio/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2.5">
             <i class="fa-solid fa-headphones text-teal-400"></i>
-            <span>المكتبة الصوتية</span>
+            <span data-key="lib_audio">المكتبة الصوتية</span>
           </a>
         </div>
       </div>
@@ -153,33 +162,36 @@
   </header>
 
   <main class="flex-grow">
-    <!-- الواجهة ورسالة المدرسة -->
-    <section class="py-10 md:py-14 px-4 bg-gradient-to-b from-royal-900 via-royal-950 to-royal-950">
-      <div class="max-w-7xl mx-auto space-y-10">
+    <!-- صدر الصفحة المحسّن بتأثيرات بصرية وإضاءات زجاجية -->
+    <section class="relative py-12 md:py-16 px-4 bg-gradient-to-b from-royal-900 via-royal-950 to-royal-950 overflow-hidden">
+      <div class="hero-glow bg-gold-500 w-96 h-96 -top-20 -right-20"></div>
+      <div class="hero-glow bg-blue-600 w-96 h-96 top-1/2 -left-20"></div>
 
-        <!-- رسالة المدرسة الرسمية -->
-        <div id="mission" class="glass-card p-6 md:p-8 rounded-2xl border-2 border-gold-500/40 text-center relative overflow-hidden shadow-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-black uppercase mb-3 border border-gold-500/30">
+      <div class="relative max-w-7xl mx-auto space-y-12">
+
+        <!-- رسالة المدرسة الرسمية في إطار ملكي فاخر -->
+        <div id="mission" class="glass-card p-6 md:p-10 rounded-3xl border-2 border-gold-500/40 text-center relative overflow-hidden shadow-2xl">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 text-gold-400 text-xs font-black uppercase mb-4 border border-gold-500/30">
             <i class="fa-solid fa-quote-right"></i> <span data-key="mission_badge">الرسالة التربوية الرسمية للمدرسة</span>
           </div>
-          <h2 class="text-lg md:text-2xl lg:text-3xl font-black text-white leading-relaxed max-w-5xl mx-auto" data-key="school_mission">
+          <h2 class="text-xl md:text-3xl lg:text-4xl font-black text-white leading-relaxed max-w-5xl mx-auto tracking-normal" data-key="school_mission">
             "تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"
           </h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-6 border-t border-gold-500/20 text-xs text-slate-300">
-            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-award text-gold-400"></i> تحصيل علمي متميز</div>
-            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-users-gear text-gold-400"></i> شراكة طلابية فاعلة</div>
-            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-chalkboard-user text-gold-400"></i> كوادر قيادية مبدعة</div>
-            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-handshake-angle text-gold-400"></i> شراكة مجتمعية رائدة</div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gold-500/25 text-xs text-slate-200">
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-award text-gold-400"></i> <span data-key="pill1">تحصيل علمي متميز</span></div>
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-users-gear text-gold-400"></i> <span data-key="pill2">شراكة طلابية فاعلة</span></div>
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-chalkboard-user text-gold-400"></i> <span data-key="pill3">كوادر قيادية مبدعة</span></div>
+            <div class="flex items-center justify-center gap-2 font-bold"><i class="fa-solid fa-handshake-angle text-gold-400"></i> <span data-key="pill4">شراكة مجتمعية رائدة</span></div>
           </div>
         </div>
 
-        <!-- صورة الطلاب والمعلمين بالزي العماني -->
+        <!-- قسم الترحيب والصورة الميدانية المحسنة للطلاب بالزي العماني الأصيل -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-6 space-y-5 text-right">
-            <div class="inline-flex items-center gap-2 text-xs font-bold text-gold-400">
-              <i class="fa-solid fa-location-dot"></i> صلالة - محافظة ظفار
+          <div class="lg:col-span-6 space-y-6 text-right">
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-gold-400 bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/20">
+              <i class="fa-solid fa-location-dot"></i> <span data-key="hero_location">صلالة - محافظة ظفار</span>
             </div>
-            <h3 class="text-3xl md:text-4xl font-black text-white leading-tight" data-key="hero_title">
+            <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight" data-key="hero_title">
               أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)
             </h3>
             <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-key="hero_desc">
@@ -187,21 +199,21 @@
             </p>
             <div class="flex flex-wrap gap-3 pt-2">
               <a href="#portals-hub" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
-                <i class="fa-solid fa-network-wired"></i> المنصات والمكتبات التعليمية
+                <i class="fa-solid fa-network-wired"></i> <span data-key="btn_hub_links">المنصات والمكتبات التعليمية</span>
               </a>
               <a href="#curriculum" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
-                <i class="fa-solid fa-table-list"></i> استعراض الخطة الدراسية
+                <i class="fa-solid fa-table-list"></i> <span data-key="btn_hub_curriculum">استعراض الخطة الدراسية</span>
               </a>
             </div>
           </div>
 
           <div class="lg:col-span-6">
-            <div class="rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-royal-900 relative group">
-              <img src="HUGGNlbbMAAoy_e.jfif" alt="طلاب مدرسة ظفار للبنين" class="w-full h-80 md:h-[420px] object-cover img-zoom">
+            <div class="rounded-3xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-royal-900 relative group">
+              <img src="HUGGNlbbMAAoy_e.jfif" alt="Dhofar School Students" class="w-full h-84 md:h-[430px] object-cover img-zoom">
               <div class="absolute inset-0 bg-gradient-to-t from-royal-950 via-transparent to-transparent"></div>
-              <div class="absolute bottom-3 left-3 right-3 p-3 bg-royal-950/90 backdrop-blur rounded-xl border border-gold-500/30 text-xs">
-                <p class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user"></i> قاعة مصادر التعلم والحاسوب</p>
-                <p class="text-slate-300 text-[11px] mt-0.5">طلبة مدرسة ظفار للبنين بالزي العُماني الأصيل أثناء المحاضرات والورش التفاعلية[cite: 3].</p>
+              <div class="absolute bottom-3 left-3 right-3 p-3.5 bg-royal-950/95 backdrop-blur-md rounded-2xl border border-gold-500/30 text-xs">
+                <p class="font-bold text-gold-400 flex items-center gap-1.5"><i class="fa-solid fa-chalkboard-user"></i> <span data-key="hero_photo_caption_title">قاعة مصادر التعلم والحاسوب</span></p>
+                <p class="text-slate-300 text-[11px] mt-0.5" data-key="hero_photo_caption_sub">طلبة مدرسة ظفار للبنين بالزي العُماني الأصيل أثناء المحاضرات والورش التفاعلية[cite: 3].</p>
               </div>
             </div>
           </div>
@@ -210,154 +222,146 @@
       </div>
     </section>
 
-    <!-- قسم بوابات ومنصات سلطنة عمان الرسمية والمكتبات الرقمية -->
+    <!-- قسم المنصات والمكتبات الرسمية -->
     <section id="portals-hub" class="py-16 px-4 bg-royal-900/60 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
         
         <div class="text-center space-y-2">
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-globe text-gold-400"></i> البوابات والمنصات التعليمية الرسمية
+            <i class="fa-solid fa-globe text-gold-400"></i> <span data-key="sec_portals_tag">البوابات والمنصات التعليمية الرسمية</span>
           </span>
-          <h3 class="text-2xl md:text-4xl font-black text-white">الروابط المباشرة للخدمات والمنصات والمكتبات التعليمية</h3>
-          <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto">
+          <h3 class="text-2xl md:text-4xl font-black text-white" data-key="sec_portals_heading">الروابط المباشرة للخدمات والمنصات والمكتبات التعليمية</h3>
+          <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto" data-key="sec_portals_sub">
             دليل رقمي شامل يربطك مباشرة بالبوابات التعليمية، المناهج الرقمية، ومكتبات الأدلة والمصادر الصوتية المعتمدة.
           </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <!-- 1. البوابة التعليمية لسلطنة عمان -->
           <div class="glass-card p-5 rounded-2xl border border-gold-500/40 hover:border-gold-500 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-gold-500/20 text-gold-400 border border-gold-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-graduation-cap"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">البوابة التعليمية</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_moe_title">البوابة التعليمية</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_moe_desc">
                 المدخل الرسمي لكافة الخدمات الأكاديمية وسجلات الطلاب وبيانات أعضاء الهيئة التدريسية وأولياء الأمور.
               </p>
             </div>
             <a href="https://home.moe.gov.om/index.moe" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>الدخول للبوابة</span>
+              <span data-key="btn_open">الدخول للبوابة</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 2. منصة منظرة -->
           <div class="glass-card p-5 rounded-2xl border border-blue-500/40 hover:border-blue-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-chalkboard-user"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">منصة منظرة</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_manzara_title">منصة منظرة</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_manzara_desc">
                 البيئة التعليمية التفاعلية الرقمية للتواصل والأنشطة الإثرائية والمقررات الرقمية التابعة لوزارة التعليم.
               </p>
             </div>
             <a href="https://eportal.moe.gov.om/egov/Login?returnurl=%2fegov" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>الدخول لمنظرة</span>
+              <span data-key="btn_open">الدخول لمنظرة</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 3. منصة نور التعليمية -->
           <div class="glass-card p-5 rounded-2xl border border-purple-500/40 hover:border-purple-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-book-open"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">منصة نور التعليمية</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_noor_title">منصة نور التعليمية</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_noor_desc">
                 نظام إدارة التعلم (LMS) المتقدم لتقديم الدروس والواجبات والمحتويات التعليمية الرقمية والمناهج المدرسية.
               </p>
             </div>
             <a href="https://lms.moe.gov.om" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>الدخول لمنصة نور</span>
+              <span data-key="btn_open">الدخول لمنصة نور</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 4. منصة إجادة -->
           <div class="glass-card p-5 rounded-2xl border border-emerald-500/40 hover:border-emerald-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-award"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">منصة إجادة</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_ejada_title">منصة إجادة</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_ejada_desc">
                 منظومة قياس الأداء الفردي والمؤسسي وتطوير الكفاءات الحكومية ودعم الإجادة الوظيفية بسلطنة عُمان.
               </p>
             </div>
             <a href="https://ejada.gov.om/" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>الدخول لمنصة إجادة</span>
+              <span data-key="btn_open">الدخول لمنصة إجادة</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 5. نظام مورد (وزارة العمل) -->
           <div class="glass-card p-5 rounded-2xl border border-cyan-500/40 hover:border-cyan-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-users-gear"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">نظام مَوْرِد</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_mawarid_title">نظام مَوْرِد</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_mawarid_desc">
                 بوابة الموارد البشرية والخدمات الذاتية لموظفي وحدات الجهاز الإداري للدولة التابعة لوزارة العمل.
               </p>
             </div>
             <a href="https://pext-hrss.mol.gov.om/OA_HTML/AppsLocalLogin.jsp?langCode=AR&_logoutRedirect=y" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>الدخول لنظام مورد</span>
+              <span data-key="btn_open">الدخول لنظام مورد</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 6. مكتبة المناهج العمانية -->
           <div class="glass-card p-5 rounded-2xl border border-amber-500/40 hover:border-amber-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-book"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">مكتبة المناهج العُمانية</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_book_title">مكتبة المناهج العُمانية</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_book_desc">
                 المستودع الرقمي لتحميل وقراءة الكتب المدرسية والمناهج التعليمية لجميع الصفوف الدراسية بصيغة رقمية.
               </p>
             </div>
             <a href="https://ict.moe.gov.om/book" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>تصفح المناهج</span>
+              <span data-key="btn_open">تصفح المناهج</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 7. مكتبة دليل المعلم -->
           <div class="glass-card p-5 rounded-2xl border border-rose-500/40 hover:border-rose-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-book-bookmark"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">مكتبة دليل المعلم</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_teacher_title">مكتبة دليل المعلم</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_teacher_desc">
                 أدلة المعلمين الرسمية وخطط التدريس ونماذج استراتيجيات التعلم التفاعلية المعتمدة من وزارة التعليم.
               </p>
             </div>
             <a href="https://ict.moe.gov.om/TeacherBook/" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>تصفح أدلة المعلم</span>
+              <span data-key="btn_open">تصفح أدلة المعلم</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
 
-          <!-- 8. المكتبة الصوتية -->
           <div class="glass-card p-5 rounded-2xl border border-teal-500/40 hover:border-teal-400 transition shadow-xl flex flex-col justify-between text-right">
             <div>
               <div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center text-2xl mb-4">
                 <i class="fa-solid fa-headphones"></i>
               </div>
-              <h4 class="text-base font-black text-white mb-2">المكتبة الصوتية</h4>
-              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              <h4 class="text-base font-black text-white mb-2" data-key="card_audio_title">المكتبة الصوتية</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4" data-key="card_audio_desc">
                 التسجيلات الصوتية ومقاطع الاستماع لمناهج اللغات وتلاوات القرآن الكريم ونصوص الاستماع التفاعلية.
               </p>
             </div>
             <a href="https://ict.moe.gov.om/audio/" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
-              <span>فتح المكتبة الصوتية</span>
+              <span data-key="btn_open">فتح المكتبة الصوتية</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
             </a>
           </div>
@@ -367,7 +371,7 @@
       </div>
     </section>
 
-    <!-- الخطة الدراسية: مواد المجموعة الأولى والثانية -->
+    <!-- الخطة الدراسية الرسمية المعتمدة -->
     <section id="curriculum" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
         
@@ -375,136 +379,136 @@
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest" data-key="curriculum_tag">الخطة الدراسية الرسمية المعتمدة</span>
           <h3 class="text-2xl md:text-4xl font-black text-white" data-key="curriculum_heading">تنظيم المواد الدراسية وتوزيع الحصص (11 - 12)</h3>
           <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto" data-key="curriculum_sub">
-            الخطة الأكاديمية الرسمية المعتمدة لتوزيع المواد الأساسية الإختيارية والمواد الاختيارية بعدد الحصص الأسبوعية المقررة[cite: 19].
+            الخطة الأكاديمية الرسمية المعتمدة لتوزيع المواد الأساسية الإختيارية والمواد الاختيارية بعدد الحصص الأسبوعية المقررة.
           </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <!-- مواد المجموعة الأولى: المواد الأساسية الإختيارية (25 حصة) -->
+          <!-- مواد المجموعة الأولى -->
           <div class="lg:col-span-6 glass-card p-6 md:p-8 rounded-2xl border border-gold-500/40 space-y-5 shadow-2xl">
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
               <div>
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-gold-500/20 text-gold-400 border border-gold-500/30">المجموعة الأولى[cite: 19]</span>
-                <h4 class="text-xl font-black text-white mt-2">المواد الأساسية الإختيارية[cite: 19]</h4>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-gold-500/20 text-gold-400 border border-gold-500/30" data-key="g1_badge">المجموعة الأولى</span>
+                <h4 class="text-xl font-black text-white mt-2" data-key="g1_title">المواد الأساسية الإختيارية</h4>
               </div>
               <div class="text-left">
-                <span class="text-[11px] text-slate-400 block">مجموع الحصص الأسبوعية[cite: 19]</span>
-                <span class="text-2xl font-black text-gold-400">25 حصة[cite: 19]</span>
+                <span class="text-[11px] text-slate-400 block" data-key="g1_period_lbl">مجموع الحصص الأسبوعية</span>
+                <span class="text-2xl font-black text-gold-400" data-key="g1_period_val">25 حصة</span>
               </div>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed">
-              تشمل المواد التأسيسية الإلزامية المشتركة بالإضافة إلى المفاضلة بين مادتي الرياضيات (الأساسية أو المتقدمة)[cite: 19]:
+            <p class="text-xs text-slate-300 leading-relaxed" data-key="g1_desc">
+              تشمل المواد التأسيسية الإلزامية المشتركة بالإضافة إلى المفاضلة بين مادتي الرياضيات (الأساسية أو المتقدمة):
             </p>
 
             <div class="overflow-hidden rounded-xl border border-slate-800">
               <table class="w-full text-right text-xs">
                 <thead class="bg-royal-900/90 text-gold-400 font-bold border-b border-slate-800">
                   <tr>
-                    <th class="p-3 w-12 text-center">م[cite: 19]</th>
-                    <th class="p-3">مجموعة المواد / الخيارات[cite: 19]</th>
-                    <th class="p-3 text-center w-28">عدد الحصص[cite: 19]</th>
+                    <th class="p-3 w-12 text-center" data-key="th_num">م</th>
+                    <th class="p-3" data-key="th_subject">مجموعة المواد / الخيارات</th>
+                    <th class="p-3 text-center w-28" data-key="th_periods">عدد الحصص</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-800/80 text-slate-200">
                   <tr class="hover:bg-royal-900/50">
-                    <td class="p-3 text-center text-slate-400">1[cite: 19]</td>
-                    <td class="p-3 font-semibold"><i class="fa-solid fa-book-quran text-gold-400 ml-2"></i>التربية الإسلامية[cite: 19]</td>
-                    <td class="p-3 text-center font-bold text-gold-400">4[cite: 19]</td>
+                    <td class="p-3 text-center text-slate-400">1</td>
+                    <td class="p-3 font-semibold"><i class="fa-solid fa-book-quran text-gold-400 ml-2"></i><span data-key="subj_islamic">التربية الإسلامية</span></td>
+                    <td class="p-3 text-center font-bold text-gold-400">4</td>
                   </tr>
                   <tr class="hover:bg-royal-900/50">
-                    <td class="p-3 text-center text-slate-400">1[cite: 19]</td>
-                    <td class="p-3 font-semibold"><i class="fa-solid fa-landmark text-gold-400 ml-2"></i>الدراسات الاجتماعية[cite: 19]</td>
-                    <td class="p-3 text-center font-bold text-gold-400">2[cite: 19]</td>
+                    <td class="p-3 text-center text-slate-400">1</td>
+                    <td class="p-3 font-semibold"><i class="fa-solid fa-landmark text-gold-400 ml-2"></i><span data-key="subj_social">الدراسات الاجتماعية</span></td>
+                    <td class="p-3 text-center font-bold text-gold-400">2</td>
                   </tr>
                   <tr class="hover:bg-royal-900/50">
-                    <td class="p-3 text-center text-slate-400">1[cite: 19]</td>
-                    <td class="p-3 font-semibold"><i class="fa-solid fa-globe text-gold-400 ml-2"></i>اللغة الإنجليزية[cite: 19]</td>
-                    <td class="p-3 text-center font-bold text-gold-400">6[cite: 19]</td>
+                    <td class="p-3 text-center text-slate-400">1</td>
+                    <td class="p-3 font-semibold"><i class="fa-solid fa-globe text-gold-400 ml-2"></i><span data-key="subj_english">اللغة الإنجليزية</span></td>
+                    <td class="p-3 text-center font-bold text-gold-400">6</td>
                   </tr>
                   <tr class="hover:bg-royal-900/50">
-                    <td class="p-3 text-center text-slate-400">1[cite: 19]</td>
-                    <td class="p-3 font-semibold"><i class="fa-solid fa-feather text-gold-400 ml-2"></i>اللغة العربية[cite: 19]</td>
-                    <td class="p-3 text-center font-bold text-gold-400">6[cite: 19]</td>
+                    <td class="p-3 text-center text-slate-400">1</td>
+                    <td class="p-3 font-semibold"><i class="fa-solid fa-feather text-gold-400 ml-2"></i><span data-key="subj_arabic">اللغة العربية</span></td>
+                    <td class="p-3 text-center font-bold text-gold-400">6</td>
                   </tr>
                   <tr class="hover:bg-royal-900/50">
-                    <td class="p-3 text-center text-slate-400">1[cite: 19]</td>
-                    <td class="p-3 font-semibold"><i class="fa-solid fa-compass text-gold-400 ml-2"></i>خدمة التوجيه المهني[cite: 19]</td>
-                    <td class="p-3 text-center font-bold text-gold-400">1[cite: 19]</td>
+                    <td class="p-3 text-center text-slate-400">1</td>
+                    <td class="p-3 font-semibold"><i class="fa-solid fa-compass text-gold-400 ml-2"></i><span data-key="subj_guidance">خدمة التوجيه المهني</span></td>
+                    <td class="p-3 text-center font-bold text-gold-400">1</td>
                   </tr>
                   <tr class="bg-royal-900/40">
-                    <td rowspan="2" class="p-3 text-center text-slate-400 border-l border-slate-800">2[cite: 19]</td>
+                    <td rowspan="2" class="p-3 text-center text-slate-400 border-l border-slate-800">2</td>
                     <td class="p-3 font-semibold">
-                      <div class="text-[11px] text-blue-300 font-bold mb-0.5">مجموعة الرياضيات (يختار الطالب مادة واحدة):[cite: 19]</div>
-                      <i class="fa-solid fa-square-root-variable text-blue-400 ml-2"></i>الرياضيات الأساسية[cite: 19]
+                      <div class="text-[11px] text-blue-300 font-bold mb-0.5" data-key="math_group_header">مجموعة الرياضيات (يختار الطالب مادة واحدة):</div>
+                      <i class="fa-solid fa-square-root-variable text-blue-400 ml-2"></i><span data-key="subj_core_math">الرياضيات الأساسية</span>
                     </td>
-                    <td class="p-3 text-center font-bold text-blue-400">6[cite: 19]</td>
+                    <td class="p-3 text-center font-bold text-blue-400">6</td>
                   </tr>
                   <tr class="bg-royal-900/40">
                     <td class="p-3 font-semibold">
-                      <i class="fa-solid fa-calculator text-blue-400 ml-2"></i>الرياضيات المتقدمة[cite: 19]
+                      <i class="fa-solid fa-calculator text-blue-400 ml-2"></i><span data-key="subj_pure_math">الرياضيات المتقدمة</span>
                     </td>
-                    <td class="p-3 text-center font-bold text-blue-400">6[cite: 19]</td>
+                    <td class="p-3 text-center font-bold text-blue-400">6</td>
                   </tr>
                 </tbody>
                 <tfoot class="bg-royal-900 font-bold text-white border-t border-slate-700">
                   <tr>
-                    <td colspan="2" class="p-3 text-right">مجموع الحصص الأسبوعية للمجموعة الأولى:[cite: 19]</td>
-                    <td class="p-3 text-center text-gold-400 font-black text-sm">25 حصة[cite: 19]</td>
+                    <td colspan="2" class="p-3 text-right" data-key="g1_total_lbl">مجموع الحصص الأسبوعية للمجموعة الأولى:</td>
+                    <td class="p-3 text-center text-gold-400 font-black text-sm" data-key="g1_total_val">25 حصة</td>
                   </tr>
                 </tfoot>
               </table>
             </div>
           </div>
 
-          <!-- مواد المجموعة الثانية: المواد الاختيارية (15 حصة) -->
+          <!-- مواد المجموعة الثانية -->
           <div class="lg:col-span-6 glass-card p-6 md:p-8 rounded-2xl border border-slate-700 space-y-5 shadow-2xl">
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
               <div>
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">المجموعة الثانية[cite: 19]</span>
-                <h4 class="text-xl font-black text-white mt-2">المواد الاختيارية[cite: 19]</h4>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30" data-key="g2_badge">المجموعة الثانية</span>
+                <h4 class="text-xl font-black text-white mt-2" data-key="g2_title">المواد الاختيارية</h4>
               </div>
               <div class="text-left">
-                <span class="text-[11px] text-slate-400 block">مجموع الحصص المطلوبة[cite: 19]</span>
-                <span class="text-2xl font-black text-blue-400">15 حصة[cite: 19]</span>
+                <span class="text-[11px] text-slate-400 block" data-key="g2_period_lbl">مجموع الحصص المطلوبة</span>
+                <span class="text-2xl font-black text-blue-400" data-key="g2_period_val">15 حصة</span>
               </div>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed">
-              قائمة المواد الاختيارية؛ حيث تخصص <strong>5 حصص أسبوعياً</strong> لكل مادة مسجلة في خطة الطالب[cite: 19]:
+            <p class="text-xs text-slate-300 leading-relaxed" data-key="g2_desc">
+              قائمة المواد الاختيارية؛ حيث تخصص <strong>5 حصص أسبوعياً</strong> لكل مادة مسجلة في خطة الطالب:
             </p>
 
             <div class="overflow-hidden rounded-xl border border-slate-800 max-h-[440px] overflow-y-auto">
               <table class="w-full text-right text-xs">
                 <thead class="sticky top-0 bg-royal-900/95 backdrop-blur text-gold-400 font-bold border-b border-slate-800">
                   <tr>
-                    <th class="p-3">الخيارات / المادة[cite: 19]</th>
-                    <th class="p-3 text-center w-28">عدد الحصص[cite: 19]</th>
+                    <th class="p-3" data-key="th_options">الخيارات / المادة</th>
+                    <th class="p-3 text-center w-28" data-key="th_periods">عدد الحصص</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-800/80 text-slate-200">
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-dna text-emerald-400 ml-2"></i>الأحياء[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-clock-rotate-left text-amber-400 ml-2"></i>التاريخ (العالم من حولي)[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-earth-americas text-blue-400 ml-2"></i>الجغرافيا و التقنيات الحديثة[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-person-running text-teal-400 ml-2"></i>الرياضة المدرسية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-seedling text-green-400 ml-2"></i>العلوم البيئية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-palette text-purple-400 ml-2"></i>الفنون التشكيلية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-bolt text-yellow-400 ml-2"></i>الفيزياء[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-flask text-rose-400 ml-2"></i>الكيمياء[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-language text-cyan-400 ml-2"></i>اللغة الألمانية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-spell-check text-indigo-400 ml-2"></i>اللغة الإنجليزية (مهارات)[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-language text-red-400 ml-2"></i>اللغة الصينية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-language text-sky-400 ml-2"></i>اللغة الفرنسية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-music text-orange-400 ml-2"></i>المهارات الموسيقية[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
-                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-laptop-code text-lime-400 ml-2"></i>تقنية المعلومات[cite: 19]</td><td class="p-2.5 text-center font-bold text-gold-400">5[cite: 19]</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-dna text-emerald-400 ml-2"></i><span data-key="subj_bio">الأحياء</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-clock-rotate-left text-amber-400 ml-2"></i><span data-key="subj_history">التاريخ (العالم من حولي)</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-earth-americas text-blue-400 ml-2"></i><span data-key="subj_geo">الجغرافيا و التقنيات الحديثة</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-person-running text-teal-400 ml-2"></i><span data-key="subj_pe">الرياضة المدرسية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-seedling text-green-400 ml-2"></i><span data-key="subj_env">العلوم البيئية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-palette text-purple-400 ml-2"></i><span data-key="subj_art">الفنون التشكيلية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-bolt text-yellow-400 ml-2"></i><span data-key="subj_phys">الفيزياء</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-flask text-rose-400 ml-2"></i><span data-key="subj_chem">الكيمياء</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-language text-cyan-400 ml-2"></i><span data-key="subj_german">اللغة الألمانية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-spell-check text-indigo-400 ml-2"></i><span data-key="subj_eng_skills">اللغة الإنجليزية (مهارات)</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-language text-red-400 ml-2"></i><span data-key="subj_chinese">اللغة الصينية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-language text-sky-400 ml-2"></i><span data-key="subj_french">اللغة الفرنسية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-music text-orange-400 ml-2"></i><span data-key="subj_music">المهارات الموسيقية</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
+                  <tr class="hover:bg-royal-900/50"><td class="p-2.5 font-semibold"><i class="fa-solid fa-laptop-code text-lime-400 ml-2"></i><span data-key="subj_it">تقنية المعلومات</span></td><td class="p-2.5 text-center font-bold text-gold-400">5</td></tr>
                 </tbody>
               </table>
             </div>
 
             <div class="p-3 rounded-xl bg-royal-900/60 border border-slate-800 text-[11px] text-slate-300 flex items-center justify-between">
-              <span>مجموع الحصص الأسبوعية للمجموعة الثانية:[cite: 19]</span>
-              <span class="text-gold-400 font-bold text-xs">15 حصة (3 مواد × 5 حصص)[cite: 19]</span>
+              <span data-key="g2_total_lbl">مجموع الحصص الأسبوعية للمجموعة الثانية:</span>
+              <span class="text-gold-400 font-bold text-xs" data-key="g2_total_val">15 حصة (3 مواد × 5 حصص)</span>
             </div>
           </div>
 
@@ -521,15 +525,14 @@
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-graduation-cap text-gold-400"></i> Gamified Learning • Grade 11 English
           </span>
-          <h3 class="text-2xl md:text-4xl font-black text-white">الألعاب التعليمية التفاعلية لمادة اللغة الإنجليزية</h3>
-          <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto">
-            مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي ومدمجة لتعمل مباشرة دون أخطاء[cite: 15, 16, 17].
+          <h3 class="text-2xl md:text-4xl font-black text-white" data-key="games_sec_title">الألعاب التعليمية التفاعلية لمادة اللغة الإنجليزية</h3>
+          <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto" data-key="games_sec_desc">
+            مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي ومدمجة لتعمل مباشرة دون أخطاء.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <!-- اللعبة 1: Time Machine Express -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between hover:border-gold-500 transition">
             <div>
               <div class="p-6 bg-gradient-to-br from-royal-900 to-blue-950 border-b border-slate-800 flex items-center justify-between">
@@ -541,24 +544,23 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Time Machine Express[cite: 15]</h4>
-                <p class="text-[11px] text-gold-400 font-bold uppercase tracking-wider">Past Simple vs. Past Continuous[cite: 15]</p>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  لعبة محطات قطار تفاعلية عبر 5 مراحل تختبر إتقان أزمنة الماضي، واستخدام الروابط الدالة (While & When) مع التفاعل الصوتي[cite: 15].
+                <h4 class="text-lg font-black text-white">Time Machine Express</h4>
+                <p class="text-[11px] text-gold-400 font-bold uppercase tracking-wider">Past Simple vs. Past Continuous</p>
+                <p class="text-xs text-slate-300 leading-relaxed" data-key="game1_desc">
+                  لعبة محطات قطار تفاعلية عبر 5 مراحل تختبر إتقان أزمنة الماضي، واستخدام الروابط الدالة (While & When) مع التفاعل الصوتي.
                 </p>
               </div>
             </div>
             <div class="p-6 pt-0 space-y-2">
               <button onclick="launchGame(1)" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
-                <i class="fa-solid fa-play"></i> ابدأ اللعب داخل الموقع
+                <i class="fa-solid fa-play"></i> <span data-key="btn_play_now">ابدأ اللعب داخل الموقع</span>
               </button>
               <a href="Past%20Simple%20Vs%20Past%20Continuous.html" target="_blank" class="w-full py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> فتح في نافذة مستقلة
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> <span data-key="btn_open_tab">فتح في نافذة مستقلة</span>
               </a>
             </div>
           </div>
 
-          <!-- اللعبة 2: Vocabulary Match Game -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between hover:border-gold-500 transition">
             <div>
               <div class="p-6 bg-gradient-to-br from-royal-900 to-pink-950 border-b border-slate-800 flex items-center justify-between">
@@ -570,24 +572,23 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Vocabulary Match Game[cite: 16]</h4>
-                <p class="text-[11px] text-pink-400 font-bold uppercase tracking-wider">Theme: Teenage Words & Definitions[cite: 16]</p>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  مطابقة تفاعلية بالصور والنطق لمفردات المنهج الأساسية: (Adolescence, Angst, Acne, Teens, Suspicious, Mood swings, Peer pressure, Influence)[cite: 16].
+                <h4 class="text-lg font-black text-white">Vocabulary Match Game</h4>
+                <p class="text-[11px] text-pink-400 font-bold uppercase tracking-wider">Theme: Teenage Words & Definitions</p>
+                <p class="text-xs text-slate-300 leading-relaxed" data-key="game2_desc">
+                  مطابقة تفاعلية بالصور والنطق لمفردات المنهج الأساسية: (Adolescence, Angst, Acne, Teens, Suspicious, Mood swings, Peer pressure, Influence).
                 </p>
               </div>
             </div>
             <div class="p-6 pt-0 space-y-2">
               <button onclick="launchGame(2)" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
-                <i class="fa-solid fa-play"></i> ابدأ اللعب داخل الموقع
+                <i class="fa-solid fa-play"></i> <span data-key="btn_play_now">ابدأ اللعب داخل الموقع</span>
               </button>
               <a href="Vocabulary%20Match%20Game.html" target="_blank" class="w-full py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> فتح في نافذة مستقلة
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> <span data-key="btn_open_tab">فتح في نافذة مستقلة</span>
               </a>
             </div>
           </div>
 
-          <!-- اللعبة 3: Teenage Life Word Game -->
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl flex flex-col justify-between hover:border-gold-500 transition">
             <div>
               <div class="p-6 bg-gradient-to-br from-royal-900 to-emerald-950 border-b border-slate-800 flex items-center justify-between">
@@ -599,19 +600,19 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Teenage Life Word Game[cite: 17]</h4>
-                <p class="text-[11px] text-emerald-400 font-bold uppercase tracking-wider">Gap-Fill & Reading Comprehension[cite: 17]</p>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  نشاط قراءة تفاعلي متقدم يضع الطالب أمام نص متكامل عن مرحلة المراهقة؛ لاختيار الكلمات الصحيحة وتعبئة الفراغات مع التلميحات الفورية[cite: 17].
+                <h4 class="text-lg font-black text-white">Teenage Life Word Game</h4>
+                <p class="text-[11px] text-emerald-400 font-bold uppercase tracking-wider">Gap-Fill & Reading Comprehension</p>
+                <p class="text-xs text-slate-300 leading-relaxed" data-key="game3_desc">
+                  نشاط قراءة تفاعلي متقدم يضع الطالب أمام نص متكامل عن مرحلة المراهقة؛ لاختيار الكلمات الصحيحة وتعبئة الفراغات مع التلميحات الفورية.
                 </p>
               </div>
             </div>
             <div class="p-6 pt-0 space-y-2">
               <button onclick="launchGame(3)" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
-                <i class="fa-solid fa-play"></i> ابدأ اللعب داخل الموقع
+                <i class="fa-solid fa-play"></i> <span data-key="btn_play_now">ابدأ اللعب داخل الموقع</span>
               </button>
               <a href="Teenage%20Life%20Word%20Game.html" target="_blank" class="w-full py-2 rounded-xl bg-royal-800 hover:bg-royal-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> فتح في نافذة مستقلة
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> <span data-key="btn_open_tab">فتح في نافذة مستقلة</span>
               </a>
             </div>
           </div>
@@ -626,9 +627,9 @@
       <div class="max-w-7xl mx-auto space-y-10">
         <div class="text-center space-y-2">
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-video text-gold-400"></i> الإنتاج المرئي والمبادرات
+            <i class="fa-solid fa-video text-gold-400"></i> <span data-key="videos_tag">الإنتاج المرئي والمبادرات</span>
           </span>
-          <h3 class="text-2xl md:text-4xl font-black text-white">المرئيات الميدانية والأنشطة التوثيقية</h3>
+          <h3 class="text-2xl md:text-4xl font-black text-white" data-key="videos_heading">المرئيات الميدانية والأنشطة التوثيقية</h3>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -637,9 +638,9 @@
               <video controls class="w-full h-full object-cover rounded-t-2xl"><source src="video1.mp4" type="video/mp4"></video>
             </div>
             <div class="p-5 space-y-2 text-right">
-              <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold">رؤية عُمان 2040 • استدامة البيئة[cite: 12]</span>
-              <h4 class="text-base font-bold text-white">مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة)[cite: 12]</h4>
-              <p class="text-xs text-slate-300">نموذج مدرسة ظفار للتنمية المستدامة وإعادة التدوير ونشر ثقافة المسؤولية الفردية[cite: 12].</p>
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold" data-key="v1_tag">رؤية عُمان 2040 • استدامة البيئة</span>
+              <h4 class="text-base font-bold text-white" data-key="v1_title">مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة)</h4>
+              <p class="text-xs text-slate-300" data-key="v1_desc">نموذج مدرسة ظفار للتنمية المستدامة وإعادة التدوير ونشر ثقافة المسؤولية الفردية.</p>
             </div>
           </div>
 
@@ -648,9 +649,9 @@
               <video controls class="w-full h-full object-cover rounded-t-2xl"><source src="video2.mp4" type="video/mp4"></video>
             </div>
             <div class="p-5 space-y-2 text-right">
-              <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold">تأثير الأقران • توجيه سلوكي[cite: 12, 13]</span>
-              <h4 class="text-base font-bold text-white">الورشة التوعوية والتطبيقية لفريق العمل الطلابي[cite: 12, 13]</h4>
-              <p class="text-xs text-slate-300">حلقة عمل تفاعلية في قاعة مصادر التعلم مع الطلبة لشرح محاور التغيير السلوكي[cite: 12, 13].</p>
+              <span class="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[11px] font-bold" data-key="v2_tag">تأثير الأقران • توجيه سلوكي</span>
+              <h4 class="text-base font-bold text-white" data-key="v2_title">الورشة التوعوية والتطبيقية لفريق العمل الطلابي</h4>
+              <p class="text-xs text-slate-300" data-key="v2_desc">حلقة عمل تفاعلية في قاعة مصادر التعلم مع الطلبة لشرح محاور التغيير السلوكي.</p>
             </div>
           </div>
 
@@ -659,9 +660,9 @@
               <video controls class="w-full h-full object-cover rounded-t-2xl"><source src="video3.mp4" type="video/mp4"></video>
             </div>
             <div class="p-5 space-y-2 text-right">
-              <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-bold">منهاج كامبريدج • مختبر الفيزياء[cite: 14]</span>
-              <h4 class="text-base font-bold text-white">استقصاء علمي (1-1): الميكروميتر والقدمة ذات الورنية[cite: 14]</h4>
-              <p class="text-xs text-slate-300">تطبيق عملي مباشر في مختبر الفيزياء لطلبة الصف الحادي عشر[cite: 14].</p>
+              <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-bold" data-key="v3_tag">منهاج كامبريدج • مختبر الفيزياء</span>
+              <h4 class="text-base font-bold text-white" data-key="v3_title">استقصاء علمي (1-1): الميكروميتر والقدمة ذات الورنية</h4>
+              <p class="text-xs text-slate-300" data-key="v3_desc">تطبيق عملي مباشر في مختبر الفيزياء لطلبة الصف الحادي عشر.</p>
             </div>
           </div>
         </div>
@@ -673,37 +674,37 @@
       <div class="max-w-7xl mx-auto space-y-10">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h3 class="text-2xl md:text-3xl font-black text-white">تدوينات مدرسة ظفار على منصة X</h3>
-            <p class="text-xs text-slate-400 mt-1">تغطيات مصورة ومباشرة تم نشرها عبر حساب تعليمية ظفار ومدرسة ظفار</p>
+            <h3 class="text-2xl md:text-3xl font-black text-white" data-key="x_feed_title">تدوينات مدرسة ظفار على منصة X</h3>
+            <p class="text-xs text-slate-400 mt-1" data-key="x_feed_sub">تغطيات مصورة ومباشرة تم نشرها عبر حساب تعليمية ظفار ومدرسة ظفار</p>
           </div>
-          <a href="https://x.com/EduGovDhf8101" target="_blank" class="px-5 py-2.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs">زيارة الحساب على X</a>
+          <a href="https://x.com/EduGovDhf8101" target="_blank" class="px-5 py-2.5 rounded-xl bg-gold-500 text-royal-950 font-black text-xs" data-key="btn_visit_x">زيارة الحساب على X</a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 p-4 flex flex-col justify-between">
             <div>
               <img src="HT20jMjbcAA2tT3.jfif" class="w-full h-48 object-cover rounded-xl mb-3">
-              <h4 class="text-sm font-bold text-white mb-1">الإدارة والقيادة المدرسية</h4>
-              <p class="text-xs text-slate-300">متابعة خطط التحصيل الدراسي وتفعيل اللجان التربوية بالمدرسة[cite: 1].</p>
+              <h4 class="text-sm font-bold text-white mb-1" data-key="x_post1_title">الإدارة والقيادة المدرسية</h4>
+              <p class="text-xs text-slate-300" data-key="x_post1_desc">متابعة خطط التحصيل الدراسي وتفعيل اللجان التربوية بالمدرسة[cite: 1].</p>
             </div>
-            <a href="https://x.com/EduGovDhf8101/status/2106799678839005683" target="_blank" class="text-xs text-gold-400 font-bold mt-3 block">فتح التغريدة على X ←</a>
+            <a href="https://x.com/EduGovDhf8101/status/2106799678839005683" target="_blank" class="text-xs text-gold-400 font-bold mt-3 block" data-key="link_open_tweet">فتح التغريدة على X ←</a>
           </div>
 
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 p-4 flex flex-col justify-between">
             <div>
               <img src="HUGGfihbIAAB1Em.jfif" class="w-full h-48 object-cover rounded-xl mb-3">
-              <h4 class="text-sm font-bold text-white mb-1">التوجيه الاجتماعي والمهني</h4>
-              <p class="text-xs text-slate-300">برامج التوعية الطلابية وحقوق ومسؤوليات الطالب لغرس الانضباط[cite: 4].</p>
+              <h4 class="text-sm font-bold text-white mb-1" data-key="x_post2_title">التوجيه الاجتماعي والمهني</h4>
+              <p class="text-xs text-slate-300" data-key="x_post2_desc">برامج التوعية الطلابية وحقوق ومسؤوليات الطالب لغرس الانضباط[cite: 4].</p>
             </div>
-            <a href="https://x.com/EduGovDhf8101/status/2110202671588413498" target="_blank" class="text-xs text-gold-400 font-bold mt-3 block">فتح التغريدة على X ←</a>
+            <a href="https://x.com/EduGovDhf8101/status/2110202671588413498" target="_blank" class="text-xs text-gold-400 font-bold mt-3 block" data-key="link_open_tweet">فتح التغريدة على X ←</a>
           </div>
 
           <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/40 p-4 flex flex-col justify-between">
             <div>
               <img src="HUIO5eqbwAAadva.jfif" class="w-full h-48 object-cover rounded-xl mb-3">
-              <h4 class="text-sm font-bold text-white mb-1">التعلم النشط والتحصيل</h4>
-              <p class="text-xs text-slate-300">جانب من الحصص التفاعلية وتطبيقات المتابعة المباشرة لمستوى الطلاب[cite: 7].</p>
+              <h4 class="text-sm font-bold text-white mb-1" data-key="x_post3_title">التعلم النشط والتحصيل</h4>
+              <p class="text-xs text-slate-300" data-key="x_post3_desc">جانب من الحصص التفاعلية وتطبيقات المتابعة المباشرة لمستوى الطلاب[cite: 7].</p>
             </div>
-            <a href="https://x.com/EduGovDhf8101/status/2109689865956892920" target="_blank" class="text-xs text-gold-400 font-bold mt-3 block">فتح التغريدة على X ←</a>
+            <a href="https://x.com/EduGovDhf8101/status/2109689865956892920" target="_blank" class="text-xs text-gold-400 font-bold mt-3 block" data-key="link_open_tweet">فتح التغريدة على X ←</a>
           </div>
         </div>
       </div>
@@ -720,7 +721,7 @@
         </div>
         <div class="flex items-center gap-3">
           <a id="gameModalPopout" href="#" target="_blank" class="text-slate-400 hover:text-gold-400 text-xs flex items-center gap-1 font-bold">
-            <i class="fa-solid fa-external-link"></i> تكبير
+            <i class="fa-solid fa-external-link"></i> <span data-key="btn_modal_expand">تكبير</span>
           </a>
           <button onclick="closeGameModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
         </div>
@@ -732,7 +733,7 @@
   </div>
 
   <footer class="bg-royal-950 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
-    <p>جميع الحقوق محفوظة © 2026 مدرسة ظفار للبنين (11-12) • صلالة، محافظة ظفار، سلطنة عُمان</p>
+    <p data-key="footer_rights">جميع الحقوق محفوظة © 2026 مدرسة ظفار للبنين (11-12) • صلالة، محافظة ظفار، سلطنة عُمان</p>
   </footer>
 
   <script>
@@ -743,7 +744,6 @@
       setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3500);
     }
 
-    // إدارة القائمة المنسدلة للبوابات والمنصات التعليمية
     function toggleDropdown() {
       const menu = document.getElementById('platformsDropdownMenu');
       menu.classList.toggle('hidden');
@@ -757,7 +757,6 @@
       }
     });
 
-    // تشغيل الألعاب التعليمية
     function launchGame(id) {
       const modal = document.getElementById('gameModal');
       const frame = document.getElementById('gameModalFrame');
@@ -786,47 +785,267 @@
       document.getElementById('gameModalFrame').src = '';
     }
 
-    // نظام الترجمة والتبديل بين اللغتين
+    // القاموس الكامل لضمان تحويل الصفحة إلى الإنجليزية بنسبة 100% دون أي كلمة عربية
     const translations = {
       en: {
+        top_country: "Sultanate of Oman",
         top_ministry: "Ministry of Education",
         top_location: "Directorate General of Education in Dhofar Governorate • Salalah",
         brand_title: "Dhofar Secondary School for Boys (11-12)",
         brand_sub: "Salalah, Dhofar Governorate, Oman",
         nav_mission: "School Mission",
+        nav_portals: "Portals & Libraries",
         nav_curriculum: "Curriculum Plan",
         nav_games: "English Games (11)",
         nav_videos: "Media & Videos",
-        nav_feed: "X Posts",
-        btn_portal: "Official Portals",
+        nav_feed: "X Feed",
+        btn_platforms: "Official Portals",
+        drop_group_portals: "Official Government Portals",
+        portal_moe: "Oman Educational Portal",
+        portal_manzara: "Manzara E-Learning Portal",
+        portal_noor: "Noor Learning Platform (LMS)",
+        portal_ejada: "Ejada Performance Platform",
+        portal_mawarid: "Mawarid HR System (MOL)",
+        drop_group_libs: "Digital Libraries & Textbooks",
+        lib_curriculum: "Omani Textbooks Library",
+        lib_guide: "Teacher Guidebook Library",
+        lib_audio: "Educational Audio Library",
         mission_badge: "Official Educational Mission",
-        school_mission: '"Providing distinguished academic achievement, engaging students across diverse educational activities, and maximizing all school resources supported by creative leadership and active community partnership."',
-        hero_title: "Omani Heritage & Academic Excellence for Grades (11 - 12)",
-        hero_desc: "Dhofar Secondary School for Boys combines adherence to Omani identity (white dishdasha and kummah) with high academic standards across all required curriculum courses.",
-        curriculum_tag: "Approved Curriculum Plan",
-        curriculum_heading: "Course Structure & Weekly Periods (11 - 12)",
-        curriculum_sub: "Official curriculum breakdown featuring Group 1 core elective courses and Group 2 specialized electives.",
-        videos_heading: "Campus Field Videos & Initiatives"
+        school_mission: '"Providing distinguished academic achievement, active student engagement across diverse educational activities, and maximizing all school potential supported by creative leadership and community partnership."',
+        pill1: "Academic Excellence",
+        pill2: "Student Engagement",
+        pill3: "Creative Leadership",
+        pill4: "Community Partnership",
+        hero_location: "Salalah - Dhofar Governorate",
+        hero_title: "Omani Heritage & Continuous Educational Excellence (Grades 11 - 12)",
+        hero_desc: "Dhofar Secondary School for Boys represents the highest standards of discipline and achievement; uniting national identity (white dishdasha and kummah) with research and rigorous academic courses.",
+        btn_hub_links: "Official Portals & Digital Libraries",
+        btn_hub_curriculum: "Explore Curriculum Plan",
+        hero_photo_caption_title: "Learning Resource & Computer Center",
+        hero_photo_caption_sub: "Dhofar School students in authentic Omani attire during interactive workshops and lectures.",
+        sec_portals_tag: "Official Educational Gateways",
+        sec_portals_heading: "Direct Links to Government Portals & Digital Libraries",
+        sec_portals_sub: "A comprehensive digital directory providing direct access to educational portals, digital textbooks, teacher guides, and approved audio archives.",
+        card_moe_title: "Educational Portal",
+        card_moe_desc: "The primary gateway for all academic records, student services, and administrative staff workflows.",
+        card_manzara_title: "Manzara Platform",
+        card_manzara_desc: "Interactive digital classroom environment for communication, homework, and Ministry curriculum resources.",
+        card_noor_title: "Noor LMS Platform",
+        card_noor_desc: "Advanced Learning Management System for delivering interactive courses, assessments, and digital modules.",
+        card_ejada_title: "Ejada Platform",
+        card_ejada_desc: "National institutional and individual performance measurement system enhancing workplace productivity in Oman.",
+        card_mawarid_title: "Mawarid HR System",
+        card_mawarid_desc: "Human resources and self-service management portal for civil service employees under the Ministry of Labour.",
+        card_book_title: "Omani Curriculum Library",
+        card_book_desc: "Digital repository for downloading and reading Ministry school textbooks across all grade levels.",
+        card_teacher_title: "Teacher Guide Library",
+        card_teacher_desc: "Official teacher instruction manuals, pedagogical guidelines, and curriculum pacing frameworks.",
+        card_audio_title: "Audio Library",
+        card_audio_desc: "Curriculum listening tracks, pronunciation exercises, and audio recitations for academic language courses.",
+        btn_open: "Access Portal",
+        curriculum_tag: "Approved Academic Structure",
+        curriculum_heading: "Course Organization & Weekly Period Allocation (11 - 12)",
+        curriculum_sub: "Official approved Ministry framework organizing Group 1 core elective courses and Group 2 specialized electives.",
+        g1_badge: "Group 1",
+        g1_title: "Core Foundational & Elective Courses",
+        g1_period_lbl: "Total Weekly Periods",
+        g1_period_val: "25 Periods",
+        g1_desc: "Includes foundational compulsory courses along with student selection between Core and Pure Mathematics:",
+        th_num: "#",
+        th_subject: "Course Cluster / Options",
+        th_periods: "Periods",
+        subj_islamic: "Islamic Education",
+        subj_social: "Social Studies",
+        subj_english: "English Language",
+        subj_arabic: "Arabic Language",
+        subj_guidance: "Career Guidance Service",
+        math_group_header: "Mathematics Cluster (Select One Course):",
+        subj_core_math: "Core Mathematics",
+        subj_pure_math: "Pure Mathematics",
+        g1_total_lbl: "Total Group 1 Weekly Periods:",
+        g1_total_val: "25 Periods",
+        g2_badge: "Group 2",
+        g2_title: "Elective Courses",
+        g2_period_lbl: "Required Selected Periods",
+        g2_period_val: "15 Periods",
+        g2_desc: "List of available elective courses; each registered course is allocated 5 weekly periods in student timetables:",
+        th_options: "Elective Courses",
+        subj_bio: "Biology",
+        subj_history: "History (World Around Me)",
+        subj_geo: "Geography & Modern Technologies",
+        subj_pe: "Physical Education",
+        subj_env: "Environmental Science",
+        subj_art: "Visual Arts",
+        subj_phys: "Physics",
+        subj_chem: "Chemistry",
+        subj_german: "German Language",
+        subj_eng_skills: "English Skills",
+        subj_chinese: "Chinese Language",
+        subj_french: "French Language",
+        subj_music: "Musical Skills",
+        subj_it: "Information Technology",
+        g2_total_lbl: "Total Group 2 Weekly Periods:",
+        g2_total_val: "15 Periods (3 courses × 5 periods)",
+        games_sec_title: "Interactive English Educational Games",
+        games_sec_desc: "Dedicated learning games for Grade 11 students to master grammar, expand vocabulary, and practice reading comprehension with instant feedback.",
+        game1_desc: "Interactive 5-station journey testing Past Simple vs Past Continuous and narrative connectors.",
+        game2_desc: "Visual and auditory matching game for Unit vocabulary: Adolescence, Angst, Acne, Teens, and Peer Pressure.",
+        game3_desc: "Comprehensive cloze reading activity for contextual vocabulary mastery and reading comprehension.",
+        btn_play_now: "Play Inside Website",
+        btn_open_tab: "Open in Full Tab",
+        videos_tag: "School Media & Initiatives",
+        videos_heading: "Field Video Documentation & Campus Initiatives",
+        v1_tag: "Oman Vision 2040 • Environmental Sustainability",
+        v1_title: "School Environment Initiative (Clean Green Campus)",
+        v1_desc: "Dhofar School sustainable recycling model and individual environmental responsibility culture.",
+        v2_tag: "Peer Influence • Behavioral Guidance",
+        v2_title: "Student Team Awareness & Practical Workshop",
+        v2_desc: "Interactive workshop in the Learning Resource Center explaining student peer guidance in campus yards.",
+        v3_tag: "Cambridge Science • Physics Laboratory",
+        v3_title: "Scientific Investigation (1-1): Micrometer & Vernier Calipers",
+        v3_desc: "Hands-on physics laboratory measurement session conducted by Grade 11 secondary students.",
+        x_feed_title: "Dhofar Secondary School Official X Feed",
+        x_feed_sub: "Live field coverage and updates shared directly on the official school account",
+        btn_visit_x: "Visit Account on X",
+        x_post1_title: "School Leadership & Administration",
+        x_post1_desc: "Supervising academic performance plans and educational committee initiatives across campus.",
+        x_post2_title: "Social & Vocational Guidance",
+        x_post2_desc: "Student rights and responsibilities program fostering discipline and citizenship values.",
+        x_post3_title: "Active Learning & Achievement",
+        x_post3_desc: "Interactive classroom exercises and individual learning follow-up for secondary students.",
+        link_open_tweet: "Open Post on X →",
+        btn_modal_expand: "Full Window",
+        footer_rights: "All Rights Reserved © 2026 Dhofar Post-Basic School for Boys (11-12) • Salalah, Dhofar Governorate, Sultanate of Oman"
       },
       ar: {
+        top_country: "سلطنة عُمان",
         top_ministry: "وزارة التعليم",
         top_location: "المديرية العامة للتعليم بمحافظة ظفار • ولاية صلالة",
         brand_title: "مدرسة ظفار للبنين (11-12)",
         brand_sub: "Dhofar Post-Basic School for Boys (11-12)",
         nav_mission: "رسالة المدرسة",
+        nav_portals: "المنصات والمكتبات",
         nav_curriculum: "الخطة الدراسية",
         nav_games: "ألعاب الإنجليزي (11)",
         nav_videos: "مرئيات المدرسة",
         nav_feed: "تدوينات X",
-        btn_portal: "المنصات الرسمية",
+        btn_platforms: "المنصات الرسمية",
+        drop_group_portals: "بوابات ومنصات رسمية",
+        portal_moe: "البوابة التعليمية لسلطنة عُمان",
+        portal_manzara: "منصة منظرة",
+        portal_noor: "منصة نور التعليمية",
+        portal_ejada: "منصة إجادة",
+        portal_mawarid: "نظام مورد (وزارة العمل)",
+        drop_group_libs: "المكتبات الرقمية والمناهج",
+        lib_curriculum: "مكتبة المناهج العُمانية",
+        lib_guide: "مكتبة دليل المعلم",
+        lib_audio: "المكتبة الصوتية",
         mission_badge: "الرسالة التربوية الرسمية للمدرسة",
         school_mission: '"تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"',
+        pill1: "تحصيل علمي متميز",
+        pill2: "شراكة طلابية فاعلة",
+        pill3: "كوادر قيادية مبدعة",
+        pill4: "شراكة مجتمعية رائدة",
+        hero_location: "صلالة - محافظة ظفار",
         hero_title: "أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)",
         hero_desc: "تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج والمواد الدراسية المقررة.",
+        btn_hub_links: "المنصات والمكتبات التعليمية",
+        btn_hub_curriculum: "استعراض الخطة الدراسية",
+        hero_photo_caption_title: "قاعة مصادر التعلم والحاسوب",
+        hero_photo_caption_sub: "طلبة مدرسة ظفار للبنين بالزي العُماني الأصيل أثناء المحاضرات والورش التفاعلية.",
+        sec_portals_tag: "البوابات والمنصات التعليمية الرسمية",
+        sec_portals_heading: "الروابط المباشرة للخدمات والمنصات والمكتبات التعليمية",
+        sec_portals_sub: "دليل رقمي شامل يربطك مباشرة بالبوابات التعليمية، المناهج الرقمية، ومكتبات الأدلة والمصادر الصوتية المعتمدة.",
+        card_moe_title: "البوابة التعليمية",
+        card_moe_desc: "المدخل الرسمي لكافة الخدمات الأكاديمية وسجلات الطلاب وبيانات أعضاء الهيئة التدريسية وأولياء الأمور.",
+        card_manzara_title: "منصة منظرة",
+        card_manzara_desc: "البيئة التعليمية التفاعلية الرقمية للتواصل والأنشطة الإثرائية والمقررات الرقمية التابعة لوزارة التعليم.",
+        card_noor_title: "منصة نور التعليمية",
+        card_noor_desc: "نظام إدارة التعلم (LMS) المتقدم لتقديم الدروس والواجبات والمحتويات التعليمية الرقمية والمناهج المدرسية.",
+        card_ejada_title: "منصة إجادة",
+        card_ejada_desc: "منظومة قياس الأداء الفردي والمؤسسي وتطوير الكفاءات الحكومية ودعم الإجادة الوظيفية بسلطنة عُمان.",
+        card_mawarid_title: "نظام مَوْرِد",
+        card_mawarid_desc: "بوابة الموارد البشرية والخدمات الذاتية لموظفي وحدات الجهاز الإداري للدولة التابعة لوزارة العمل.",
+        card_book_title: "مكتبة المناهج العُمانية",
+        card_book_desc: "المستودع الرقمي لتحميل وقراءة الكتب المدرسية والمناهج التعليمية لجميع الصفوف الدراسية بصيغة رقمية.",
+        card_teacher_title: "مكتبة دليل المعلم",
+        card_teacher_desc: "أدلة المعلمين الرسمية وخطط التدريس ونماذج استراتيجيات التعلم التفاعلية المعتمدة من وزارة التعليم.",
+        card_audio_title: "المكتبة الصوتية",
+        card_audio_desc: "التسجيلات الصوتية ومقاطع الاستماع لمناهج اللغات وتلاوات القرآن الكريم ونصوص الاستماع التفاعلية.",
+        btn_open: "الدخول للبوابة",
         curriculum_tag: "الخطة الدراسية الرسمية المعتمدة",
         curriculum_heading: "تنظيم المواد الدراسية وتوزيع الحصص (11 - 12)",
         curriculum_sub: "الخطة الأكاديمية الرسمية المعتمدة لتوزيع المواد الأساسية الإختيارية والمواد الاختيارية بعدد الحصص الأسبوعية المقررة.",
-        videos_heading: "المرئيات الميدانية والأنشطة التوثيقية"
+        g1_badge: "المجموعة الأولى",
+        g1_title: "المواد الأساسية الإختيارية",
+        g1_period_lbl: "مجموع الحصص الأسبوعية",
+        g1_period_val: "25 حصة",
+        g1_desc: "تشمل المواد التأسيسية الإلزامية المشتركة بالإضافة إلى المفاضلة بين مادتي الرياضيات (الأساسية أو المتقدمة):",
+        th_num: "م",
+        th_subject: "مجموعة المواد / الخيارات",
+        th_periods: "عدد الحصص",
+        subj_islamic: "التربية الإسلامية",
+        subj_social: "الدراسات الاجتماعية",
+        subj_english: "اللغة الإنجليزية",
+        subj_arabic: "اللغة العربية",
+        subj_guidance: "خدمة التوجيه المهني",
+        math_group_header: "مجموعة الرياضيات (يختار الطالب مادة واحدة):",
+        subj_core_math: "الرياضيات الأساسية",
+        subj_pure_math: "الرياضيات المتقدمة",
+        g1_total_lbl: "مجموع الحصص الأسبوعية للمجموعة الأولى:",
+        g1_total_val: "25 حصة",
+        g2_badge: "المجموعة الثانية",
+        g2_title: "المواد الاختيارية",
+        g2_period_lbl: "مجموع الحصص المطلوبة",
+        g2_period_val: "15 حصة",
+        g2_desc: "قائمة المواد الاختيارية؛ حيث تخصص 5 حصص أسبوعياً لكل مادة مسجلة في خطة الطالب:",
+        th_options: "الخيارات / المادة",
+        subj_bio: "الأحياء",
+        subj_history: "التاريخ (العالم من حولي)",
+        subj_geo: "الجغرافيا و التقنيات الحديثة",
+        subj_pe: "الرياضة المدرسية",
+        subj_env: "العلوم البيئية",
+        subj_art: "الفنون التشكيلية",
+        subj_phys: "الفيزياء",
+        subj_chem: "الكيمياء",
+        subj_german: "اللغة الألمانية",
+        subj_eng_skills: "اللغة الإنجليزية (مهارات)",
+        subj_chinese: "اللغة الصينية",
+        subj_french: "اللغة الفرنسية",
+        subj_music: "المهارات الموسيقية",
+        subj_it: "تقنية المعلومات",
+        g2_total_lbl: "مجموع الحصص الأسبوعية للمجموعة الثانية:",
+        g2_total_val: "15 حصة (3 مواد × 5 حصص)",
+        games_sec_title: "الألعاب التعليمية التفاعلية لمادة اللغة الإنجليزية",
+        games_sec_desc: "مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي ومدمجة لتعمل مباشرة دون أخطاء.",
+        game1_desc: "لعبة محطات قطار تفاعلية عبر 5 مراحل تختبر إتقان أزمنة الماضي، واستخدام الروابط الدالة (While & When) مع التفاعل الصوتي.",
+        game2_desc: "مطابقة تفاعلية بالصور والنطق لمفردات المنهج الأساسية: (Adolescence, Angst, Acne, Teens, Suspicious, Mood swings, Peer pressure, Influence).",
+        game3_desc: "نشاط قراءة تفاعلي متقدم يضع الطالب أمام نص متكامل عن مرحلة المراهقة؛ لاختيار الكلمات الصحيحة وتعبئة الفراغات مع التلميحات الفورية.",
+        btn_play_now: "ابدأ اللعب داخل الموقع",
+        btn_open_tab: "فتح في نافذة مستقلة",
+        videos_tag: "الإنتاج المرئي والمبادرات",
+        videos_heading: "المرئيات الميدانية والأنشطة التوثيقية",
+        v1_tag: "رؤية عُمان 2040 • استدامة البيئة",
+        v1_title: "مبادرة المحافظة على البيئة المدرسية (ساحة خضراء نظيفة)",
+        v1_desc: "نموذج مدرسة ظفار للتنمية المستدامة وإعادة التدوير ونشر ثقافة المسؤولية الفردية.",
+        v2_tag: "تأثير الأقران • توجيه سلوكي",
+        v2_title: "الورشة التوعوية والتطبيقية لفريق العمل الطلابي",
+        v2_desc: "حلقة عمل تفاعلية في قاعة مصادر التعلم مع الطلبة لشرح محاور التغيير السلوكي.",
+        v3_tag: "منهاج كامبريدج • مختبر الفيزياء",
+        v3_title: "استقصاء علمي (1-1): الميكروميتر والقدمة ذات الورنية",
+        v3_desc: "تطبيق عملي مباشر في مختبر الفيزياء لطلبة الصف الحادي عشر.",
+        x_feed_title: "تدوينات مدرسة ظفار على منصة X",
+        x_feed_sub: "تغطيات مصورة ومباشرة تم نشرها عبر حساب تعليمية ظفار ومدرسة ظفار",
+        btn_visit_x: "زيارة الحساب على X",
+        x_post1_title: "الإدارة والقيادة المدرسية",
+        x_post1_desc: "متابعة خطط التحصيل الدراسي وتفعيل اللجان التربوية بالمدرسة.",
+        x_post2_title: "التوجيه الاجتماعي والمهني",
+        x_post2_desc: "برامج التوعية الطلابية وحقوق ومسؤوليات الطالب لغرس الانضباط.",
+        x_post3_title: "التعلم النشط والتحصيل",
+        x_post3_desc: "جانب من الحصص التفاعلية وتطبيقات المتابعة المباشرة لمستوى الطلاب.",
+        link_open_tweet: "فتح التغريدة على X ←",
+        btn_modal_expand: "تكبير",
+        footer_rights: "جميع الحقوق محفوظة © 2026 مدرسة ظفار للبنين (11-12) • صلالة، محافظة ظفار، سلطنة عُمان"
       }
     };
 
