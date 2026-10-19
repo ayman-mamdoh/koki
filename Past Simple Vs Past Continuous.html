@@ -1,0 +1,670 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Time Machine Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rubik:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one centred column. Header with marks and streak, a five-station track, then a single play card that swaps between start, question, station-reached and results. */
+:root{
+  --bg:#EEF2F9; --panel:#FFFFFF; --ink:#14213D; --muted:#55607A; --line:#D5DCEB;
+  --brand:#2F5BEA; --brand-ink:#FFFFFF; --sun:#FFC83D; --sun-soft:#FFF1C2;
+  --good:#16A06A; --good-soft:#DDF5EA; --try:#D96A0B; --try-soft:#FFEBD6;
+  --mark:#FFE08A; --face:#FFC83D; --face-ink:#14213D;
+  --shadow:0 6px 0 rgba(20,33,61,.10);
+  --font-display:"Lilita One","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1226; --panel:#141E3D; --ink:#EEF2FF; --muted:#A9B4D6; --line:#2B3965;
+    --brand:#7C9BFF; --brand-ink:#0B1226; --sun:#FFD35C; --sun-soft:#3A3416;
+    --good:#3ED598; --good-soft:#12382F; --try:#FFA94D; --try-soft:#41290F;
+    --mark:rgba(255,200,61,.30); --shadow:0 6px 0 rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1226; --panel:#141E3D; --ink:#EEF2FF; --muted:#A9B4D6; --line:#2B3965;
+  --brand:#7C9BFF; --brand-ink:#0B1226; --sun:#FFD35C; --sun-soft:#3A3416;
+  --good:#3ED598; --good-soft:#12382F; --try:#FFA94D; --try-soft:#41290F;
+  --mark:rgba(255,200,61,.30); --shadow:0 6px 0 rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--font-body);padding-inline:16px;padding-block:12px 32px}
+.app{max-width:900px;margin-inline:auto}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+button{font-family:inherit}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:8px 14px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand svg{flex:none;width:40px;height:40px}
+.brand h1{font-family:var(--font-display);font-weight:400;font-size:1.55rem;line-height:1.1;margin:0;letter-spacing:.01em}
+.brand small{display:block;font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:baseline;gap:7px;background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:5px 14px;font-variant-numeric:tabular-nums}
+.pill b{font-family:var(--font-display);font-weight:400;font-size:1.35rem;line-height:1.1}
+.pill span{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.pill.score b{color:var(--brand)}
+.tog{background:var(--panel);color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.82rem;font-weight:600;cursor:pointer}
+.tog[aria-pressed="true"]{border-color:var(--brand);color:var(--brand)}
+
+/* Station track */
+.track{display:flex;list-style:none;margin:2px 0 16px;padding:0}
+.st{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;min-width:0}
+.st::before{content:"";position:absolute;top:17px;left:-50%;width:100%;height:4px;background:var(--line)}
+.st:first-child::before{display:none}
+.st.done::before,.st.now::before{background:var(--brand)}
+.dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:3px solid var(--line);font-family:var(--font-display);font-size:1rem;position:relative;z-index:1;color:var(--muted)}
+.st.done .dot{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.st.now .dot{border-color:var(--brand);color:var(--ink);box-shadow:0 0 0 5px color-mix(in srgb,var(--brand) 25%,transparent)}
+.lab{font-size:.74rem;font-weight:500;color:var(--muted);text-align:center;line-height:1.2;padding-inline:2px}
+.st.now .lab{color:var(--ink);font-weight:700}
+@media (max-width:560px){.st:not(.now) .lab{display:none}}
+
+/* Card */
+.card{background:var(--panel);border:2px solid var(--line);border-radius:22px;padding:clamp(16px,3vw,28px);box-shadow:var(--shadow)}
+.screen[hidden]{display:none}
+.center{text-align:center}
+.hint{margin:14px 4px 0;font-size:.82rem;color:var(--muted);text-align:center}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:8px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.chip.form{background:var(--sun-soft);color:var(--ink);border-color:transparent}
+.chip.qc{margin-left:auto;font-variant-numeric:tabular-nums}
+
+/* Coach: mascot + speech bubble */
+.coach{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.mascot{flex:none;width:84px;height:88px}
+.mascot svg{width:100%;height:100%;display:block;overflow:visible;transform-origin:50% 90%}
+.mascot.big-m{width:130px;height:136px;margin:0 auto 6px}
+.bubble{--bb:var(--bg);position:relative;flex:1;min-width:0;background:var(--bb);border-radius:16px;padding:12px 16px}
+.bubble::before{content:"";position:absolute;left:-9px;top:50%;margin-top:-9px;border:9px solid transparent;border-left:0;border-right-color:var(--bb)}
+.bubble .big{font-family:var(--font-display);font-size:1.45rem;line-height:1.15;margin:0 0 2px}
+.bubble p{margin:0}
+.bubble .sm{color:var(--muted);font-size:.93rem}
+.bubble.good{--bb:var(--good-soft)} .bubble.good .big{color:var(--good)}
+.bubble.try{--bb:var(--try-soft)} .bubble.try .big{color:var(--try)}
+.bubble.good .sm,.bubble.try .sm{color:var(--ink)}
+
+/* Face parts */
+.f-face{fill:var(--face);stroke:var(--face-ink);stroke-width:5}
+.f-crown{fill:var(--face-ink)}
+.f-tick{stroke:var(--face-ink);stroke-width:4;stroke-linecap:round;opacity:.5}
+.f-line{fill:none;stroke:var(--face-ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.f-dot{fill:var(--face-ink)}
+.f-ink{fill:var(--face-ink)}
+.f-tongue{fill:#FF7A7A}
+.f-cheek{fill:#FF8FA0;opacity:.65}
+.f-spark{fill:var(--sun);stroke:var(--face-ink);stroke-width:2.5;stroke-linejoin:round}
+
+/* Question */
+.sentence{font-size:clamp(1.25rem,3.6vw,1.75rem);line-height:1.7;font-weight:500;margin:4px 0 20px;text-wrap:pretty}
+.sentence mark{background:var(--mark);color:inherit;padding:2px 7px;border-radius:6px;font-weight:600}
+.blank{display:inline-block;min-width:3.4em;border-bottom:4px solid var(--brand);margin-inline:3px;text-align:center;line-height:1.15;padding-inline:6px;color:var(--brand);font-weight:700}
+.blank.filled{border-bottom-color:var(--good);color:var(--good);background:var(--good-soft);border-radius:6px 6px 0 0}
+.opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));margin:0;padding:0;list-style:none}
+.opts li{min-width:0}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;width:100%;min-height:62px;font-size:1.08rem;font-weight:600;color:var(--ink);background:var(--panel);border:3px solid var(--line);border-radius:16px;padding:12px 16px;cursor:pointer;box-shadow:0 4px 0 var(--line);transition:transform .08s,border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--brand);transform:translateY(-2px)}
+.opt:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--bg);color:var(--muted);font-size:.85rem;font-weight:700}
+.opt .txt{min-width:0;overflow-wrap:anywhere}
+.opt.right{border-color:var(--good);background:var(--good-soft);box-shadow:0 4px 0 var(--good)}
+.opt.right .k{background:var(--good);color:#fff}
+.opt.wrong{border-color:var(--try);background:var(--try-soft);box-shadow:0 4px 0 var(--try);animation:shake .4s}
+.opt:disabled{cursor:default}
+.opt:disabled:not(.right):not(.wrong){opacity:.55}
+
+.btn{font-family:var(--font-display);font-weight:400;font-size:1.25rem;letter-spacing:.02em;border:0;border-radius:14px;padding:12px 28px;background:var(--brand);color:var(--brand-ink);cursor:pointer;box-shadow:0 5px 0 color-mix(in srgb,var(--brand) 55%,#000);transition:transform .08s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--brand) 55%,#000)}
+.btn.sun{background:var(--sun);color:#14213D;box-shadow:0 5px 0 #C99510}
+.btn[hidden]{display:none}
+.nextrow{display:flex;justify-content:flex-end;margin-top:18px;min-height:56px}
+
+/* Start screen */
+.hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
+.hero .mascot{width:112px;height:118px}
+.hero h2,.center h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.05;margin:0 0 6px;text-wrap:balance}
+.hero p{margin:0;color:var(--muted)}
+.namebox{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 6px}
+.namebox input{flex:1 1 200px;min-width:0;font:500 1.05rem var(--font-body);padding:12px 14px;border:3px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.best{margin:0 0 4px;font-size:.88rem;color:var(--muted);min-height:1.4em}
+.rules{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));margin:16px 0 6px}
+.rule{background:var(--bg);border-radius:16px;padding:14px 16px;min-width:0}
+.rule h3{margin:0 0 8px;font-family:var(--font-display);font-weight:400;font-size:1.15rem}
+.rule ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:.93rem}
+.rule li{display:flex;gap:8px;align-items:baseline}
+.sg{flex:none;width:18px;font-weight:700;color:var(--brand);text-align:center}
+.rule b{background:var(--mark);padding:0 4px;border-radius:4px;font-weight:600}
+.bank-t{margin:16px 0 8px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bank{display:flex;flex-wrap:wrap;gap:8px}
+.bank mark{background:var(--mark);color:inherit;padding:3px 10px;border-radius:8px;font-weight:600;font-size:.9rem}
+.scoring{margin:14px 0 0;font-size:.92rem;color:var(--muted)}
+
+/* Station and results */
+.stars{display:flex;justify-content:center;gap:8px;margin:12px 0}
+.star{width:50px;height:50px}
+.star polygon{fill:var(--line)}
+.star.on polygon{fill:var(--sun);stroke:#C99510;stroke-width:2;stroke-linejoin:round}
+.star.on{animation:pop .55s both}
+.center p{margin:4px 0 14px;color:var(--muted)}
+.big-score{font-family:var(--font-display);font-size:3.4rem;line-height:1;color:var(--brand)}
+.big-score small{font-size:1.1rem;color:var(--muted)}
+.bars{display:grid;gap:12px;margin:18px auto 20px;max-width:520px;text-align:left}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;font-size:.9rem}
+.bar b{font-variant-numeric:tabular-nums}
+.bar .t{grid-column:1/-1;height:12px;border-radius:99px;background:var(--bg);overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--good);border-radius:99px}
+
+/* Celebrations */
+.burst{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:50}
+.burst[hidden]{display:none}
+.burst .inner{display:flex;flex-direction:column;align-items:center;gap:4px;animation:burst 1.25s ease-out forwards}
+.burst svg{width:150px;height:158px;overflow:visible}
+.burst .plus{font-family:var(--font-display);font-size:2.8rem;line-height:1;color:var(--sun);-webkit-text-stroke:2px var(--face-ink);paint-order:stroke fill;text-shadow:0 4px 0 rgba(0,0,0,.25)}
+.burst .bl{font-family:var(--font-display);font-size:1.5rem;background:var(--panel);color:var(--ink);border:3px solid var(--line);border-radius:999px;padding:3px 18px;box-shadow:var(--shadow)}
+.confetti i{position:fixed;top:-16px;width:10px;height:16px;border-radius:2px;animation:fall 1.8s ease-in forwards;z-index:49;pointer-events:none}
+@keyframes burst{0%{transform:scale(.3) translateY(30px);opacity:0}18%{transform:scale(1.12);opacity:1}30%{transform:scale(1)}80%{opacity:1}100%{transform:scale(1) translateY(-40px);opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pop{0%{transform:scale(0) rotate(-30deg)}70%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-14px)}60%{transform:translateY(-4px)}}
+@keyframes wob{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+@keyframes fall{to{transform:translate(var(--dx),108vh) rotate(var(--rot));opacity:.9}}
+.mascot.bounce svg{animation:bounce .7s}
+.mascot.wobble svg{animation:wob .6s}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .confetti{display:none}
+  .burst .inner{animation:none!important;opacity:1}
+}
+@media (max-width:480px){
+  .mascot{width:68px;height:72px}
+  .hero{grid-template-columns:1fr;justify-items:start}
+  .bubble .big{font-size:1.25rem}
+}
+</style>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 120 126" aria-hidden="true"><rect class="f-crown" x="52" y="2" width="16" height="10" rx="3"/><circle class="f-face" cx="60" cy="68" r="50"/><path class="f-line" d="M60 68 L60 40"/><path class="f-line" d="M60 68 L82 80"/></svg>
+      <div><h1>Time Machine Express</h1><small>Past simple vs past continuous</small></div>
+    </div>
+    <div class="stats">
+      <div class="pill score"><span>Marks</span><b id="score">0</b></div>
+      <div class="pill"><span>Streak</span><b id="streak">0</b></div>
+      <button class="tog" id="soundBtn" type="button" aria-pressed="true">Sound on</button>
+      <button class="tog" id="voiceBtn" type="button" aria-pressed="true" hidden>Voice on</button>
+    </div>
+  </header>
+
+  <ol class="track" id="track" aria-label="Stations"></ol>
+
+  <main class="card">
+    <section class="screen" id="sStart">
+      <div class="hero">
+        <div class="mascot" id="heroMascot"></div>
+        <div>
+          <h2>Ready for a trip to the past?</h2>
+          <p>Meet Tick the clock. Visit 5 stations with stories about teenagers and adults. Pick the right tense and make Tick smile.</p>
+        </div>
+      </div>
+      <div class="namebox">
+        <input id="playerName" type="text" maxlength="20" placeholder="Your name (optional)" autocomplete="off" aria-label="Your name">
+        <button class="btn" id="startBtn" type="button">Start the journey</button>
+      </div>
+      <p class="best" id="bestLine"></p>
+
+      <div class="rules">
+        <div class="rule">
+          <h3>Past simple</h3>
+          <ul>
+            <li><span class="sg">+</span><span>My brother <b>played</b> football yesterday.</span></li>
+            <li><span class="sg">&minus;</span><span>My parents <b>didn't watch</b> the news last night.</span></li>
+            <li><span class="sg">?</span><span><b>Did</b> your father <b>work</b> yesterday?</span></li>
+          </ul>
+        </div>
+        <div class="rule">
+          <h3>Past continuous</h3>
+          <ul>
+            <li><span class="sg">+</span><span>My sister <b>was playing</b> tennis at 5 o'clock.</span></li>
+            <li><span class="sg">&minus;</span><span>The men <b>weren't working</b> at noon.</span></li>
+            <li><span class="sg">?</span><span><b>Were</b> you <b>sleeping</b> at ten last night?</span></li>
+          </ul>
+        </div>
+        <div class="rule">
+          <h3>While and when</h3>
+          <ul>
+            <li><span class="sg">&bull;</span><span><b>While</b> the teenager <b>was walking</b>, he saw an accident.</span></li>
+            <li><span class="sg">&bull;</span><span>My father was working <b>when</b> the phone <b>rang</b>.</span></li>
+            <li><span class="sg">&bull;</span><span>I / he / she / it / everyone = <b>was</b>. You / we / they = <b>were</b>.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="bank-t">Past words to look for</p>
+      <div class="bank">
+        <mark>yesterday</mark><mark>last night</mark><mark>last week</mark><mark>two days ago</mark><mark>in 2019</mark><mark>at 8 o'clock yesterday</mark><mark>this time last week</mark><mark>an hour ago</mark>
+      </div>
+      <p class="scoring">Right on the first try = 10 marks. Right on the second try = 5 marks. Three right answers in a row = 5 bonus marks.</p>
+    </section>
+
+    <section class="screen" id="sQuiz" hidden>
+      <div class="chips">
+        <span class="chip" id="cStation"></span>
+        <span class="chip form" id="cForm"></span>
+        <span class="chip qc" id="cCount"></span>
+      </div>
+      <div class="coach">
+        <div class="mascot" id="mascot"></div>
+        <div class="bubble" id="bubble" role="status" aria-live="polite">
+          <p class="big" id="bBig"></p>
+          <p class="sm" id="bText"></p>
+        </div>
+      </div>
+      <p class="sentence" id="sentence"></p>
+      <ul class="opts" id="opts"></ul>
+      <div class="nextrow"><button class="btn" id="nextBtn" type="button" hidden>Next question</button></div>
+    </section>
+
+    <section class="screen center" id="sStation" hidden>
+      <div class="mascot big-m" id="stMascot"></div>
+      <h2 id="stTitle"></h2>
+      <p id="stSub"></p>
+      <div class="stars" id="stStars"></div>
+      <p id="stText"></p>
+      <button class="btn sun" id="stNext" type="button">Next station</button>
+    </section>
+
+    <section class="screen center" id="sEnd" hidden>
+      <div class="mascot big-m" id="enMascot"></div>
+      <h2 id="enRank"></h2>
+      <div class="big-score"><span id="enScore">0</span> <small>marks</small></div>
+      <div class="stars" id="enStars"></div>
+      <p id="enMsg"></p>
+      <div class="bars" id="enBars"></div>
+      <button class="btn sun" id="againBtn" type="button">Travel again</button>
+    </section>
+  </main>
+  <p class="hint">Keyboard: press 1, 2 or 3 to answer, Enter for the next question.</p>
+</div>
+<div class="burst" id="burst" hidden><div class="inner" id="burstInner"></div></div>
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+<script>
+"use strict";
+/* Question bank. In "s", [square brackets] mark a past word or phrase (highlighted) and ___ marks a blank.
+   o = options, a = index of the right option, f = form tag, w = short reason shown after answering.
+   In Station 5 an option such as "was watching|went" fills two or three blanks in order. */
+var LEVELS = [
+{ name:"Time clues", big:"Time clue!",
+  tip:"Action finished? Use the past simple. Action was happening at that time? Use the past continuous.",
+  nudge:"Look at the past words. Was the action finished, or was it happening at that time?",
+  qs:[
+  {s:"[Last night], the teenagers ___ a football match on TV.", o:["watched","was watching","were watching"], a:0, f:"Past simple · affirmative", w:"“Last night” is finished. Use the past simple: watched."},
+  {s:"[At 8 o'clock yesterday], my dad ___ the newspaper.", o:["read","was reading","were reading"], a:1, f:"Past continuous · affirmative", w:"At that exact time, he was in the middle of it. My dad = he, so was reading."},
+  {s:"A teenager in my street ___ a new phone [two weeks ago].", o:["was buying","bought","were buying"], a:1, f:"Past simple · affirmative", w:"“Two weeks ago” is finished. Use the past simple: bought."},
+  {s:"[This time last week], the adults ___ in the garden.", o:["relaxed","was relaxing","were relaxing"], a:2, f:"Past continuous · affirmative", w:"“This time last week” means at that time. The adults = they, so were relaxing."},
+  {s:"[In 2019], my mother ___ a new job.", o:["was getting","got","were getting"], a:1, f:"Past simple · affirmative", w:"“In 2019” is finished. Use the past simple: got."},
+  {s:"The manager ___ the meeting [ten minutes ago].", o:["started","was starting","were starting"], a:0, f:"Past simple · affirmative", w:"“Ten minutes ago” is finished. Use the past simple: started."},
+  {s:"[Yesterday at ten o'clock], the students ___ in the library.", o:["studied","were studying","was studying"], a:1, f:"Past continuous · affirmative", w:"At ten o'clock they were in the middle of it. The students = they, so were studying."}
+]},
+{ name:"While / When", big:"While or when?",
+  tip:"Long action (was -ing)? Use while. Short action that interrupts? Use when.",
+  nudge:"Is the action after the blank long (was -ing) or short and quick?",
+  qs:[
+  {s:"[Yesterday evening], my mother was cooking dinner ___ the phone rang.", o:["while","when","during"], a:1, f:"when + past simple", w:"“The phone rang” is quick. Use when."},
+  {s:"[Last Friday], ___ the teenager was walking to school, he saw an accident.", o:["While","When","During"], a:0, f:"while + past continuous", w:"“Was walking” is a long action. Use while."},
+  {s:"[Last night], my sister was doing her homework ___ my father was watching TV.", o:["while","when","during"], a:0, f:"while + past continuous", w:"Two long actions at the same time. Use while."},
+  {s:"The boys were playing football [yesterday afternoon] ___ it started to rain.", o:["while","when","during"], a:1, f:"when + past simple", w:"“Started to rain” is quick and it interrupted them. Use when."},
+  {s:"[Yesterday], ___ the manager walked in, the workers were drinking tea.", o:["While","When","During"], a:1, f:"when + past simple", w:"“Walked in” is quick. Use when."},
+  {s:"[Last Sunday], my uncle was washing the car ___ I was cleaning the garage.", o:["while","when","during"], a:0, f:"while + past continuous", w:"Two long actions at the same time. Use while."},
+  {s:"The students were talking ___ the teacher came into the class [yesterday].", o:["while","when","during"], a:1, f:"when + past simple", w:"“Came into the class” is quick. Use when."}
+]},
+{ name:"Was / Were", big:"Was or were?",
+  tip:"I, he, she, it, everyone = was. You, we, they, two people = were.",
+  nudge:"Who is the subject? One person (was) or more than one (were)?",
+  qs:[
+  {s:"[At six o'clock yesterday], I ___ playing chess.", o:["was","were","is"], a:0, f:"Past continuous · was / were", w:"With I, use was."},
+  {s:"[Last night], the teenagers ___ watching a film.", o:["was","were","are"], a:1, f:"Past continuous · was / were", w:"The teenagers = they. Use were."},
+  {s:"[Yesterday afternoon], my aunt ___ cooking in the kitchen.", o:["was","were","is"], a:0, f:"Past continuous · was / were", w:"My aunt = she. Use was."},
+  {s:"[At 9 p.m. last night], you ___ listening to music.", o:["was","were","are"], a:1, f:"Past continuous · was / were", w:"With you, always use were."},
+  {s:"Everyone ___ working hard in the office [yesterday].", o:["was","were","are"], a:0, f:"Past continuous · was / were", w:"Everyone is like he or she. Use was."},
+  {s:"My brother and his friend ___ talking outside [an hour ago].", o:["was","were","is"], a:1, f:"Past continuous · was / were", w:"Two people = they. Use were."},
+  {s:"The teenagers ___ running in the corridor [yesterday].", o:["wasn't","weren't","aren't"], a:1, f:"Past continuous · negative", w:"The teenagers = they. Say weren't + -ing."}
+]},
+{ name:"Make it right", big:"Pick the right form.",
+  tip:"Past simple: did or didn't + base verb. Past continuous: was or were + -ing.",
+  nudge:"Which helper fits: did, was or were? Check the verb after the blank.",
+  qs:[
+  {s:"[Last weekend], Hamad ___ his cousins at the mall.", o:["met","was meeting","meet"], a:0, f:"Past simple · affirmative", w:"A finished action [last weekend]. Meet becomes met."},
+  {s:"My parents ___ the news [last night].", o:["didn't watch","didn't watched","weren't watch"], a:0, f:"Past simple · negative", w:"Negative past simple: didn't + base verb. No -ed after didn't."},
+  {s:"___ you finish your homework [yesterday]?", o:["Did","Were","Was"], a:0, f:"Past simple · question", w:"Past simple question: Did + person + base verb."},
+  {s:"Did the doctor ___ the window [two hours ago]?", o:["open","opened","opening"], a:0, f:"Past simple · question", w:"After did, use the base verb: open."},
+  {s:"My uncle ___ come to the party [last Sunday].", o:["didn't","wasn't","doesn't"], a:0, f:"Past simple · negative", w:"Past simple negative: didn't + come."},
+  {s:"[At noon yesterday], my sister ___ a letter to her friend.", o:["was writing","were writing","was write"], a:0, f:"Past continuous · affirmative", w:"My sister = she, so was. The verb needs -ing."},
+  {s:"The students ___ playing outside [at 5 p.m. yesterday].", o:["weren't","didn't","wasn't"], a:0, f:"Past continuous · negative", w:"The students = they. Use weren't + -ing."},
+  {s:"___ your father sleeping when you called [last night]?", o:["Was","Did","Were"], a:0, f:"Past continuous · question", w:"Question: Was or Were + person + -ing. Your father = he, so Was."},
+  {s:"What ___ you doing [at 7 o'clock last night]?", o:["were","did","was"], a:0, f:"Past continuous · question", w:"What + were + you + -ing."}
+]},
+{ name:"Interrupted!", big:"Boss round!",
+  tip:"Long action: was or were + -ing. The quick action that interrupts it: past simple.",
+  nudge:"Which action was already happening? Which quick action interrupted it?",
+  qs:[
+  {s:"[Yesterday evening], my dad ___ TV when the lights ___ out.", o:["was watching|went","watched|was going","was watching|was going"], a:0, f:"Past continuous + past simple", w:"Watching was already happening (was watching). The lights going out was quick (went)."},
+  {s:"The teenagers ___ football when it ___ to rain [last Friday].", o:["were playing|started","played|were starting","was playing|started"], a:0, f:"Past continuous + past simple", w:"The teenagers = they, so were playing. The rain started quickly: started."},
+  {s:"[Yesterday], when the manager ___ into the room, the workers ___.", o:["came|were talking","come|were talking","came|was talking"], a:0, f:"Past simple + past continuous", w:"Came is the quick action. The workers = they, so were talking."},
+  {s:"My mother ___ her bag while she ___ for the bus [last week].", o:["lost|was waiting","was losing|was waiting","lost|were waiting"], a:0, f:"Past simple + past continuous", w:"After while, use the long action: was waiting. The quick action is lost."},
+  {s:"My brother ___ a shower when his friend ___ him [last night].", o:["was taking|called","were taking|called","was taking|calling"], a:0, f:"Past continuous + past simple", w:"He was in the shower (long action). His friend called (quick action)."},
+  {s:"[Yesterday], what ___ you ___ when the fire alarm ___?", o:["were|doing|rang","did|doing|rang","were|do|rang"], a:0, f:"Question · both tenses", w:"“What were you doing” asks about a long action. The alarm rang quickly: rang."},
+  {s:"[At midnight last night], my father ___ when the phone ___.", o:["wasn't sleeping|rang","didn't sleeping|rang","weren't sleeping|rang"], a:0, f:"Negative · both tenses", w:"He wasn't sleeping (long action, negative). The phone rang (quick action)."}
+]}
+];
+
+var PRAISE = ["Excellent!","Well done!","Brilliant!","Fantastic!","Great job!","Super!","Perfect!","Awesome!","Bravo!","Wonderful!","Spot on!","Marvellous!","Outstanding!","Masha'Allah!","You nailed it!","Yes! That's right!"];
+var TRY = ["Good try!","Almost there!","Don't give up!","You can do it!","Nice effort!","So close!","Whoops! Try again!","Hmm, think again!","Keep going, champion!","Oh-oh! No problem!"];
+var STATION_MSG = ["What a journey!","Choo choo! Next stop!","You are a time traveller!","Fantastic work, keep going!"];
+var CHECK = '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var S = {player:"",li:0,qi:0,score:0,streak:0,best:0,tries:0,locked:false,sound:true,voice:true,screen:"sStart",stats:[],order:[],q:null,opts:[]};
+var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function $(id){ return document.getElementById(id); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function shuffle(a){ a = a.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+
+/* Tick the clock: one face, five moods */
+function spark(cx,cy,r){ return '<path class="f-spark" d="M'+cx+' '+(cy-r)+' Q'+cx+' '+cy+' '+(cx+r)+' '+cy+' Q'+cx+' '+cy+' '+cx+' '+(cy+r)+' Q'+cx+' '+cy+' '+(cx-r)+' '+cy+' Q'+cx+' '+cy+' '+cx+' '+(cy-r)+' Z"/>'; }
+function face(mood){
+  var eyes, mouth, extra = "", label = "Tick the clock";
+  if (mood === "happy" || mood === "cheer") {
+    eyes = '<path class="f-line" d="M37 62 Q44 51 51 62"/><path class="f-line" d="M69 62 Q76 51 83 62"/>';
+    mouth = mood === "cheer"
+      ? '<path class="f-ink" d="M38 78 Q60 114 82 78 Z"/><path class="f-tongue" d="M49 93 Q60 104 71 93 Q60 88 49 93 Z"/>'
+      : '<path class="f-ink" d="M42 80 Q60 104 78 80 Z"/><path class="f-tongue" d="M51 90 Q60 98 69 90 Q60 86 51 90 Z"/>';
+    extra = '<circle class="f-cheek" cx="32" cy="78" r="7"/><circle class="f-cheek" cx="88" cy="78" r="7"/>';
+    if (mood === "cheer") extra += spark(8,30,9) + spark(112,24,11) + spark(110,112,8);
+    label = "Happy face";
+  } else if (mood === "try") {
+    eyes = '<circle class="f-dot" cx="44" cy="62" r="5.5"/><circle class="f-dot" cx="76" cy="62" r="5.5"/><path class="f-line" d="M35 52 L51 46"/><path class="f-line" d="M69 46 L85 52"/>';
+    mouth = '<path class="f-line" d="M48 88 Q60 94 72 88"/>';
+    label = "Encouraging face";
+  } else {
+    eyes = '<circle class="f-dot" cx="44" cy="62" r="5.5"/><circle class="f-dot" cx="76" cy="62" r="5.5"/>';
+    mouth = '<path class="f-line" d="M44 84 Q60 96 76 84"/>';
+  }
+  return '<svg viewBox="0 0 120 126" role="img" aria-label="'+label+'"><rect class="f-crown" x="52" y="2" width="16" height="10" rx="3"/><circle class="f-face" cx="60" cy="68" r="50"/>'
+    + '<path class="f-tick" d="M60 24V31M60 105V112M16 68H23M97 68H104"/>' + eyes + mouth + extra + '</svg>';
+}
+function setMascot(el, mood, anim){
+  el.innerHTML = face(mood);
+  el.classList.remove("bounce","wobble");
+  if (anim && !reduce) { void el.offsetWidth; el.classList.add(anim); }
+}
+
+/* Sound and voice */
+var actx = null;
+function ctx(){
+  if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} }
+  if (actx && actx.state === "suspended") { try { actx.resume(); } catch(e) {} }
+  return actx;
+}
+function tone(f, t0, d, type, vol){
+  if (!S.sound) return;
+  var c = ctx(); if (!c) return;
+  try {
+    var o = c.createOscillator(), g = c.createGain(), t = c.currentTime + t0;
+    o.type = type || "triangle"; o.frequency.value = f;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol || 0.2, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + d + 0.05);
+  } catch(e) {}
+}
+var SFX = {
+  good: function(){ [523,659,784,1047].forEach(function(f,i){ tone(f,i*0.08,0.28,"triangle",0.22); }); },
+  bonus: function(){ [784,988,1175,1568,1976].forEach(function(f,i){ tone(f,0.35+i*0.07,0.3,"sine",0.18); }); },
+  oops: function(){ tone(330,0,0.18,"sine",0.18); tone(262,0.17,0.3,"sine",0.18); },
+  reveal: function(){ tone(392,0,0.2,"sine",0.16); tone(440,0.18,0.3,"sine",0.16); },
+  station: function(){ [523,659,784,659,784,1047].forEach(function(f,i){ tone(f,i*0.11,0.3,"triangle",0.22); }); },
+  finish: function(){ [523,523,659,784,659,784,1047,1319].forEach(function(f,i){ tone(f,i*0.12,0.4,"triangle",0.22); }); },
+  click: function(){ tone(660,0,0.05,"square",0.05); }
+};
+var canSpeak = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+function say(txt){
+  if (!S.voice || !canSpeak) return;
+  try { window.speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(txt); u.lang = "en-GB"; u.rate = 1.05; u.pitch = 1.2; window.speechSynthesis.speak(u); } catch(e) {}
+}
+
+/* Celebrations */
+function confetti(n){
+  if (reduce) return;
+  var box = $("confetti"), cols = ["#FFC83D","#2F5BEA","#16A06A","#E07A1F","#FF6B8B"];
+  for (var i=0;i<n;i++){
+    var p = document.createElement("i");
+    p.style.left = (Math.random()*100)+"vw";
+    p.style.background = cols[i%cols.length];
+    p.style.setProperty("--dx", (Math.random()*240-120)+"px");
+    p.style.setProperty("--rot", (Math.random()*720-360)+"deg");
+    p.style.animationDelay = (Math.random()*0.35)+"s";
+    p.style.animationDuration = (1.4+Math.random())+"s";
+    box.appendChild(p);
+    (function(el){ setTimeout(function(){ el.remove(); }, 2900); })(p);
+  }
+}
+var burstTimer = null;
+function burst(pts, label){
+  var b = $("burst");
+  $("burstInner").innerHTML = face("cheer") + '<div class="plus">+'+pts+'</div><div class="bl"></div>';
+  $("burstInner").lastChild.textContent = label;
+  b.hidden = true; void b.offsetWidth; b.hidden = false;
+  clearTimeout(burstTimer);
+  burstTimer = setTimeout(function(){ b.hidden = true; }, reduce ? 900 : 1250);
+}
+function starsHTML(n){
+  var h = "";
+  for (var i=0;i<3;i++) h += '<svg class="star'+(i<n?' on':'')+'" viewBox="0 0 48 48" aria-hidden="true" style="animation-delay:'+(i*0.18)+'s"><polygon points="24,3 30,17 45,18 33,28 37,43 24,35 11,43 15,28 3,18 18,17"/></svg>';
+  return h;
+}
+
+/* Screens */
+function show(id){
+  ["sStart","sQuiz","sStation","sEnd"].forEach(function(x){ $(x).hidden = (x !== id); });
+  S.screen = id;
+}
+function renderTrack(now, done){
+  $("track").innerHTML = LEVELS.map(function(L,i){
+    return '<li class="st'+(i<done?' done':'')+(i===now?' now':'')+'"'+(i===now?' aria-current="step"':'')+'><span class="dot">'+(i<done?CHECK:(i+1))+'</span><span class="lab">'+L.name+'</span></li>';
+  }).join("");
+}
+function updStats(){ $("score").textContent = S.score; $("streak").textContent = S.streak; }
+function setBubble(kind, big, small){
+  var b = $("bubble");
+  b.className = "bubble" + (kind ? " "+kind : "");
+  $("bBig").textContent = big;
+  $("bText").textContent = small;
+}
+function withName(text){
+  if (S.player && Math.random() < 0.4) return text.replace(/[!.]$/, "") + ", " + S.player + "!";
+  return text;
+}
+
+/* Game flow */
+function startGame(){
+  ctx();
+  S.player = ($("playerName").value || "").trim().slice(0,20);
+  S.li = 0; S.score = 0; S.streak = 0;
+  S.stats = LEVELS.map(function(L){ return {first:0, n:L.qs.length, marks:0}; });
+  S.order = LEVELS.map(function(L){ return shuffle(L.qs.map(function(_,i){ return i; })); });
+  updStats();
+  beginLevel();
+}
+function beginLevel(){ S.qi = 0; show("sQuiz"); loadQ(); window.scrollTo(0,0); }
+
+function loadQ(){
+  var L = LEVELS[S.li], q = L.qs[S.order[S.li][S.qi]];
+  S.q = q; S.tries = 0; S.locked = false;
+  S.opts = shuffle(q.o.map(function(t,i){ return {t:t, ok:i===q.a}; }));
+  renderTrack(S.li, S.li);
+  $("cStation").textContent = "Station "+(S.li+1)+" · "+L.name;
+  $("cForm").textContent = q.f;
+  $("cCount").textContent = "Question "+(S.qi+1)+" of "+L.qs.length;
+  var n = 0;
+  $("sentence").innerHTML = q.s.replace(/\[([^\]]+)\]/g,'<mark>$1</mark>').replace(/___/g,function(){ n++; return '<span class="blank">&nbsp;</span>'; });
+  var ul = $("opts"); ul.innerHTML = "";
+  S.opts.forEach(function(o,i){
+    var li = document.createElement("li"), b = document.createElement("button");
+    b.type = "button"; b.className = "opt";
+    var k = document.createElement("span"); k.className = "k"; k.textContent = i+1;
+    var t = document.createElement("span"); t.className = "txt"; t.textContent = o.t.split("|").join(" / ");
+    b.appendChild(k); b.appendChild(t);
+    b.addEventListener("click", function(){ answer(i); });
+    li.appendChild(b); ul.appendChild(li);
+  });
+  setBubble("", L.big, L.tip);
+  setMascot($("mascot"), "idle");
+  $("nextBtn").hidden = true;
+  $("nextBtn").textContent = (S.qi === L.qs.length-1) ? "Finish station" : "Next question";
+}
+
+function fillBlanks(){
+  var parts = S.q.o[S.q.a].split("|");
+  Array.prototype.forEach.call($("sentence").querySelectorAll(".blank"), function(el,i){
+    el.textContent = parts[i] || parts[0]; el.classList.add("filled");
+  });
+}
+function lockOptions(){
+  Array.prototype.forEach.call($("opts").querySelectorAll(".opt"), function(b,i){
+    b.disabled = true;
+    if (S.opts[i].ok) b.classList.add("right");
+  });
+}
+function showNext(){
+  var nb = $("nextBtn"); nb.hidden = false;
+  try { nb.focus({preventScroll:true}); } catch(e) {}
+  $("bubble").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"nearest"});
+}
+
+function answer(i){
+  if (S.locked) return;
+  var o = S.opts[i], btn = $("opts").children[i].firstChild, L = LEVELS[S.li], q = S.q;
+  S.tries++;
+  if (o.ok) {
+    S.locked = true;
+    var pts = S.tries === 1 ? 10 : 5, bonus = 0;
+    if (S.tries === 1) { S.streak++; if (S.streak % 3 === 0) bonus = 5; }
+    S.score += pts + bonus;
+    S.stats[S.li].marks += pts + bonus;
+    if (S.tries === 1) S.stats[S.li].first++;
+    lockOptions(); fillBlanks(); updStats();
+    var praise = pick(PRAISE);
+    setBubble("good", withName(praise), "+"+pts+" marks"+(bonus ? " and a streak bonus of +"+bonus+"! " : ". ")+q.w);
+    setMascot($("mascot"), "happy", "bounce");
+    burst(pts+bonus, bonus ? "Streak bonus!" : praise);
+    SFX.good(); if (bonus) { SFX.bonus(); confetti(45); }
+    say(praise);
+    showNext();
+  } else if (S.tries === 1) {
+    btn.classList.add("wrong"); btn.disabled = true;
+    S.streak = 0; updStats();
+    var enc = pick(TRY);
+    setBubble("try", enc, L.nudge+" Try again!");
+    setMascot($("mascot"), "try", "wobble");
+    SFX.oops(); say(enc);
+  } else {
+    S.locked = true;
+    btn.classList.add("wrong");
+    lockOptions(); fillBlanks();
+    setBubble("try", "Good try! Now you know.", "The answer is: "+q.o[q.a].split("|").join(" / ")+". "+q.w);
+    setMascot($("mascot"), "try", "wobble");
+    SFX.reveal(); say("Good try! Now you know.");
+    showNext();
+  }
+}
+
+function next(){
+  S.qi++;
+  if (S.qi >= LEVELS[S.li].qs.length) stationDone(); else loadQ();
+}
+
+function stationDone(){
+  var st = S.stats[S.li], L = LEVELS[S.li], pct = st.first / st.n;
+  var stars = pct >= 0.85 ? 3 : pct >= 0.6 ? 2 : 1;
+  var last = S.li === LEVELS.length-1;
+  show("sStation");
+  renderTrack(last ? -1 : S.li+1, S.li+1);
+  $("stTitle").textContent = "Station "+(S.li+1)+" reached!";
+  $("stSub").textContent = L.name;
+  $("stStars").innerHTML = starsHTML(stars);
+  $("stText").textContent = st.first+" of "+st.n+" right on the first try · "+st.marks+" marks. "+(stars === 3 ? "Perfect driving!" : "Keep it up!");
+  $("stNext").textContent = last ? "See my results" : "Next stop: "+LEVELS[S.li+1].name;
+  setMascot($("stMascot"), "cheer", "bounce");
+  SFX.station(); confetti(70); say(pick(STATION_MSG));
+  window.scrollTo(0,0);
+}
+
+function finish(){
+  var first = 0, n = 0;
+  S.stats.forEach(function(s){ first += s.first; n += s.n; });
+  var pct = first / n, stars = pct >= 0.85 ? 3 : pct >= 0.6 ? 2 : 1;
+  var rank, msg;
+  if (pct >= 0.9) { rank = "Time Master"; msg = "Amazing! You know these two tenses very well."; }
+  else if (pct >= 0.7) { rank = "Time Traveller"; msg = "Great work! Play again to get to the top."; }
+  else if (pct >= 0.5) { rank = "Time Explorer"; msg = "Good job! You are learning fast. Play again and get more marks."; }
+  else { rank = "Time Learner"; msg = "Well done for finishing! Every try makes you stronger."; }
+  var isBest = false;
+  if (S.score > S.best) { S.best = S.score; isBest = true; try { localStorage.setItem("tme-best", String(S.best)); } catch(e) {} }
+  show("sEnd");
+  renderTrack(-1, LEVELS.length);
+  $("enRank").textContent = (S.player ? S.player+", you are a " : "You are a ") + rank + "!";
+  $("enScore").textContent = S.score;
+  $("enStars").innerHTML = starsHTML(stars);
+  $("enMsg").textContent = msg + " " + first + " of " + n + " right on the first try." + (isBest ? " New best score!" : "");
+  $("enBars").innerHTML = S.stats.map(function(s,i){
+    return '<div class="bar"><span>Station '+(i+1)+' · '+LEVELS[i].name+'</span><b>'+s.first+'/'+s.n+'</b><span class="t"><i style="width:'+Math.round(100*s.first/s.n)+'%"></i></span></div>';
+  }).join("");
+  setMascot($("enMascot"), "cheer", "bounce");
+  SFX.finish(); confetti(110); say(rank+"! "+pick(PRAISE));
+  window.scrollTo(0,0);
+}
+
+function toStart(){
+  S.score = 0; S.streak = 0; updStats();
+  renderTrack(-1, 0);
+  $("bestLine").textContent = S.best ? "Your best so far: "+S.best+" marks" : "";
+  setMascot($("heroMascot"), "happy", "bounce");
+  show("sStart");
+}
+
+/* Wiring */
+$("startBtn").addEventListener("click", startGame);
+$("playerName").addEventListener("keydown", function(e){ if (e.key === "Enter") startGame(); });
+$("nextBtn").addEventListener("click", function(){ SFX.click(); next(); });
+$("stNext").addEventListener("click", function(){
+  SFX.click();
+  if (S.li < LEVELS.length-1) { S.li++; beginLevel(); } else finish();
+});
+$("againBtn").addEventListener("click", function(){ SFX.click(); toStart(); });
+$("soundBtn").addEventListener("click", function(){
+  S.sound = !S.sound; this.setAttribute("aria-pressed", String(S.sound)); this.textContent = S.sound ? "Sound on" : "Sound off";
+  if (S.sound) SFX.click();
+});
+if (canSpeak) {
+  $("voiceBtn").hidden = false;
+  $("voiceBtn").addEventListener("click", function(){
+    S.voice = !S.voice; this.setAttribute("aria-pressed", String(S.voice)); this.textContent = S.voice ? "Voice on" : "Voice off";
+    if (!S.voice) { try { window.speechSynthesis.cancel(); } catch(e) {} }
+  });
+}
+document.addEventListener("keydown", function(e){
+  if (S.screen !== "sQuiz" || e.target.tagName === "INPUT" || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (/^[1-4]$/.test(e.key)) {
+    var li = $("opts").children[Number(e.key)-1];
+    if (li && !li.firstChild.disabled) li.firstChild.click();
+  } else if (e.key === "Enter" && !$("nextBtn").hidden && e.target.tagName !== "BUTTON") {
+    $("nextBtn").click();
+  }
+});
+
+try { S.best = parseInt(localStorage.getItem("tme-best"), 10) || 0; } catch(e) { S.best = 0; }
+toStart();
+</script>
+
+</body></html>
