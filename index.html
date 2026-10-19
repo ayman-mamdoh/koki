@@ -73,12 +73,13 @@
     </div>
   </aside>
 
-  <!-- الترويسة الرئيسية -->
+  <!-- الترويسة الرئيسية متضمنة شعار وزارة التعليم -->
   <header class="sticky top-0 z-40 bg-royal-950/90 backdrop-blur-md border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-royal-950 text-2xl font-black shadow-lg shadow-gold-500/20">
-          <i class="fa-solid fa-landmark"></i>
+        <!-- شعار وزارة التعليم الرسمي -->
+        <div class="w-12 h-12 rounded-xl bg-black border border-gold-500/40 p-1 flex items-center justify-center shadow-lg shadow-gold-500/10 overflow-hidden flex-shrink-0">
+          <img src="شعار وزارة التعليم.jpg" alt="شعار وزارة التعليم" class="w-full h-full object-contain">
         </div>
         <div>
           <h1 class="text-lg md:text-xl font-black text-white" data-key="brand_title">مدرسة ظفار للبنين (11-12)</h1>
@@ -88,6 +89,7 @@
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-300">
         <a href="#mission" class="hover:text-gold-400 transition" data-key="nav_mission">رسالة المدرسة</a>
+        <a href="#tracks" class="hover:text-gold-400 transition" data-key="nav_tracks">المسارات الأكاديمية (2)</a>
         <a href="#games-hub" class="text-gold-400 hover:text-white transition flex items-center gap-1.5" data-key="nav_games">
           <i class="fa-solid fa-gamepad"></i> ألعاب الإنجليزي (11)
         </a>
@@ -97,8 +99,6 @@
         <a href="#feed-posts" class="hover:text-gold-400 transition flex items-center gap-1.5" data-key="nav_feed">
           <i class="fa-brands fa-x-twitter"></i> تدوينات X
         </a>
-        <a href="#tracks" class="hover:text-gold-400 transition" data-key="nav_tracks">المسارات الأكاديمية (2)</a>
-        <a href="#calculator" class="hover:text-gold-400 transition" data-key="nav_calc">حاسبة الدبلوم</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -144,11 +144,11 @@
               تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية[cite: 3].
             </p>
             <div class="flex flex-wrap gap-3 pt-2">
-              <a href="#games-hub" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
-                <i class="fa-solid fa-gamepad"></i> الألعاب التعليمية التفاعلية (11)
+              <a href="#tracks" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
+                <i class="fa-solid fa-book-open"></i> استكشاف خطة المواد بالمسارين
               </a>
-              <a href="#video-hub" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
-                <i class="fa-solid fa-play"></i> مشاهدة المرئيات والمبادرات
+              <a href="#games-hub" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
+                <i class="fa-solid fa-gamepad text-gold-400"></i> الألعاب التعليمية التفاعلية (11)
               </a>
             </div>
           </div>
@@ -168,6 +168,135 @@
       </div>
     </section>
 
+    <!-- المساران الأكاديميان: المواد الإجبارية والاختيارية -->
+    <section id="tracks" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-10">
+        
+        <div class="text-center space-y-2">
+          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest" data-key="tracks_tag">الخطة الدراسية والتنظيم الأكاديمي</span>
+          <h3 class="text-2xl md:text-4xl font-black text-white" data-key="tracks_heading">المساران الأكاديميان في مدرسة ظفار (11 - 12)</h3>
+          <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto" data-key="tracks_sub">
+            خطة دراسية معتمدة من وزارة التربية والتعليم؛ تجمع بين مواد أساسية مشتركة ترسخ الهوية والمعرفة العامة، ومواد تخصصية واختيارية تؤهل الطالب لمتطلبات القبول الموحد.
+          </p>
+        </div>
+
+        <!-- شريط توضيحي للمواد المشتركة المتكررة بين المسارين -->
+        <div class="p-4 rounded-xl bg-royal-900/80 border border-gold-500/30 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div class="flex items-center gap-2 text-gold-400 font-bold">
+            <i class="fa-solid fa-layer-group text-base"></i>
+            <span>مواد أساسية مشتركة (إلزامية في كلا المسارين):</span>
+          </div>
+          <div class="flex flex-wrap gap-2 text-slate-200 font-semibold">
+            <span class="px-3 py-1 rounded-md bg-royal-950 border border-slate-700"><i class="fa-solid fa-book-quran text-gold-400 ml-1"></i> التربية الإسلامية</span>
+            <span class="px-3 py-1 rounded-md bg-royal-950 border border-slate-700"><i class="fa-solid fa-feather text-gold-400 ml-1"></i> اللغة العربية</span>
+            <span class="px-3 py-1 rounded-md bg-royal-950 border border-slate-700"><i class="fa-solid fa-globe text-gold-400 ml-1"></i> اللغة الإنجليزية</span>
+            <span class="px-3 py-1 rounded-md bg-royal-950 border border-slate-700"><i class="fa-solid fa-landmark text-gold-400 ml-1"></i> الدراسات الاجتماعية (هذا وطني)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- المسار العلمي -->
+          <div class="glass-card p-6 md:p-8 rounded-2xl border border-blue-500/30 space-y-6 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1.5">
+                  <i class="fa-solid fa-atom"></i> المسار الأول
+                </span>
+                <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
+              </div>
+              <h4 class="text-2xl font-black text-white">المسار العلمي (Scientific Track)</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                يستهدف إعداد الطلاب للتخصصات الطبية، الهندسية، التقنية، وعلوم الحاسب والذكاء الاصطناعي مع التركيز على مناهج كامبريدج والتجارب المعملية[cite: 14].
+              </p>
+
+              <!-- المواد الإجبارية للمسار العلمي -->
+              <div class="space-y-2 pt-2">
+                <div class="text-xs font-bold text-blue-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-check-circle"></i> المواد الإجبارية (الأساسية والتخصصية):
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-calculator text-blue-400 ml-1"></i> الرياضيات المتقدمة</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-bolt text-blue-400 ml-1"></i> الفيزياء (كامبريدج)[cite: 14]</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-flask text-blue-400 ml-1"></i> الكيمياء (كامبريدج)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-book-quran text-gold-400 ml-1"></i> التربية الإسلامية (مشترك)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-feather text-gold-400 ml-1"></i> اللغة العربية (مشترك)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-globe text-gold-400 ml-1"></i> اللغة الإنجليزية (مشترك)</div>
+                </div>
+              </div>
+
+              <!-- المواد الاختيارية للمسار العلمي -->
+              <div class="space-y-2 pt-2">
+                <div class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-sliders text-gold-400"></i> المواد الاختيارية (يختار الطالب منها حسب خطته):
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-dna text-emerald-400 ml-1"></i> علم الأحياء</div>
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-laptop-code text-cyan-400 ml-1"></i> تقنية المعلومات / الحاسوب</div>
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-landmark text-gold-400 ml-1"></i> هذا وطني (دراسات اجتماعية)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-palette text-amber-400 ml-1"></i> المهارات الفردية / الرياضة</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-blue-950/40 border border-blue-500/20 text-[11px] text-blue-200">
+              <i class="fa-solid fa-circle-info text-blue-400 ml-1"></i> يؤهل لخريجي المسار المنافسة على كليات الطب، الهندسة، الطيران، والصيدلة بجامعة السلطان قابوس والبعثات الخارجية.
+            </div>
+          </div>
+
+          <!-- المسار الأدبي -->
+          <div class="glass-card p-6 md:p-8 rounded-2xl border border-amber-500/30 space-y-6 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+                  <i class="fa-solid fa-feather-pointed"></i> المسار الثاني
+                </span>
+                <span class="text-xs text-gold-400 font-bold">الصف 11 و 12</span>
+              </div>
+              <h4 class="text-2xl font-black text-white">المسار الأدبي والعلوم الإنسانية (Literary Track)</h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                يُعنى بالفكر الإنساني، القانون، اللغات، العلوم الاقتصادية والسياسية، والإعلام، لبناء مهارات التحليل والاتصال والقيادة المجتمعية.
+              </p>
+
+              <!-- المواد الإجبارية للمسار الأدبي -->
+              <div class="space-y-2 pt-2">
+                <div class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-check-circle"></i> المواد الإجبارية (الأساسية والتخصصية):
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-feather text-amber-400 ml-1"></i> اللغة العربية وآدابها (مشترك)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-globe text-amber-400 ml-1"></i> اللغة الإنجليزية المتقدمة (مشترك)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-square-root-variable text-amber-400 ml-1"></i> الرياضيات الأساسية</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-landmark text-gold-400 ml-1"></i> هذا وطني (مشترك)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-book-quran text-gold-400 ml-1"></i> التربية الإسلامية (مشترك)</div>
+                  <div class="p-2.5 rounded-lg bg-royal-950 border border-slate-800 text-slate-200"><i class="fa-solid fa-earth-americas text-amber-400 ml-1"></i> الجغرافيا والتقنيات الحديثة</div>
+                </div>
+              </div>
+
+              <!-- المواد الاختيارية للمسار الأدبي -->
+              <div class="space-y-2 pt-2">
+                <div class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-sliders text-gold-400"></i> المواد الاختيارية (يختار الطالب منها حسب رغبته):
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-scale-balanced text-purple-400 ml-1"></i> التاريخ / دراسات اجتماعية</div>
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-briefcase text-blue-400 ml-1"></i> إدارة الأعمال / ريادة الأعمال</div>
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-language text-rose-400 ml-1"></i> مهارات لغوية اختيارية</div>
+                  <div class="p-2.5 rounded-lg bg-royal-900/60 border border-slate-800 text-slate-300"><i class="fa-solid fa-paint-brush text-amber-400 ml-1"></i> الفنون التشكيلية / الموسيقى</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/20 text-[11px] text-amber-200">
+              <i class="fa-solid fa-circle-info text-amber-400 ml-1"></i> يؤهل خريجي المسار لكليات الحقوق، الاقتصاد والعلوم السياسية، الآداب، اللغات والترجمة، وكليات التربية.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
     <!-- قسم الألعاب التعليمية التفاعلية -->
     <section id="games-hub" class="py-16 px-4 bg-royal-900/50 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
@@ -178,7 +307,7 @@
           </span>
           <h3 class="text-2xl md:text-4xl font-black text-white">الألعاب التعليمية التفاعلية لمادة اللغة الإنجليزية</h3>
           <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto">
-            مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي ومدمجة لتعمل مباشرة دون أخطاء.
+            مجموعة ألعاب تفاعلية مخصصة لطلاب الصف الحادي عشر لتعزيز القواعد اللغوية (Grammar)، إتقان المفردات (Vocabulary)، وتطبيق مهارات القراءة (Reading Comprehension) بأسلوب مرح وتنافسي ومدمجة لتعمل مباشرة دون أخطاء[cite: 15, 16, 17].
           </p>
         </div>
 
@@ -196,7 +325,7 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Time Machine Express</h4>
+                <h4 class="text-lg font-black text-white">Time Machine Express[cite: 15]</h4>
                 <p class="text-[11px] text-gold-400 font-bold uppercase tracking-wider">Past Simple vs. Past Continuous[cite: 15]</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   لعبة محطات قطار تفاعلية عبر 5 مراحل تختبر إتقان أزمنة الماضي، واستخدام الروابط الدالة (While & When) مع التفاعل الصوتي[cite: 15].
@@ -225,7 +354,7 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Vocabulary Match Game</h4>
+                <h4 class="text-lg font-black text-white">Vocabulary Match Game[cite: 16]</h4>
                 <p class="text-[11px] text-pink-400 font-bold uppercase tracking-wider">Theme: Teenage Words & Definitions[cite: 16]</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   مطابقة تفاعلية بالصور والنطق لمفردات المنهج الأساسية: (Adolescence, Angst, Acne, Teens, Suspicious, Mood swings, Peer pressure, Influence)[cite: 16].
@@ -254,7 +383,7 @@
                 </span>
               </div>
               <div class="p-6 space-y-3 text-right">
-                <h4 class="text-lg font-black text-white">Teenage Life Word Game</h4>
+                <h4 class="text-lg font-black text-white">Teenage Life Word Game[cite: 17]</h4>
                 <p class="text-[11px] text-emerald-400 font-bold uppercase tracking-wider">Gap-Fill & Reading Comprehension[cite: 17]</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   نشاط قراءة تفاعلي متقدم يضع الطالب أمام نص متكامل عن مرحلة المراهقة؛ لاختيار الكلمات الصحيحة وتعبئة الفراغات مع التلميحات الفورية[cite: 17].
@@ -363,64 +492,6 @@
         </div>
       </div>
     </section>
-
-    <!-- المسارات الأكاديمية -->
-    <section id="tracks" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
-      <div class="max-w-7xl mx-auto space-y-10">
-        <div class="text-center space-y-2">
-          <h3 class="text-2xl md:text-4xl font-black text-white">المساران الأكاديميان في مدرسة ظفار (11 - 12)</h3>
-          <p class="text-xs md:text-sm text-slate-400">نظام تعليمي متكامل يؤهل مخرجات الدبلوم العام لفرز مركز القبول الموحد (HEAC):</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="glass-card p-6 rounded-2xl border border-gold-500/30 space-y-4">
-            <h4 class="text-2xl font-black text-white">المسار العلمي (Scientific Track)</h4>
-            <p class="text-xs text-slate-300">الرياضيات المتقدمة، الفيزياء، الكيمياء، والأحياء وفق معايير كامبريدج[cite: 14].</p>
-            <button onclick="selectTrackForCalc('sci')" class="w-full py-2.5 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30">
-              تجربة حساب معدل المسار العلمي
-            </button>
-          </div>
-          <div class="glass-card p-6 rounded-2xl border border-gold-500/30 space-y-4">
-            <h4 class="text-2xl font-black text-white">المسار الأدبي (Literary Track)</h4>
-            <p class="text-xs text-slate-300">اللغة العربية، اللغة الإنجليزية المتقدمة، الدراسات الاجتماعية، والرياضيات الأساسية.</p>
-            <button onclick="selectTrackForCalc('lit')" class="w-full py-2.5 rounded-lg bg-royal-800 hover:bg-gold-500 hover:text-royal-950 text-gold-400 font-bold text-xs transition border border-gold-500/30">
-              تجربة حساب معدل المسار الأدبي
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- حاسبة المعدل التقديري التفاعلية -->
-    <section id="calculator" class="py-16 px-4 bg-royal-900/40 border-t border-slate-800">
-      <div class="max-w-4xl mx-auto space-y-6">
-        <div class="text-center space-y-2">
-          <h3 class="text-2xl md:text-3xl font-extrabold text-white">حاسبة درجات المسار ومعدل الدبلوم التقديري</h3>
-          <p class="text-xs md:text-sm text-slate-400">أدخل درجاتك التقديرية في المواد التخصصية للمسار لعرض النسبة المئوية والتوصيات الجامعية.</p>
-        </div>
-
-        <div class="glass-card p-6 md:p-8 rounded-2xl border border-gold-500/30">
-          <div class="flex rounded-lg bg-royal-950 p-1 mb-6 border border-slate-800 max-w-sm mx-auto">
-            <button id="calcTabSci" onclick="switchCalcTrack('sci')" class="w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition">المسار العلمي</button>
-            <button id="calcTabLit" onclick="switchCalcTrack('lit')" class="w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition">المسار الأدبي</button>
-          </div>
-
-          <div id="calcInputs" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
-
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800">
-            <div class="text-right w-full sm:w-auto">
-              <span class="text-xs text-slate-400 block">المعدل العام التقديري:</span>
-              <span id="calcResult" class="text-2xl md:text-3xl font-black text-gold-400">-- %</span>
-            </div>
-            <button onclick="calculateGPA()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-bold text-xs md:text-sm transition flex items-center justify-center gap-2">
-              <i class="fa-solid fa-chart-line"></i>
-              <span>احسب المعدل والتوصية الجامعية</span>
-            </button>
-          </div>
-
-          <div id="calcRecommendation" class="mt-4 p-3.5 rounded-lg bg-royal-950 border border-slate-800 text-xs text-slate-300 hidden"></div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- نافذة مشغل الألعاب التعليمية التفاعلية -->
@@ -490,7 +561,7 @@
       showToast('جاري التحقق من الهوية عبر بوابة وزارة التربية والتعليم...');
     }
 
-    // إدارة وتشغيل الألعاب التفاعلية الثلاث بأمان
+    // تشغيل الألعاب التعليمية
     function launchGame(id) {
       const modal = document.getElementById('gameModal');
       const frame = document.getElementById('gameModalFrame');
@@ -519,111 +590,25 @@
       document.getElementById('gameModalFrame').src = '';
     }
 
-    // إدارة حاسبة المعدل للمسارين الأكاديميين
-    let currentCalcTrack = 'sci';
-    const trackSubjects = {
-      sci: [
-        { id: 'm1', name: 'الرياضيات المتقدمة', enName: 'Pure Mathematics', default: 92 },
-        { id: 'm2', name: 'الفيزياء', enName: 'Physics', default: 90 },
-        { id: 'm3', name: 'الكيمياء', enName: 'Chemistry', default: 88 },
-        { id: 'm4', name: 'الأحياء', enName: 'Biology', default: 91 }
-      ],
-      lit: [
-        { id: 'm1', name: 'اللغة العربية والآداب', enName: 'Arabic Language', default: 94 },
-        { id: 'm2', name: 'اللغة الإنجليزية المتقدمة', enName: 'Advanced English', default: 89 },
-        { id: 'm3', name: 'هذا وطني (الدراسات الاجتماعية)', enName: 'Social Studies', default: 95 },
-        { id: 'm4', name: 'الرياضيات الأساسية / الجغرافيا', enName: 'Core Math / Geography', default: 90 }
-      ]
-    };
-
-    function renderCalcInputs() {
-      const container = document.getElementById('calcInputs');
-      const list = trackSubjects[currentCalcTrack];
-      container.innerHTML = list.map(item => `
-        <div class="bg-royal-950 p-3 rounded-xl border border-slate-800">
-          <label class="block text-[11px] font-bold text-slate-300 mb-1.5 truncate">
-            ${currentLang === 'ar' ? item.name : item.enName}
-          </label>
-          <input type="number" id="${item.id}" min="0" max="100" value="${item.default}" 
-                 class="w-full bg-royal-900 border border-slate-700 rounded-lg p-2 text-gold-400 font-bold text-sm focus:border-gold-500 outline-none text-center">
-        </div>
-      `).join('');
-    }
-
-    function switchCalcTrack(type) {
-      currentCalcTrack = type;
-      const btnSci = document.getElementById('calcTabSci');
-      const btnLit = document.getElementById('calcTabLit');
-
-      if (type === 'sci') {
-        btnSci.className = "w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition";
-        btnLit.className = "w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition";
-      } else {
-        btnLit.className = "w-1/2 py-2 text-xs font-bold rounded-md bg-gold-500 text-royal-950 transition";
-        btnSci.className = "w-1/2 py-2 text-xs font-bold rounded-md text-slate-400 hover:text-white transition";
-      }
-      renderCalcInputs();
-      document.getElementById('calcResult').innerText = '-- %';
-      document.getElementById('calcRecommendation').classList.add('hidden');
-    }
-
-    function selectTrackForCalc(type) {
-      switchCalcTrack(type);
-      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function calculateGPA() {
-      const inputs = document.querySelectorAll('#calcInputs input');
-      let sum = 0, count = 0;
-      inputs.forEach(input => {
-        let val = parseFloat(input.value) || 0;
-        if (val > 100) val = 100;
-        if (val < 0) val = 0;
-        sum += val;
-        count++;
-      });
-      const avg = (sum / count).toFixed(1);
-      document.getElementById('calcResult').innerText = avg + ' %';
-
-      const rec = document.getElementById('calcRecommendation');
-      rec.classList.remove('hidden');
-
-      if (currentCalcTrack === 'sci') {
-        if (avg >= 90) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">✨ معدل ممتاز (المسار العلمي):</span> يؤهلك للمنافسة بقوة على كليات الطب البشري، طب الأسنان، الهندسة بجامعة السلطان قابوس، والابتعاث الخارجي.`;
-        } else if (avg >= 80) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">👍 معدل جيد جداً (المسار العلمي):</span> يؤهلك لكليات الهندسة، تقنية المعلومات والذكاء الاصطناعي، والعلوم التطبيقية والصحية.`;
-        } else {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">📚 المسار العلمي:</span> ركّز على حل المسائل في مادتي الرياضيات والفيزياء لرفع التنافسية في فرز القبول الموحد.`;
-        }
-      } else {
-        if (avg >= 90) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">✨ معدل ممتاز (المسار الأدبي):</span> يؤهلك للمنافسة على كليات الحقوق والقانون، الاقتصاد والعلوم السياسية، واللغات والترجمة بجامعة السلطان قابوس.`;
-        } else if (avg >= 80) {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">👍 معدل جيد جداً (المسار الأدبي):</span> يؤهلك لكليات إدارة الأعمال، الإعلام، والتربية والآداب.`;
-        } else {
-          rec.innerHTML = `<span class="text-gold-400 font-bold">📚 المسار الأدبي:</span> الاستثمار في درجات اللغتين العربية والإنجليزية يفتح أمامك خيارات تخصصية متعددة.`;
-        }
-      }
-    }
-
-    // نظام الترجمة والتحويل بين اللغتين
+    // نظام الترجمة والتبديل بين اللغتين
     const translations = {
       en: {
         top_location: "Directorate General of Education in Dhofar Governorate • Salalah",
         brand_title: "Dhofar Secondary School for Boys (11-12)",
         brand_sub: "Salalah, Dhofar Governorate, Oman",
         nav_mission: "School Mission",
+        nav_tracks: "Academic Pathways",
         nav_games: "English Games (11)",
         nav_videos: "Media & Videos",
         nav_feed: "X Posts",
-        nav_tracks: "Academic Tracks (2)",
-        nav_calc: "GPA Calculator",
         btn_portal: "MOE Portal",
         mission_badge: "Official Educational Mission",
         school_mission: '"Providing distinguished academic achievement, engaging students across diverse educational activities, and maximizing all school resources supported by creative leadership and active community partnership."',
         hero_title: "Omani Heritage & Academic Excellence for Grades (11 - 12)",
         hero_desc: "Dhofar Secondary School for Boys combines adherence to Omani identity (white dishdasha and kummah) with high academic standards in Cambridge sciences and literary disciplines.",
+        tracks_tag: "Academic Pathways & Course Structure",
+        tracks_heading: "Academic Tracks at Dhofar School (11 - 12)",
+        tracks_sub: "An integrated curriculum approved by the Ministry of Education combining core foundational subjects with specialized electives.",
         videos_heading: "Campus Field Videos & Initiatives"
       },
       ar: {
@@ -631,16 +616,18 @@
         brand_title: "مدرسة ظفار للبنين (11-12)",
         brand_sub: "Dhofar Post-Basic School for Boys (11-12)",
         nav_mission: "رسالة المدرسة",
+        nav_tracks: "المسارات الأكاديمية (2)",
         nav_games: "ألعاب الإنجليزي (11)",
         nav_videos: "مرئيات المدرسة",
         nav_feed: "تدوينات X",
-        nav_tracks: "المسارات الأكاديمية (2)",
-        nav_calc: "حاسبة الدبلوم",
         btn_portal: "البوابة التعليمية",
         mission_badge: "الرسالة التربوية الرسمية للمدرسة",
         school_mission: '"تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"',
         hero_title: "أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)",
         hero_desc: "تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج العلمية والأدبية لتأهيل الطلبة لمقاعد التعليم العالي.",
+        tracks_tag: "الخطة الدراسية والتنظيم الأكاديمي",
+        tracks_heading: "المساران الأكاديميان في مدرسة ظفار (11 - 12)",
+        tracks_sub: "خطة دراسية معتمدة من وزارة التربية والتعليم؛ تجمع بين مواد أساسية مشتركة ترسخ الهوية والمعرفة العامة، ومواد تخصصية واختيارية تؤهل الطالب لمتطلبات القبول الموحد.",
         videos_heading: "المرئيات الميدانية والأنشطة التوثيقية"
       }
     };
@@ -658,10 +645,7 @@
           el.textContent = translations[currentLang][key];
         }
       });
-      renderCalcInputs();
     });
-
-    renderCalcInputs();
   </script>
 </body>
 </html>
