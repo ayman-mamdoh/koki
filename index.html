@@ -55,10 +55,10 @@
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-2 text-slate-300">
         <span class="px-2.5 py-0.5 rounded-full bg-gold-500/10 text-gold-400 font-bold border border-gold-500/30">
-          <i class="fa-solid fa-graduation-cap"></i> سلطنة عُمان • وزارة التعليم
+          <i class="fa-solid fa-graduation-cap"></i> سلطنة عُمان • وزارة التربية والتعليم
         </span>
         <span class="hidden sm:inline text-slate-400">|</span>
-        <span class="hidden sm:inline" data-key="top_location">المديرية العامة للتعليم بمحافظة ظفار • ولاية صلالة</span>
+        <span class="hidden sm:inline" data-key="top_location">المديرية العامة للتربية والتعليم بمحافظة ظفار • ولاية صلالة</span>
       </div>
 
       <div class="flex items-center gap-4">
@@ -73,7 +73,7 @@
     </div>
   </aside>
 
-  <!-- الترويسة الرئيسية متضمنة شعار وزارة التعليم -->
+  <!-- الترويسة الرئيسية -->
   <header class="sticky top-0 z-40 bg-royal-950/90 backdrop-blur-md border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -88,8 +88,11 @@
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-300">
         <a href="#mission" class="hover:text-gold-400 transition" data-key="nav_mission">رسالة المدرسة</a>
+        <a href="#portals-hub" class="hover:text-gold-400 transition flex items-center gap-1.5 text-gold-400">
+          <i class="fa-solid fa-link"></i> المنصات التعليمية
+        </a>
         <a href="#curriculum" class="hover:text-gold-400 transition" data-key="nav_curriculum">الخطة الدراسية</a>
-        <a href="#games-hub" class="text-gold-400 hover:text-white transition flex items-center gap-1.5" data-key="nav_games">
+        <a href="#games-hub" class="hover:text-gold-400 transition flex items-center gap-1.5" data-key="nav_games">
           <i class="fa-solid fa-gamepad"></i> ألعاب الإنجليزي (11)
         </a>
         <a href="#video-hub" class="hover:text-gold-400 transition flex items-center gap-1.5" data-key="nav_videos">
@@ -100,11 +103,32 @@
         </a>
       </nav>
 
-      <div class="flex items-center gap-3">
-        <button onclick="openPortalModal()" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
-          <i class="fa-solid fa-user-lock"></i>
-          <span data-key="btn_portal">البوابة التعليمية</span>
+      <div class="relative">
+        <button id="platformsDropdownBtn" onclick="toggleDropdown()" class="px-4 py-2 rounded-lg bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition shadow-md flex items-center gap-2">
+          <i class="fa-solid fa-building-columns"></i>
+          <span>المنصات الرسمية</span>
+          <i class="fa-solid fa-chevron-down text-[10px]"></i>
         </button>
+
+        <!-- قائمة منسدلة بالمنصات الأربع -->
+        <div id="platformsDropdownMenu" class="hidden absolute left-0 mt-2 w-56 rounded-xl bg-royal-900 border border-gold-500/40 shadow-2xl py-2 z-50 text-right">
+          <a href="https://home.moe.gov.om/index.moe" target="_blank" rel="noopener noreferrer" class="block px-4 py-2.5 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-gold-400"></i>
+            <span>البوابة التعليمية لسلطنة عُمان</span>
+          </a>
+          <a href="https://eportal.moe.gov.om/egov/Login?returnurl=%2fegov" target="_blank" rel="noopener noreferrer" class="block px-4 py-2.5 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-chalkboard-user text-blue-400"></i>
+            <span>منصة منظرة</span>
+          </a>
+          <a href="https://ejada.gov.om/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2.5 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-award text-emerald-400"></i>
+            <span>منصة إجادة</span>
+          </a>
+          <a href="https://lms.moe.gov.om" target="_blank" rel="noopener noreferrer" class="block px-4 py-2.5 text-xs text-slate-200 hover:bg-royal-800 hover:text-gold-400 transition flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-purple-400"></i>
+            <span>منصة نور التعليمية</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -143,11 +167,11 @@
               تجسد مدرسة ظفار للبنين أرقى معايير الانضباط والتحصيل؛ حيث يلتقي الالتزام بالهوية والزي العُماني (الدشداشة البيضاء والكمة) مع التفاعل الصفي والبحثي في المناهج والمواد الدراسية المقررة[cite: 3].
             </p>
             <div class="flex flex-wrap gap-3 pt-2">
-              <a href="#curriculum" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
-                <i class="fa-solid fa-table-list"></i> استعراض الخطة الدراسية وتوزيع الحصص
+              <a href="#portals-hub" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs md:text-sm transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
+                <i class="fa-solid fa-network-wired"></i> بوابات ومنصات وزارة التربية والتعليم
               </a>
-              <a href="#games-hub" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
-                <i class="fa-solid fa-gamepad text-gold-400"></i> الألعاب التعليمية التفاعلية (11)
+              <a href="#curriculum" class="px-6 py-3 rounded-xl bg-royal-800 hover:bg-royal-700 text-white font-bold text-xs md:text-sm transition border border-slate-700 flex items-center gap-2">
+                <i class="fa-solid fa-table-list"></i> استعراض الخطة الدراسية
               </a>
             </div>
           </div>
@@ -167,7 +191,96 @@
       </div>
     </section>
 
-    <!-- الخطة الدراسية: مواد المجموعة الأولى والثانية (مستبدلة بنظام الوثيقة الرسمي) -->
+    <!-- قسم بوابات ومنصات سلطنة عمان الرسمية المعتمدة -->
+    <section id="portals-hub" class="py-16 px-4 bg-royal-900/60 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto space-y-10">
+        
+        <div class="text-center space-y-2">
+          <span class="text-xs font-bold text-gold-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-globe text-gold-400"></i> البوابات والمنصات التعليمية الرسمية
+          </span>
+          <h3 class="text-2xl md:text-4xl font-black text-white">الروابط المباشرة للخدمات والمنصات الحكومية</h3>
+          <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto">
+            روابط مباشرة وسريعة للوصول إلى البوابات والمنصات التابعة لوزارة التربية والتعليم ووحدة متابعة الأداء المؤسسي بسلطنة عُمان.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- 1. البوابة التعليمية لسلطنة عمان -->
+          <div class="glass-card p-6 rounded-2xl border border-gold-500/40 hover:border-gold-500 transition shadow-xl flex flex-col justify-between text-right">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-gold-500/20 text-gold-400 border border-gold-500/30 flex items-center justify-center text-2xl mb-4">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h4 class="text-lg font-black text-white mb-2">البوابة التعليمية</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                المدخل الرسمي لكافة الخدمات الأكاديمية وسجلات الطلاب وبيانات أعضاء الهيئة التدريسية وأولياء الأمور.
+              </p>
+            </div>
+            <a href="https://home.moe.gov.om/index.moe" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
+              <span>الدخول للبوابة</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+            </a>
+          </div>
+
+          <!-- 2. منصة منظرة -->
+          <div class="glass-card p-6 rounded-2xl border border-blue-500/40 hover:border-blue-400 transition shadow-xl flex flex-col justify-between text-right">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-2xl mb-4">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </div>
+              <h4 class="text-lg font-black text-white mb-2">منصة منظرة</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                البيئة التعليمية التفاعلية الرقمية للتواصل والأنشطة الإثرائية والمقررات الرقمية التابعة لوزارة التربية والتعليم.
+              </p>
+            </div>
+            <a href="https://eportal.moe.gov.om/egov/Login?returnurl=%2fegov" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
+              <span>الدخول لمنظرة</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+            </a>
+          </div>
+
+          <!-- 3. منصة إجادة -->
+          <div class="glass-card p-6 rounded-2xl border border-emerald-500/40 hover:border-emerald-400 transition shadow-xl flex flex-col justify-between text-right">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-2xl mb-4">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <h4 class="text-lg font-black text-white mb-2">منصة إجادة</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                منظومة قياس الأداء الفردي والمؤسسي وتطوير الكفاءات الحكومية ودعم الإجادة الوظيفية بسلطنة عُمان.
+              </p>
+            </div>
+            <a href="https://ejada.gov.om/" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-royal-950 font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
+              <span>الدخول لمنصة إجادة</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+            </a>
+          </div>
+
+          <!-- 4. منصة نور التعليمية -->
+          <div class="glass-card p-6 rounded-2xl border border-purple-500/40 hover:border-purple-400 transition shadow-xl flex flex-col justify-between text-right">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-2xl mb-4">
+                <i class="fa-solid fa-book-open"></i>
+              </div>
+              <h4 class="text-lg font-black text-white mb-2">منصة نور التعليمية</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                نظام إدارة التعلم (LMS) المتقدم لتقديم الدروس والواجبات والمحتويات التعليمية الرقمية والمناهج المدرسية.
+              </p>
+            </div>
+            <a href="https://lms.moe.gov.om" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-black text-xs transition flex items-center justify-center gap-2 shadow-md">
+              <span>الدخول لمنصة نور</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- الخطة الدراسية: مواد المجموعة الأولى والثانية -->
     <section id="curriculum" class="py-16 px-4 bg-royal-950 border-t border-slate-800">
       <div class="max-w-7xl mx-auto space-y-10">
         
@@ -175,7 +288,7 @@
           <span class="text-xs font-bold text-gold-400 uppercase tracking-widest" data-key="curriculum_tag">الخطة الدراسية الرسمية المعتمدة</span>
           <h3 class="text-2xl md:text-4xl font-black text-white" data-key="curriculum_heading">تنظيم المواد الدراسية وتوزيع الحصص (11 - 12)</h3>
           <p class="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto" data-key="curriculum_sub">
-            الخطة الأكاديمية الرسمية المعتمدة لتوزيع المواد الأساسية الإختيارية والمواد الاختيارية بعدد الحصص الأسبوعية المقررة.
+            الخطة الأكاديمية الرسمية المعتمدة لتوزيع المواد الأساسية الإختيارية والمواد الاختيارية بعدد الحصص الأسبوعية المقررة[cite: 19].
           </p>
         </div>
 
@@ -233,7 +346,6 @@
                     <td class="p-3 font-semibold"><i class="fa-solid fa-compass text-gold-400 ml-2"></i>خدمة التوجيه المهني[cite: 19]</td>
                     <td class="p-3 text-center font-bold text-gold-400">1[cite: 19]</td>
                   </tr>
-                  <!-- خيارات مجموعة الرياضيات -->
                   <tr class="bg-royal-900/40">
                     <td rowspan="2" class="p-3 text-center text-slate-400 border-l border-slate-800">2[cite: 19]</td>
                     <td class="p-3 font-semibold">
@@ -532,33 +644,6 @@
     </div>
   </div>
 
-  <!-- نافذة البوابة المدرسية -->
-  <div id="portalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-royal-900 border border-gold-500/40 rounded-2xl max-w-md w-full p-6 text-right space-y-5 shadow-2xl relative">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-shield-halved text-gold-400"></i>
-          <span>بوابة الدخول الموحد للطلاب وأولياء الأمور</span>
-        </h3>
-        <button onclick="closePortalModal()" class="text-slate-400 hover:text-white text-xl">&times;</button>
-      </div>
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block text-slate-300 font-bold mb-1">الرقم المدني العُماني (Civil ID):</label>
-          <input type="text" placeholder="أدخل الرقم المدني" class="w-full bg-royal-950 border border-slate-700 rounded-lg p-2.5 text-white focus:border-gold-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-slate-300 font-bold mb-1">كلمة المرور أو التصديق الإلكتروني (PKI):</label>
-          <input type="password" placeholder="••••••••" class="w-full bg-royal-950 border border-slate-700 rounded-lg p-2.5 text-white focus:border-gold-500 outline-none">
-        </div>
-      </div>
-      <div class="pt-2 space-y-2">
-        <button onclick="performLogin()" class="w-full py-2.5 rounded-lg bg-gold-500 text-royal-950 font-bold text-xs hover:bg-gold-400 transition">تسجيل الدخول</button>
-        <button onclick="closePortalModal()" class="w-full py-2 rounded-lg bg-royal-800 text-slate-300 font-bold text-xs">إلغاء</button>
-      </div>
-    </div>
-  </div>
-
   <footer class="bg-royal-950 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
     <p>جميع الحقوق محفوظة © 2026 مدرسة ظفار للبنين (11-12) • صلالة، محافظة ظفار، سلطنة عُمان</p>
   </footer>
@@ -571,13 +656,22 @@
       setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3500);
     }
 
-    function openPortalModal() { document.getElementById('portalModal').classList.remove('hidden'); }
-    function closePortalModal() { document.getElementById('portalModal').classList.add('hidden'); }
-    function performLogin() {
-      closePortalModal();
-      showToast('جاري التحقق من الهوية عبر بوابة وزارة التربية والتعليم...');
+    // إدارة القائمة المنسدلة للبوابات والمنصات التعليمية
+    function toggleDropdown() {
+      const menu = document.getElementById('platformsDropdownMenu');
+      menu.classList.toggle('hidden');
     }
 
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', function(event) {
+      const btn = document.getElementById('platformsDropdownBtn');
+      const menu = document.getElementById('platformsDropdownMenu');
+      if (btn && menu && !btn.contains(event.target) && !menu.contains(event.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    // تشغيل الألعاب التعليمية
     function launchGame(id) {
       const modal = document.getElementById('gameModal');
       const frame = document.getElementById('gameModalFrame');
@@ -606,6 +700,7 @@
       document.getElementById('gameModalFrame').src = '';
     }
 
+    // نظام الترجمة والتبديل بين اللغتين
     const translations = {
       en: {
         top_location: "Directorate General of Education in Dhofar Governorate • Salalah",
@@ -616,7 +711,7 @@
         nav_games: "English Games (11)",
         nav_videos: "Media & Videos",
         nav_feed: "X Posts",
-        btn_portal: "MOE Portal",
+        btn_portal: "Official Portals",
         mission_badge: "Official Educational Mission",
         school_mission: '"Providing distinguished academic achievement, engaging students across diverse educational activities, and maximizing all school resources supported by creative leadership and active community partnership."',
         hero_title: "Omani Heritage & Academic Excellence for Grades (11 - 12)",
@@ -635,7 +730,7 @@
         nav_games: "ألعاب الإنجليزي (11)",
         nav_videos: "مرئيات المدرسة",
         nav_feed: "تدوينات X",
-        btn_portal: "البوابة التعليمية",
+        btn_portal: "المنصات الرسمية",
         mission_badge: "الرسالة التربوية الرسمية للمدرسة",
         school_mission: '"تقديم تحصيل علمي مميز و شراكة الطلبة في الانشطة التربوية المختلفة واستثمار كافة امكانيات المدرسة بمساندة الكوادر القيادية المبدعة وشراكة مجتمعية"',
         hero_title: "أصالة عُمانية رائدة.. وعطاء تعليمي متجدد للصفين (11 - 12)",
